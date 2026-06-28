@@ -1580,6 +1580,15 @@
         top: 3.4rem;
         padding: 0.4rem 0 0.6rem;
       }
+      /* All four corner icons on ONE line: same top (0.6rem) and an even
+         2.8rem step. Earlier per-icon mobile rules left Sources + Archive
+         at top:0.9rem (lower) with uneven offsets sized for the now-hidden
+         collapse icon. These win by source order. R-to-L: gear, search,
+         archive, sources. */
+      .settings-btn         { top: 0.6rem; right: 0.6rem; }
+      .search-btn           { top: 0.6rem; right: 3.4rem; }
+      .shelf-btn            { top: 0.6rem; right: 6.2rem; }
+      .sources-fountain-btn { top: 0.6rem; right: 9.0rem; }
     }
 
   </style>

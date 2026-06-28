@@ -60,3 +60,10 @@ Companion status file. Records major structural decisions and progress.
 - No HTML or JS changed; desktop rules untouched. Verified CSS brace balance (295/295).
 
 **Note:** This is a first pass — exact strip height / pill padding are easy to dial if the spacing feels off on his device.
+
+
+## 2026-06-28 — Mobile: align the four corner icons
+
+**Problem:** On the two-row mobile header, Sources (fountain) + Archive (shelf) sat ~5px lower than Search + Gear and were unevenly spaced. Cause: the original per-icon mobile media rules only lifted Search/Gear to `top:0.6rem` and used right-offsets spaced for the (now mobile-hidden) collapse icon.
+
+**Fix (CSS, in the mobile `@media (max-width:480px)` block):** Pinned all four to `top:0.6rem` with an even 2.8rem horizontal step — gear 0.6rem, search 3.4rem, archive 6.2rem, sources 9.0rem (right-anchored). They now read as one clean inline row. Brace balance verified.
