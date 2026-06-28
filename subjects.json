@@ -16,5 +16,14 @@
     "accent": "#8a1c1c",
     "style": "dispatch",
     "desc": "Israel / Palestine / Mideast tracker — source-faithful summaries with background context."
+  },
+  {
+    "id": "commodity1",
+    "name": "1st Commodity",
+    "displayTitle": "First Commodity",
+    "folder": "commodity1",
+    "accent": "#7a5a1f",
+    "style": "dispatch",
+    "desc": "Placeholder commodity tracker — dated, source-backed entries."
   }
 ]

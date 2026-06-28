@@ -31,3 +31,18 @@ Companion status file. Records major structural decisions and progress.
 
 - Content (`.md` files + `index.json` rows) to be populated via the routine instructions (Tim).
 - Optional later: rename leftover legacy CSS classes (`marius-collapse-btn`) and trim the few inert comments for fully literal "no references." Cosmetic only.
+
+## 2026-06-28 — Added third tab: 1st Commodity (placeholder)
+
+**Goal:** Add a placeholder commodity tab that will carry sources + archive when populated.
+
+**What was done**
+
+- Added a third entry to `subjects.json`: `id: commodity1`, `name: "1st Commodity"`, `displayTitle: "First Commodity"`, `folder: commodity1`, `style: dispatch`.
+- Created `commodity1/` with an empty `index.json` (`[]`) — tab loads with the "no files yet" empty state.
+
+**Key decisions**
+
+- Chose `dispatch` style (same engine as Israel): one `.md` per story, grouped by `run_date`, auto-sorted by `significance`, with per-entry Sources + Context panels. Rationale: a commodity tracker logs individual dated, source-backed items — same shape as the Israel tracker. To switch to `literary` (one hand-written doc per day), change the single `"style"` field.
+- **No `index.html` change required.** The Sources (fountain) and Archive (shelf) icons are driven by the tab's `style`, not by per-tab markup. Any `dispatch`/`literary` tab gets them automatically: the shelf is always present; the fountain appears once an entry has `sources` in its front-matter.
+- Left empty per request, so the fountain stays hidden until the first sourced entry is added.
