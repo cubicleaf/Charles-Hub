@@ -1,0 +1,83 @@
+{
+  "sources": [
+    {
+      "id": "antiwar",
+      "name": "Antiwar.com",
+      "homepage": "https://antiwar.com/",
+      "rss": "https://antiwar.com/rss.xml",
+      "scan_method": "homepage_links",
+      "trust_tier": 1,
+      "topic_relevance": ["israel", "iran", "us-foreign-policy", "lebanon"],
+      "added": "2026-04-30",
+      "news_url_pattern": "https://news.antiwar.com/",
+      "scan_section": "News",
+      "notes": "Anti-imperial editorial line. Reliable on US foreign policy critique. NAVIGATION: fetch antiwar.com homepage; extract links whose href starts with 'https://news.antiwar.com/' — these are the aggregated news stories. Ignore Viewpoints, Blog, Radio, and Spotlight links. The 'News' section (labeled with an update timestamp) is the left-center column. rss.xml redirects to original.antiwar.com/feed/ (editorial/opinion only) — do NOT use RSS."
+    },
+    {
+      "id": "grayzone",
+      "name": "The Grayzone",
+      "homepage": "https://thegrayzone.com/",
+      "rss": "https://thegrayzone.com/feed/",
+      "scan_method": "rss",
+      "trust_tier": 1,
+      "topic_relevance": ["israel", "syria", "us-foreign-policy", "palestine-solidarity", "censorship"],
+      "added": "2026-04-30",
+      "notes": "Investigative anti-establishment. Strong on document-based reporting; framing is opinionated. Covers Palestine solidarity crackdowns, media censorship around the war, Western lawfare against protest groups — all in scope."
+    },
+    {
+      "id": "al-jazeera",
+      "name": "Al Jazeera English",
+      "homepage": "https://www.aljazeera.com/",
+      "rss": "https://www.aljazeera.com/xml/rss/all.xml",
+      "scan_method": "rss",
+      "trust_tier": 2,
+      "topic_relevance": ["israel", "palestine", "gaza", "iran", "lebanon", "icc"],
+      "added": "2026-05-02",
+      "notes": "Qatar-funded; editorially sympathetic to Palestinian cause. Strong on-the-ground Gaza reporting and ICC/ICJ proceedings. Good first-report source; note pro-Palestinian framing when writing context."
+    },
+    {
+      "id": "972mag",
+      "name": "+972 Magazine",
+      "homepage": "https://www.972mag.com/",
+      "rss": "https://www.972mag.com/feed/",
+      "scan_method": "rss",
+      "trust_tier": 1,
+      "topic_relevance": ["israel", "palestine", "west-bank", "settler-violence", "judicial-reform"],
+      "added": "2026-05-02",
+      "notes": "Israeli-Palestinian independent outlet. Exceptional on settler violence, occupation policy, judicial reform, and IDF conduct inside the West Bank. Explicitly progressive framing is part of the record, not a disqualifier."
+    },
+    {
+      "id": "middle-east-eye",
+      "name": "Middle East Eye",
+      "homepage": "https://www.middleeasteye.net/",
+      "rss": "https://www.middleeasteye.net/rss",
+      "scan_method": "rss",
+      "trust_tier": 2,
+      "topic_relevance": ["israel", "palestine", "iran", "hamas", "hezbollah", "icc", "diplomacy"],
+      "added": "2026-05-02",
+      "notes": "UK-based independent. Strong sourcing inside Gaza and the West Bank. Good on ICC/ICJ proceedings and diplomatic back-channels."
+    },
+    {
+      "id": "electronic-intifada",
+      "name": "The Electronic Intifada",
+      "homepage": "https://electronicintifada.net/",
+      "rss": "https://electronicintifada.net/blog/rss.xml",
+      "scan_method": "rss",
+      "trust_tier": 2,
+      "topic_relevance": ["israel", "palestine", "gaza", "bds", "settler-violence"],
+      "added": "2026-05-02",
+      "notes": "Palestinian-focused independent journalism. Good on BDS, legal proceedings, cultural and activist dimensions of the conflict. Strong pro-Palestinian editorial line."
+    },
+    {
+      "id": "google-news-israel",
+      "name": "Google News — Israel/Palestine Search",
+      "homepage": "https://news.google.com/",
+      "rss": "https://news.google.com/rss/search?q=Israel+Palestine+Gaza+%22West+Bank%22&hl=en-US&gl=US&ceid=US:en",
+      "scan_method": "rss",
+      "trust_tier": 3,
+      "topic_relevance": ["israel", "palestine", "gaza", "west-bank"],
+      "added": "2026-05-02",
+      "notes": "Google News aggregation RSS — no API key needed. Pulls from hundreds of outlets. Trust tier 3: evaluate each linked article's source independently before writing it up. Use as a discovery net to catch stories the registered sources missed. Google wraps links in redirect URLs — extract the real article URL from each item's <link> tag."
+    }
+  ]
+}

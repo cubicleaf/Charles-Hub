@@ -1,0 +1,25 @@
+# FETCH-RECEIPT v1
+# url: https://www.aljazeera.com/news/2026/6/20/msf-says-conditions-in-lebanons-nabatieh-resemble-a-death-trap
+# http_status: 200
+# fetched_at: 2026-06-20T13:33:00-04:00
+# content_bytes: 1531
+# ---
+Medical aid group Doctors Without Borders says conditions in the Nabatieh area of southern Lebanon, which is under ongoing Israeli attacks, resemble a "death trap".
+
+Israel has escalated attacks on Nabatieh and other parts of southern Lebanon since midnight on Friday, ahead of planned talks in Switzerland between the United States and Iran to seal an interim peace deal.
+
+At least 50 people have been killed in the renewed attacks, including a soldier, Lebanese health officials say.
+
+The aid group, widely known by its French-language acronym MSF, said it is responding to an influx of attack victims in Nabatieh, including paramedics wounded in rescue missions.
+
+The charity also warned that responders were unable to evacuate many more people caught under heavy shelling in the area because of the risk of coming under fire.
+
+"People are arriving with severe head injuries, heavy bleeding, shrapnel injuries and in need of amputations," the MSF emergency coordinator in Lebanon, Pierre Boulet-Desbareau, said in a statement.
+
+"The ongoing situation in Nabatiyeh is devastating. What our teams are describing resembles a death trap. People are caught under heavy shelling, while rescue teams are unable to safely reach them," he said. "Civilians and first responders must be protected, and unhindered access for rescue teams is urgently needed."
+
+The Israeli military said it began striking multiple targets in southern Lebanon following a Hezbollah attack that killed four soldiers. Despite US President Donald Trump announcing late on Friday that Israel had agreed to a ceasefire with Hezbollah, Israel continued to launch attacks on southern Lebanon into Saturday.
+
+The Lebanese state-run National News Agency reported that Israeli military aircraft and drones carried out a series of strikes across Nabatieh overnight and into Saturday morning, destroying residential buildings and homes.
+
+Tehran insists any final peace agreement requires Israel and the United States to end the conflict on all fronts, including in Lebanon. Tehran reportedly delayed sending delegates to Switzerland ahead of postponed face-to-face talks due to Israel's escalated attacks.

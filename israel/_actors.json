@@ -1,0 +1,15 @@
+{
+  "idf": {"full_name": "Israel Defense Forces", "type": "institution"},
+  "hezbollah": {"full_name": "Hezbollah", "type": "institution"},
+  "unifil": {"full_name": "United Nations Interim Force in Lebanon", "type": "institution"},
+  "netanyahu": {"full_name": "Benjamin Netanyahu", "type": "person"},
+  "irgc": {"full_name": "Islamic Revolutionary Guard Corps", "type": "institution"},
+  "centcom": {"full_name": "US Central Command", "type": "institution"},
+  "trump": {"full_name": "Donald Trump", "type": "person"},
+  "pezeshkian": {"full_name": "Masoud Pezeshkian", "type": "person"},
+  "smotrich": {"full_name": "Bezalel Smotrich", "type": "person"},
+  "icc": {"full_name": "International Criminal Court", "type": "institution"},
+  "ben-gvir": {"full_name": "Itamar Ben-Gvir", "type": "person"},
+  "msf": {"full_name": "Médecins Sans Frontières", "type": "institution"},
+  "vance": {"full_name": "JD Vance", "type": "person"}
+}

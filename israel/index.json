@@ -1,1 +1,271 @@
-[]
+[
+  {
+    "file": "2026-06-20-trump-faces-israeli-anger-mou.md",
+    "date": "2026-06-20",
+    "title": "Israeli public turns on Trump as poll shows 71 percent no longer trust US; Israel Hayom calls MoU a 'surrender agreement'",
+    "contested": false,
+    "estimated_read_minutes": 4,
+    "run_date": "2026-06-20",
+    "significance": 3,
+    "significance_reason": "Israeli public opinion turns sharply against Trump on MoU; backlash in pro-Trump paper signals structural rift in US-Israel alliance",
+    "geography": [
+      "israel",
+      "washington"
+    ],
+    "actors": [
+      "netanyahu",
+      "ben-gvir",
+      "smotrich",
+      "trump",
+      "vance"
+    ],
+    "categories": [
+      "us-iran-mou",
+      "diplomacy",
+      "public-opinion"
+    ],
+    "thread_id": "us-iran-mou-2026",
+    "related_threads": []
+  },
+  {
+    "file": "2026-06-20-iran-closes-hormuz-ceasefire-breach.md",
+    "date": "2026-06-20",
+    "title": "Iran closes Strait of Hormuz as Israel breaks Lebanon ceasefire one day after deal",
+    "contested": false,
+    "estimated_read_minutes": 4,
+    "run_date": "2026-06-20",
+    "significance": 5,
+    "significance_reason": "Iran closes global oil chokepoint in direct response to Israeli Lebanon ceasefire violation; MoU in immediate jeopardy",
+    "geography": [
+      "strait-of-hormuz",
+      "southern-lebanon"
+    ],
+    "actors": [
+      "irgc",
+      "idf",
+      "hezbollah",
+      "netanyahu"
+    ],
+    "categories": [
+      "us-iran-war",
+      "ceasefire",
+      "military-strikes",
+      "lebanon"
+    ],
+    "thread_id": "us-iran-mou-2026",
+    "related_threads": [
+      "israel-lebanon-strikes-2026"
+    ]
+  },
+  {
+    "file": "2026-06-20-msf-nabatieh-death-trap.md",
+    "date": "2026-06-20",
+    "title": "MSF calls Nabatieh a 'death trap' as Israeli shelling kills 50 the day after Lebanon ceasefire announcement",
+    "contested": false,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-06-20",
+    "significance": 3,
+    "significance_reason": "MSF 'death trap' conditions in Nabatieh document humanitarian catastrophe of Israel's post-ceasefire offensive; Swiss talks disrupted",
+    "geography": [
+      "nabatieh",
+      "southern-lebanon"
+    ],
+    "actors": [
+      "idf",
+      "hezbollah",
+      "msf"
+    ],
+    "categories": [
+      "humanitarian",
+      "military-strikes",
+      "ceasefire",
+      "lebanon"
+    ],
+    "thread_id": "israel-lebanon-strikes-2026",
+    "related_threads": [
+      "us-iran-mou-2026"
+    ]
+  },
+  {
+    "file": "2026-06-18-netanyahu-rejects-lebanon-withdrawal.md",
+    "date": "2026-06-18",
+    "title": "Netanyahu reaffirms Israel will not withdraw from Lebanon despite US-Iran MoU",
+    "contested": false,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-06-20",
+    "significance": 4,
+    "significance_reason": "Netanyahu's public rejection of Lebanon withdrawal directly challenges MoU; Iran's 'harsh response' warning precedes Hormuz reclosure two days later",
+    "geography": [
+      "southern-lebanon"
+    ],
+    "actors": [
+      "netanyahu",
+      "idf",
+      "trump"
+    ],
+    "categories": [
+      "ceasefire",
+      "us-iran-mou",
+      "lebanon",
+      "occupation"
+    ],
+    "thread_id": "israel-lebanon-strikes-2026",
+    "related_threads": [
+      "us-iran-mou-2026"
+    ]
+  },
+  {
+    "file": "2026-06-18-israel-kills-three-gaza-ceasefire.md",
+    "date": "2026-06-18",
+    "title": "Israeli drone strike kills three in Gaza; Health Ministry says 1,007 Palestinians killed since ceasefire deal",
+    "contested": false,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-06-20",
+    "significance": 3,
+    "significance_reason": "Post-ceasefire killing milestone (1,007 Palestinians killed after deal) coincides with Netanyahu's territorial expansion directive; systematic violation documented",
+    "geography": [
+      "gaza"
+    ],
+    "actors": [
+      "idf",
+      "netanyahu"
+    ],
+    "categories": [
+      "ceasefire-violations",
+      "civilian-casualties",
+      "territorial-control"
+    ],
+    "thread_id": "gaza-territorial-control-2026",
+    "related_threads": []
+  },
+  {
+    "file": "2026-06-18-vance-rebukes-israeli-officials.md",
+    "date": "2026-06-18",
+    "title": "Vance tells Israeli officials Trump is their only remaining ally; warns they can't 'kill your way out' of security problems",
+    "contested": false,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-06-20",
+    "significance": 4,
+    "significance_reason": "VP Vance delivers sharpest US rebuke of Israel in recent memory while refusing to threaten aid cutoff; gap between US rhetoric and leverage laid bare",
+    "geography": [
+      "washington"
+    ],
+    "actors": [
+      "vance",
+      "smotrich",
+      "ben-gvir",
+      "trump"
+    ],
+    "categories": [
+      "us-iran-mou",
+      "diplomacy",
+      "military-aid"
+    ],
+    "thread_id": "us-iran-mou-2026",
+    "related_threads": []
+  },
+  {
+    "file": "2026-06-18-centcom-lifts-iran-blockade.md",
+    "date": "2026-06-18",
+    "title": "CENTCOM lifts US naval blockade on Iran per MoU as oil prices fall",
+    "contested": false,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-06-20",
+    "significance": 5,
+    "significance_reason": "US naval blockade on Iran ends; MoU implementation begins; historic de-escalation, Israel strategically sidelined",
+    "geography": [
+      "strait-of-hormuz",
+      "persian-gulf"
+    ],
+    "actors": [
+      "centcom",
+      "trump",
+      "pezeshkian"
+    ],
+    "categories": [
+      "us-iran-war",
+      "ceasefire",
+      "blockade"
+    ],
+    "thread_id": "us-iran-mou-2026",
+    "related_threads": []
+  },
+  {
+    "file": "2026-05-31-satellite-imagery-gaza-erasure.md",
+    "date": "2026-05-31",
+    "title": "Satellite imagery shows erasure of southern Gaza as Netanyahu orders expansion to 70 percent territorial control",
+    "contested": false,
+    "estimated_read_minutes": 4,
+    "run_date": "2026-06-20",
+    "significance": 4,
+    "significance_reason": "Netanyahu orders IDF expansion from 60% to 70% of Gaza; satellite imagery documents near-total destruction of civilian infrastructure with famine imminent",
+    "geography": [
+      "gaza",
+      "khan-younis",
+      "rafah"
+    ],
+    "actors": [
+      "netanyahu",
+      "idf"
+    ],
+    "categories": [
+      "territorial-control",
+      "displacement",
+      "humanitarian"
+    ],
+    "thread_id": "gaza-territorial-control-2026",
+    "related_threads": []
+  },
+  {
+    "file": "2026-05-19-icc-prosecutor-warrants-smotrich.md",
+    "date": "2026-05-19",
+    "title": "ICC prosecutor requests arrest warrant for Finance Minister Smotrich, who vows Khan al-Ahmar evacuation",
+    "contested": false,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-06-20",
+    "significance": 4,
+    "significance_reason": "ICC escalates to sitting cabinet ministers after Netanyahu/Gallant warrants; Smotrich retaliates with Khan al-Ahmar evacuation order",
+    "geography": [
+      "the-hague",
+      "west-bank"
+    ],
+    "actors": [
+      "smotrich",
+      "icc",
+      "netanyahu",
+      "ben-gvir"
+    ],
+    "categories": [
+      "icc",
+      "legal-proceedings",
+      "west-bank",
+      "settler-policy"
+    ],
+    "thread_id": "icc-israel-warrants-2026",
+    "related_threads": []
+  },
+  {
+    "file": "2026-05-02-israel-lebanon-strikes-41-killed.md",
+    "date": "2026-05-02",
+    "title": "Israeli strikes kill 41 in Lebanon in 24 hours as cumulative toll exceeds 2,600",
+    "contested": false,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-05-02",
+    "significance": 4,
+    "significance_reason": "41 killed in single day; 2,659 cumulative dead since March 2, active war",
+    "geography": "southern-lebanon",
+    "actors": [
+      "idf",
+      "hezbollah",
+      "unifil"
+    ],
+    "categories": [
+      "military-strikes",
+      "casualties",
+      "ceasefire-violations",
+      "lebanon"
+    ],
+    "thread_id": "israel-lebanon-strikes-2026",
+    "related_threads": []
+  }
+]

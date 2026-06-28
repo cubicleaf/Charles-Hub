@@ -1,0 +1,96 @@
+{
+  "israel-lebanon-strikes-2026": {
+    "title": "Israeli Military Campaign in Lebanon (2026)",
+    "summary": "Israel's sustained air and ground campaign against Hezbollah in southern Lebanon, ongoing since 2 March 2026, producing mounting civilian casualties, repeated incidents involving UNIFIL peacekeepers, and a security zone approximately 10 km inside Lebanese territory. Israel broke the ceasefire announced on 19 June 2026 the following day, killing at least 50 people and triggering Iran's reclosure of the Strait of Hormuz.",
+    "started": "2026-05-02",
+    "last_entry": "2026-06-20",
+    "actors": ["idf", "hezbollah", "unifil", "netanyahu", "msf"],
+    "geography": ["southern-lebanon", "nabatieh"],
+    "categories": ["military-strikes", "casualties", "ceasefire-violations", "occupation", "humanitarian"],
+    "entries": [
+      {
+        "date": "2026-05-02",
+        "file": "2026-05-02-israel-lebanon-strikes-41-killed.md",
+        "headline": "Israeli strikes kill 41 in Lebanon in 24 hours as cumulative toll exceeds 2,600"
+      },
+      {
+        "date": "2026-06-18",
+        "file": "2026-06-18-netanyahu-rejects-lebanon-withdrawal.md",
+        "headline": "Netanyahu reaffirms Israel will not withdraw from Lebanon despite US-Iran MoU"
+      },
+      {
+        "date": "2026-06-20",
+        "file": "2026-06-20-msf-nabatieh-death-trap.md",
+        "headline": "MSF calls Nabatieh a 'death trap' as Israeli shelling kills 50 the day after Lebanon ceasefire announcement"
+      }
+    ]
+  },
+  "us-iran-mou-2026": {
+    "title": "US-Iran Memorandum of Understanding and Implementation Crisis",
+    "summary": "The Memorandum of Understanding signed by Presidents Trump and Pezeshkian in mid-June 2026 ended the active US military phase of the US-Iran conflict that began in late February 2026. Its terms included lifting the US naval blockade, reopening the Strait of Hormuz, and a 60-day ceasefire window. Israel's refusal to end its Lebanon offensive placed the MoU in immediate jeopardy; Iran reclosed the Strait of Hormuz on 20 June citing Israeli breaches. Israeli public opinion turned sharply against Trump, with 71 percent no longer trusting the administration.",
+    "started": "2026-06-18",
+    "last_entry": "2026-06-20",
+    "actors": ["centcom", "trump", "pezeshkian", "irgc", "vance", "netanyahu", "ben-gvir", "smotrich"],
+    "geography": ["strait-of-hormuz", "persian-gulf", "washington", "israel", "southern-lebanon"],
+    "categories": ["ceasefire", "blockade", "diplomacy", "military-strikes", "public-opinion"],
+    "entries": [
+      {
+        "date": "2026-06-18",
+        "file": "2026-06-18-centcom-lifts-iran-blockade.md",
+        "headline": "CENTCOM lifts US naval blockade on Iran per MoU as oil prices fall"
+      },
+      {
+        "date": "2026-06-18",
+        "file": "2026-06-18-vance-rebukes-israeli-officials.md",
+        "headline": "Vance tells Israeli officials Trump is their only remaining ally; warns they can't 'kill your way out'"
+      },
+      {
+        "date": "2026-06-20",
+        "file": "2026-06-20-iran-closes-hormuz-ceasefire-breach.md",
+        "headline": "Iran closes Strait of Hormuz as Israel breaks Lebanon ceasefire one day after deal"
+      },
+      {
+        "date": "2026-06-20",
+        "file": "2026-06-20-trump-faces-israeli-anger-mou.md",
+        "headline": "Israeli public turns on Trump as poll shows 71 percent no longer trust US; Israel Hayom calls MoU a 'surrender agreement'"
+      }
+    ]
+  },
+  "icc-israel-warrants-2026": {
+    "title": "ICC Proceedings Against Israeli Officials",
+    "summary": "International Criminal Court proceedings against Israeli officials that escalated in 2025–2026. Following arrest warrants for Prime Minister Netanyahu and former Defense Minister Gallant in November 2024, the ICC prosecutor requested a warrant for Finance Minister Smotrich in May 2026, citing forced displacement orders, support for settler expansion into occupied territory, and his public statement that starving Palestinians may be 'justified and moral.' Smotrich responded by announcing he would sign an evacuation order for the Bedouin community of Khan al-Ahmar.",
+    "started": "2026-05-19",
+    "last_entry": "2026-05-19",
+    "actors": ["smotrich", "icc", "netanyahu", "ben-gvir"],
+    "geography": ["the-hague", "west-bank"],
+    "categories": ["icc", "legal-proceedings", "settler-policy", "west-bank"],
+    "entries": [
+      {
+        "date": "2026-05-19",
+        "file": "2026-05-19-icc-prosecutor-warrants-smotrich.md",
+        "headline": "ICC prosecutor requests arrest warrant for Finance Minister Smotrich, who vows Khan al-Ahmar evacuation"
+      }
+    ]
+  },
+  "gaza-territorial-control-2026": {
+    "title": "Israeli Territorial Expansion and Destruction in Gaza",
+    "summary": "Israel's systematic expansion of territorial control in Gaza beyond the October 2025 ceasefire Yellow Line, combined with near-total destruction of civilian infrastructure. Netanyahu directed the IDF to expand control from 60 to 70 percent of Gaza. Satellite imagery from February 2026 shows 94 percent of cemeteries destroyed, 97 percent of schools damaged or destroyed, and less than 5 percent of agricultural land usable. By June 2026, the post-ceasefire killing toll reached 1,007 Palestinians. US-appointed mediator Mladenov warned the Security Council the situation risks becoming 'permanent.'",
+    "started": "2026-05-31",
+    "last_entry": "2026-06-18",
+    "actors": ["netanyahu", "idf"],
+    "geography": ["gaza", "khan-younis", "rafah"],
+    "categories": ["territorial-control", "displacement", "humanitarian", "civilian-casualties", "ceasefire-violations"],
+    "entries": [
+      {
+        "date": "2026-05-31",
+        "file": "2026-05-31-satellite-imagery-gaza-erasure.md",
+        "headline": "Satellite imagery shows erasure of southern Gaza as Netanyahu orders expansion to 70 percent territorial control"
+      },
+      {
+        "date": "2026-06-18",
+        "file": "2026-06-18-israel-kills-three-gaza-ceasefire.md",
+        "headline": "Israeli drone strike kills three in Gaza; Health Ministry says 1,007 Palestinians killed since ceasefire deal"
+      }
+    ]
+  }
+}

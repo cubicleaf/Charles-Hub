@@ -1,0 +1,17 @@
+# FETCH-RECEIPT v1
+# url: https://news.antiwar.com/2026/06/18/centcom-announces-end-of-us-blockade-on-iran/
+# http_status: 200
+# fetched_at: 2026-06-20T13:31:00-04:00
+# content_bytes: 1102
+# ---
+US Central Command announced on Thursday that the US military was lifting its blockade of Iranian ports in line with the Memorandum of Understanding signed by President Trump and Iranian President Masoud Pezeshkian to bring an end to the conflict between the two nations.
+
+"Today, US forces lifted the blockade on all maritime traffic entering and exiting Iranian ports and coastal areas, in accordance with the President's direction. American forces are not impeding the transit of vessels to or from Iranian ports. All US military blockade enforcement efforts have ceased," CENTCOM said.
+
+The command said that US forces will remain in the area, as US officials have said the blockade can be re-imposed if it deems that Iran isn't fulfilling its commitments under the deal.
+
+"Our great Naval Ships will remain in the general area to make sure that all aspects of the agreement are adhered to, obeyed and in full force and effect," CENTCOM said.
+
+The US had been enforcing the blockade on Iran for over two months, which involved at least nine attacks on civilian commercial vessels, including a missile strike last week that killed three Indian mariners, an incident President Trump expressed no regret about when meeting with Indian Prime Minister Narendra Modi at the G7 summit in France on Wednesday.
+
+It's expected to take some time for traffic through the Strait of Hormuz to return to anywhere near pre-war levels, but oil prices have been dropping since the US and Iran signed the MoU.

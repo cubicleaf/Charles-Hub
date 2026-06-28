@@ -1,0 +1,19 @@
+# FETCH-RECEIPT v1
+# url: https://news.antiwar.com/2026/06/18/netanyahu-reaffirms-israel-wont-withdraw-from-lebanon-despite-us-iran-mou/
+# http_status: 200
+# fetched_at: 2026-06-20T13:32:00-04:00
+# content_bytes: 1198
+# ---
+Israeli Prime Minister Benjamin Netanyahu on Thursday reaffirmed his position that Israel won't withdraw from southern Lebanon and end its war in the country despite the US-Iran Memorandum of Understanding that calls for an end to the conflict.
+
+"We will restore security and prosperity to northern towns," Netanyahu said. "That requires maintaining the security zone in southern Lebanon; it requires that we not leave there, as long as Israel's security needs require it."
+
+The Israeli military on Thursday also made clear it was not withdrawing from Lebanon and published a new map showing an expanded occupation zone.
+
+"The IDF is deployed in the Security Zone, ~10 km inside Lebanese territory, due to operational requirements," the IDF said in a post on X that showed the map. "IDF soldiers will continue to remove threats and strengthen the defense of Israel's northern residents."
+
+An Israeli official told Reuters that Israel was holding "stubborn negotiations" with the Trump administration on maintaining its occupation of Lebanon, but so far there's no sign that President Trump is willing to leverage US military aid to end the war.
+
+Israel Hayom reported that Netanyahu is bracing for pressure from President Trump over the war in Lebanon, but that there is currently no US demand for the withdrawal of Israeli troops from the country.
+
+Iranian officials have maintained that Israel must end the war and withdraw from Lebanon as part of its deal with the US, and the Iranian military has warned of a "harsh response" if Israel continues its attacks. Israeli strikes in Lebanon haven't stopped, and at least three people were killed on Thursday.
