@@ -1,0 +1,12 @@
+# Local-only overlays and backups
+subjects.local.json
+index.original.html
+
+# Local notes / sweep artifacts (Master Reader leftovers, not used here)
+notes.json
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "briefs",
+    "name": "Tech",
+    "displayTitle": "Recent Tech News",
+    "folder": "briefs",
+    "accent": "#8b3a1f",
+    "style": "literary",
+    "desc": "Daily morning brief on tech, AI, and business news"
+  },
+  {
+    "id": "israel",
+    "name": "Israel",
+    "displayTitle": "Israel Tracker",
+    "folder": "israel",
+    "accent": "#8a1c1c",
+    "style": "dispatch",
+    "desc": "Israel / Palestine / Mideast tracker — source-faithful summaries with background context."
+  }
+]

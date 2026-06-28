@@ -1,0 +1,3430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charles Hub</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Literata:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Marked.js: converts markdown text into HTML -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- js-yaml: parses the YAML frontmatter at the top of brief files -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+
+  <style>
+    /* ============================================================
+       TOKENS — warm palette + per-subject accent
+       --accent gets overwritten by JS when the active subject changes
+       ============================================================ */
+    :root {
+      --bg:        #f5f0e8;   /* warm cream paper */
+      --ink:       #2c2416;   /* warm near-black for primary text */
+      --ink-muted: #6b5f4a;   /* warm taupe for supporting text */
+      --ink-soft:  #8a7e67;   /* lighter warm taupe for metadata */
+      --rule:      #d4c9b3;   /* sand rule line */
+      --rule-soft: #e4dcc8;   /* lighter sand for dashed rules */
+
+      --accent:    #7d6238;   /* unified bronze — per-tab accent retired (was terracotta/red/green/blue) */
+
+      /* Earth tone for the archive + expand/collapse corner icon buttons.
+         Candidates Tim is choosing between (swap this one value):
+           #a89060 olive-gold (matches active nav pill)
+           #9a7b4f bronze/ochre (Marius accent family)
+           #6b5030 rich brown  ← current default
+           #3d2f1f deep espresso */
+      --btn-earth: #9a7b4f;
+      /* Hover shade for all four top-right corner icons — a darker bronze.
+         Replaces the old per-tab var(--accent) hover (red/green/blue), which
+         was a holdover from when each tab tinted these icons. */
+      --btn-earth-hover: #7d6238;
+
+      --ui-font-scale: 1;     /* user text-size multiplier (Settings slider; persisted) */
+
+      --ease:        cubic-bezier(0.25, 0.1, 0.25, 1);
+      --ease-bloom:  cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Single global type lever: fluid by viewport (clamp) AND user-scalable
+       (--ui-font-scale, set by the Settings slider). Every rem in the file
+       derives from this, so all text scales together — no per-view drift. */
+    html { font-size: calc(clamp(15px, 0.6vw + 11.5px, 21px) * var(--ui-font-scale, 1)); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Literata', Georgia, serif;
+      /* Full-bleed width (94vw, the whole-screen rail). Type scale now lives at
+         :root (html font-size) so ALL rem sizes scale together and obey the
+         Settings slider — this is what fixes the cross-tab size inconsistency. */
+      font-size: 1rem;
+      line-height: 1.65;
+      padding: 0 1.75rem 4rem;
+      max-width: 94vw;
+      margin: 0 auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 0 1.25rem 3rem; }
+    }
+
+    /* ============================================================
+       MOBILE MASTHEAD — prevent title↔corner-button collision
+       Defined in ONE place so any subject's title obeys the rule.
+       The corner buttons are position:absolute; the title is normal-flow
+       and centered. Padding on the title reserves a "no-go" zone equal
+       to the buttons' real width. Font-size scales down to fit too.
+       ============================================================ */
+    @media (max-width: 480px) {
+      h1.masthead-title {
+        font-size: 1.65rem;        /* was 2.25rem on desktop — shrunk so "The Morning Brief" fits */
+        padding: 0 4.5rem;          /* matches mobile button width (~4.25rem) + gap */
+        line-height: 1.15;
+      }
+      .sources-btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.62rem;
+        letter-spacing: 0.14em;
+        min-width: 44px;            /* keep Tim's 44px touch-target floor */
+        min-height: 44px;
+      }
+    }
+
+    /* ============================================================
+       PILL BAR — subject navigation (Pattern A)
+       ============================================================ */
+    .pillbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: var(--bg);
+      padding: 1rem 0 0.85rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 0.45rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .pillbar::-webkit-scrollbar { display: none; }
+
+    .pill {
+      flex-shrink: 0;
+      min-height: 44px;
+      padding: 0.55rem 1.1rem;
+      border-radius: 20px;
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--ink-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition:
+        background 0.3s var(--ease),
+        color 0.3s var(--ease),
+        border-color 0.3s var(--ease),
+        transform 0.15s var(--ease);
+    }
+    .pill:hover {
+      color: var(--ink);
+      border-color: var(--ink-muted);
+    }
+    .pill:active { transform: scale(0.95); }
+    .pill.selected {
+      background: #a89060;
+      color: #f5f0e8;
+      border-color: #a89060;
+    }
+
+    /* ============================================================
+       ENTRANCE animation
+       ============================================================ */
+    @keyframes enter {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       MASTHEAD
+       ============================================================ */
+    header {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: enter 0.5s var(--ease) forwards;
+    }
+
+    h1.masthead-title {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 2.25rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: var(--accent);
+      margin-top: 0;               /* kill browser default ~0.67em top margin */
+      margin-bottom: 0.5rem;
+      /* Reserve horizontal room for the absolutely-positioned corner buttons
+         (Sources at left, Archive at right). Without this, long titles
+         physically collide with the buttons on narrow viewports.
+         Value matches the buttons' computed width (~5.5rem) plus a small gap. */
+      padding: 0 5.5rem;
+    }
+    .masthead-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+    }
+
+    .stale-banner {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-top: 0.75rem;
+    }
+
+    /* Sources button (left) and Ledger button.
+       Archive/Musters/Sweeps were unified into .shelf-btn (see below). */
+    .sources-btn {
+      position: absolute;
+      top: 0;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0.5rem 0.9rem;
+      background: transparent;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      color: var(--ink-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition:
+        transform 150ms var(--ease),
+        background 150ms var(--ease),
+        color 150ms var(--ease),
+        border-color 150ms var(--ease);
+    }
+    .sources-btn { left: 0; }
+    .sources-btn:hover {
+      background: rgba(125, 98, 56, 0.06);
+      color: var(--ink);
+      border-color: var(--ink-muted);
+    }
+    .sources-btn:active {
+      transform: scale(0.95);
+      transition: none;
+    }
+    .sources-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Sources stays pinned to viewport during scroll.
+       position:fixed breaks it out of header flow; JS (pinContentEdgeButtons)
+       sets exact top/left from the header's measured position on load.
+       Fallback (4rem / 1.75rem) covers the brief moment before JS runs. */
+    .sources-btn {
+      position: fixed !important;
+      z-index: 90;
+      top: 4rem; left: 1.75rem; right: auto;
+    }
+    @media (max-width: 480px) {
+      .sources-btn { left: 1.25rem; }
+    }
+
+    /* Progress Clarity — stale banner styled as a red freshness pill */
+    /* Archive dropdown panel */
+    /* Archive / Musters / Sweeps now render as a RIGHT-EDGE DRAWER (overlay).
+       Full viewport height, docked flush to the right, slides in from off-screen.
+       z-index 80 keeps it below the corner icon row (90) so the archive icon
+       stays on top and clickable to close; the dim backdrop sits below at 70. */
+    .archive-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      height: 100dvh;
+      width: 320px;
+      max-width: 86vw;
+      overflow-y: auto;
+      background: var(--bg);
+      border-left: 1px solid var(--rule);
+      box-shadow: -8px 0 28px rgba(44, 36, 22, 0.12);
+      padding: 4.75rem 0 1.5rem;   /* top pad clears the fixed corner icon row */
+      z-index: 80;
+      transform: translateX(100%);
+      pointer-events: none;
+      transition: transform 0.32s var(--ease);
+    }
+    .archive-panel.open {
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    /* Faint dim behind the drawer; click it to close. */
+    .archive-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(44, 36, 22, 0.18);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.32s var(--ease);
+      z-index: 70;
+    }
+    .archive-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .archive-item {
+      display: block;
+      width: 100%;
+      padding: 0.6rem 1rem;
+      background: transparent;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      transition: background 150ms var(--ease), color 150ms var(--ease);
+    }
+    .archive-item:hover { background: rgba(125, 98, 56, 0.06); }
+    .archive-item.current { color: var(--accent); }
+    .archive-item .date {
+      font-size: 0.85rem;
+      font-weight: 500;
+      /* Keep every row a single line at the fixed panel width; long titles
+         (e.g. FI/WebDev) truncate with an ellipsis instead of widening the box. */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .archive-item .day {
+      font-size: 0.7rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.1rem;
+    }
+    .archive-item.current .day { color: var(--accent); opacity: 0.75; }
+    .archive-empty {
+      padding: 0.75rem 1rem;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+    }
+
+    /* ============================================================
+       READ FEATURE — masthead indicator + content checkbox + archive dot
+       ============================================================ */
+    .read-indicator {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 0.3rem;
+      opacity: 0.8;
+    }
+    .read-indicator::before { content: '✓'; }
+
+    /* Checkbox at bottom of every rendered item */
+    .read-checkbox-wrap {
+      border-top: 1px solid var(--rule-soft);
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      text-align: center;
+    }
+    .read-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      transition: color 0.2s var(--ease);
+    }
+    .read-label:hover { color: var(--ink); }
+    .read-label input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+      accent-color: var(--accent);
+    }
+
+    /* Archive item read checkmark */
+    .archive-read-check {
+      color: var(--accent);
+      font-size: 0.75rem;
+      opacity: 0.7;
+      margin-left: 0.35rem;
+    }
+
+    /* ============================================================
+       CONTENT — base markdown styling (applies to all subjects)
+       ============================================================ */
+    #content {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: enter 0.5s var(--ease) 0.15s forwards;
+    }
+
+    .loading {
+      text-align: center;
+      font-style: italic;
+      color: var(--ink-soft);
+      padding: 3rem 0;
+      font-size: 0.95rem;
+    }
+    .error-message {
+      text-align: center;
+      font-style: italic;
+      color: var(--ink-soft);
+      padding: 3rem 1rem;
+      font-size: 1rem;
+    }
+    .error-message code {
+      font-family: ui-monospace, monospace;
+      background: rgba(44, 36, 22, 0.06);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-style: normal;
+    }
+
+    /* Neutral/default markdown styling — used when subject is NOT literary */
+    #content h1 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1.85rem;
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+      color: var(--ink);
+    }
+    #content h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: var(--ink);
+    }
+    #content h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+    #content p {
+      font-size: 1rem;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+    #content ul, #content ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    #content li { margin-bottom: 0.4rem; line-height: 1.55; }
+    #content strong { color: var(--ink); font-weight: 600; }
+    #content em { color: inherit; }
+    #content code {
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: 0.88rem;
+      background: rgba(44, 36, 22, 0.06);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+    }
+    #content pre {
+      background: rgba(44, 36, 22, 0.05);
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+      border: 1px solid var(--rule-soft);
+    }
+    #content pre code { background: transparent; padding: 0; font-size: 0.85rem; }
+    #content a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+    #content blockquote {
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+      color: var(--ink-muted);
+      font-style: italic;
+    }
+    #content hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 2rem 0;
+    }
+
+    /* ============================================================
+       LITERARY EXTRAS — only apply when tagStructure() runs (briefs)
+       The class selectors are more specific than the base #content
+       rules above, so they win when present
+       ============================================================ */
+    #content h2.glance-heading {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    #content h2.glance-heading + ol {
+      list-style: none;
+      counter-reset: glance;
+      padding: 0;
+      margin-bottom: 2.5rem;
+    }
+    #content h2.glance-heading + ol li {
+      counter-increment: glance;
+      position: relative;
+      padding: 0.75rem 0 0.75rem 2.25rem;
+      border-bottom: 1px solid var(--rule-soft);
+      font-family: 'Literata', Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--ink);
+      margin-bottom: 0;
+    }
+    #content h2.glance-heading + ol li:last-child { border-bottom: none; }
+    #content h2.glance-heading + ol li::before {
+      content: counter(glance, upper-roman) ".";
+      position: absolute;
+      left: 0;
+      top: 0.75rem;
+      color: var(--accent);
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+    }
+    #content h2.glance-heading + ol li.glance-link {
+      cursor: pointer;
+      transition: color 150ms var(--ease), opacity 150ms var(--ease);
+    }
+    #content h2.glance-heading + ol li.glance-link:hover { color: var(--accent); }
+    #content h2.glance-heading + ol li.glance-link:active { opacity: 0.6; }
+
+    .story-block {
+      border-radius: 6px;
+      scroll-margin-top: 1.5rem;
+    }
+    @keyframes story-glow-kf {
+      0%   { box-shadow: 0 0 0 0px rgba(125, 98, 56, 0); }
+      18%  { box-shadow: 0 0 0 2px rgba(125, 98, 56, 0.4), 0 0 28px rgba(125, 98, 56, 0.13); }
+      100% { box-shadow: 0 0 0 0px rgba(125, 98, 56, 0); }
+    }
+    .story-block.story-glow {
+      animation: story-glow-kf 1.8s var(--ease-bloom) forwards;
+    }
+
+    #content p.lede {
+      font-style: italic;
+      color: var(--ink-muted);
+      font-size: 1.05rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      line-height: 1.5;
+    }
+
+    #content h2.story-heading {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      line-height: 1.3;
+      border-top: 1px solid var(--rule);
+      padding-top: 1.5rem;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--ink);
+      letter-spacing: 0.005em;
+    }
+    #content h2.story-heading.first {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 2rem;
+    }
+
+    #content p.story-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    #content p.story-meta strong { font-weight: 500; }
+
+    #content p.why-it-matters {
+      font-family: 'Literata', Georgia, serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      border-top: 1px dashed var(--rule);
+      padding-top: 0.75rem;
+      margin-top: 1rem;
+    }
+    #content p.why-it-matters em:first-child {
+      color: var(--accent);
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    #content h2.section-minor {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-align: center;
+      border-top: 2px solid var(--ink);
+      padding-top: 3rem;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+    }
+    #content h2.section-minor ~ ol,
+    #content h2.section-minor ~ ul {
+      padding-left: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    #content h2.section-minor ~ ol li,
+    #content h2.section-minor ~ ul li {
+      margin-bottom: 0.5rem;
+      line-height: 1.55;
+    }
+
+    /* ============================================================
+       SOURCES MODAL
+       ============================================================ */
+    .sources-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(44, 36, 22, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.2s var(--ease), visibility 0s 0.2s;
+    }
+    .sources-overlay.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition: opacity 0.2s var(--ease), visibility 0s;
+    }
+    .sources-modal {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(44, 36, 22, 0.18);
+      max-width: 1120px;
+      width: 100%;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.2s var(--ease);
+    }
+    .sources-overlay.open .sources-modal { transform: translateY(0) scale(1); }
+    .sources-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--rule);
+      flex-shrink: 0;
+    }
+    .sources-modal-title {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .sources-modal-close {
+      background: transparent;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      color: var(--ink-soft);
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.65rem;
+      min-height: 36px;
+      transition: color 150ms, border-color 150ms, background 150ms;
+    }
+    .sources-modal-close:hover {
+      color: var(--ink);
+      border-color: var(--ink-muted);
+      background: rgba(125, 98, 56, 0.04);
+    }
+    .sources-modal-body {
+      overflow-y: auto;
+      padding: 1.25rem 1.5rem 1.75rem;
+      -webkit-overflow-scrolling: touch;
+    }
+    .source-group { margin-bottom: 1.75rem; }
+    .source-group:last-child { margin-bottom: 0; }
+    .source-group-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+    .source-group-why {
+      font-family: 'Literata', Georgia, serif;
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
+    .source-item {
+      padding: 0.45rem 0 0.45rem 0.85rem;
+      border-left: 2px solid var(--rule-soft);
+      margin-bottom: 0.45rem;
+    }
+    .source-item:last-child { margin-bottom: 0; }
+    .source-link {
+      display: block;
+      font-family: 'Literata', Georgia, serif;
+      font-size: 0.88rem;
+      color: var(--ink);
+      text-decoration: none;
+      line-height: 1.45;
+      border-bottom: 1px solid transparent;
+      transition: color 150ms, border-color 150ms;
+    }
+    .source-link:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .source-domain {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      color: var(--ink-soft);
+      margin-top: 0.15rem;
+      letter-spacing: 0.04em;
+    }
+
+    .lvl-section {
+      margin-top: 0.4rem;
+    }
+    .lvl-section:first-of-type { margin-top: 1.25rem; }
+
+    .lvl-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      width: 100%;
+      min-height: 44px;               /* Tim's required touch target */
+      padding: 0.75rem 1rem;
+      background: #efe7d6;
+      border: 1px solid var(--rule-soft);
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 0.005em;
+      color: #6b5030;
+      transition: color 0.25s var(--ease), background 0.25s var(--ease);
+    }
+    .lvl-summary:hover { color: #c4a870; }
+    .lvl-summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+    .lvl-summary:active .lvl-chevron { transform: scale(0.95) rotate(0deg); }
+
+    .lvl-summary .lvl-label-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 0.65rem;
+    }
+    .lvl-tier {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #6b5030;
+      font-weight: 600;
+      opacity: 0.6;
+    }
+
+    /* Chevron — rotates 0deg (closed, pointing right) → 90deg (open, down) */
+    .lvl-chevron {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      color: var(--ink-soft);
+      transition: transform 0.4s var(--ease), color 0.25s var(--ease);
+    }
+    .lvl-section.open .lvl-chevron {
+      transform: rotate(90deg);
+      color: var(--accent);
+    }
+
+    /* Body wrapper — animates open/close.
+       Asymmetric timing per Tim's playbook: open is slower & blooms,
+       close is faster & cleaner. */
+    .lvl-body {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition:
+        max-height 0.3s var(--ease),
+        opacity   0.2s var(--ease),
+        padding-top 0.3s var(--ease),
+        padding-bottom 0.3s var(--ease);
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .lvl-section.open .lvl-body {
+      opacity: 1;
+      transition:
+        max-height 0.6s var(--ease-bloom),
+        opacity   0.45s var(--ease-bloom) 0.1s,
+        padding-top 0.6s var(--ease-bloom),
+        padding-bottom 0.6s var(--ease-bloom);
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
+    }
+    /* Strip last-child margin so padding-bottom is the only bottom gap */
+    .lvl-body > *:last-child { margin-bottom: 0; }
+
+    /* Body inner content */
+    /* ============================================================
+       DISPATCH STYLE — applied when subject.style === "dispatch"
+       Israel Tracker: date-digest view, multiple stories per day
+       ============================================================ */
+    body.style-dispatch {
+      font-family: 'Literata', Georgia, serif;
+    }
+
+    /* Masthead title: section name (not story headline) */
+    body.style-dispatch h1.masthead-title {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-style: normal;
+      font-size: 1.75rem;
+      line-height: 1.2;
+      /* buttons are stacked on the right, so padding is symmetric — matches sources-btn on left */
+      padding: 0 5.5rem;
+    }
+    @media (max-width: 480px) {
+      body.style-dispatch h1.masthead-title {
+        font-size: 1.4rem;
+        padding: 0 4.5rem;
+      }
+    }
+
+    /* Show the date line — displays selected date */
+    body.style-dispatch .masthead-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* Dateline block: lives above each story's headline inside #content */
+    .dispatch-dateline-block { margin-bottom: 0.65rem; }
+
+    /* Standard dateline row */
+    .dispatch-dateline {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* 40px oxblood hairline between dateline and story headline */
+    .dispatch-rule {
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin: 0.5rem auto 0.85rem;
+    }
+
+    /* Inline source attribution at bottom of each story */
+    .dispatch-source-line {
+      display: block;
+      font-family: 'Literata', Georgia, serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin-top: 0.3rem;
+    }
+
+    /* Suppress raw H1 from markdown body — headline rendered by JS */
+    body.style-dispatch #content h1 { display: none; }
+
+    /* Body text */
+    body.style-dispatch #content p {
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    /* Multi-story day digest — each story block */
+    .dispatch-day-story {
+      padding-bottom: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .dispatch-day-story:not(:last-child) {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* One-sentence summary tagline under each story headline */
+    .dispatch-day-summary {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      font-style: italic;
+      margin: -0.25rem 0 1.1rem;
+      line-height: 1.5;
+    }
+
+    /* Per-story headline inside the day digest */
+    .dispatch-day-headline {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-style: italic;
+      font-size: 1.6rem;
+      line-height: 1.2;
+      color: var(--ink);
+      margin: 0 0 1rem;
+    }
+    @media (max-width: 480px) {
+      .dispatch-day-headline { font-size: 1.3rem; }
+    }
+
+    /* Context button — right side of masthead.
+       6.5rem gap is a holdover from when Archive lived in the header;
+       kept as-is since it still reads fine with the header to itself. */
+    .context-btn {
+      position: absolute;
+      top: 0;
+      right: 6.5rem;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0.5rem 0.9rem;
+      background: transparent;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      color: var(--ink-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: none; /* shown only when has-context class is present */
+      transition:
+        transform 150ms var(--ease),
+        background 150ms var(--ease),
+        color 150ms var(--ease),
+        border-color 150ms var(--ease);
+    }
+    .context-btn.has-context { display: block; }
+    .context-btn:hover {
+      background: rgba(125, 98, 56, 0.06);
+      color: var(--ink);
+      border-color: var(--ink-muted);
+    }
+    .context-btn:active { transform: scale(0.95); transition: none; }
+    .context-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    @media (max-width: 480px) {
+      .context-btn {
+        right: 5.5rem;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.62rem;
+        letter-spacing: 0.14em;
+      }
+    }
+
+    /* Dispatch: masthead context btn is replaced by per-story buttons */
+    body.style-dispatch #context-btn { display: none !important; }
+
+    /* Dateline row: source stack on left, per-story context btn on right */
+    .dispatch-dateline-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0;
+    }
+    /* Stacked source links */
+    .dispatch-source-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    a.dispatch-dateline {
+      text-decoration: none;
+      color: inherit;
+    }
+    a.dispatch-dateline:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      color: var(--ink);
+    }
+    .story-context-btn {
+      flex-shrink: 0;
+      padding: 0.3rem 0.75rem;
+      background: transparent;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      color: var(--ink-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition:
+        background 150ms var(--ease),
+        color 150ms var(--ease),
+        border-color 150ms var(--ease);
+    }
+    .story-context-btn:hover {
+      background: rgba(125, 98, 56, 0.06);
+      color: var(--ink);
+      border-color: var(--ink-muted);
+    }
+    .story-context-btn:active { transform: scale(0.95); transition: none; }
+    .story-context-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+
+    /* ============================================================
+       CONTEXT MODAL — mirrors sources modal, dispatch only
+       220ms ease-out fade + 8px translateY on open (spec §6)
+       ============================================================ */
+    .context-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(44, 36, 22, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s var(--ease), visibility 0s 0.22s;
+    }
+    .context-overlay.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition: opacity 0.22s var(--ease), visibility 0s;
+    }
+    .context-modal {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(44, 36, 22, 0.18);
+      max-width: 1120px;
+      width: 100%;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(8px) scale(0.97);
+      transition: transform 0.22s var(--ease);
+    }
+    .context-overlay.open .context-modal { transform: translateY(0) scale(1); }
+    .context-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--rule);
+      flex-shrink: 0;
+    }
+    .context-modal-title {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .context-modal-close {
+      background: transparent;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      color: var(--ink-soft);
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.65rem;
+      min-height: 36px;
+      transition: color 150ms, border-color 150ms, background 150ms;
+    }
+    .context-modal-close:hover {
+      color: var(--ink);
+      border-color: var(--ink-muted);
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+    }
+    .context-modal-body {
+      overflow-y: auto;
+      padding: 1.25rem 2.25rem 1.75rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ============================================================
+       MUSTER MODAL — wider + proper markdown typography.
+       Scoped to #muster-overlay / #muster-modal-body so it never
+       touches the shared Context modal (Israel).
+       ============================================================ */
+    #muster-overlay .context-modal { max-width: 1040px; }
+    #muster-modal-body { padding: 1.75rem 2.75rem 2.25rem; }
+    #muster-modal-body > *:first-child { margin-top: 0; }
+    #muster-modal-body h1 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0 0 0.5rem;
+      letter-spacing: 0.005em;
+    }
+    #muster-modal-body h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 2.25rem 0 0.85rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--rule);
+      letter-spacing: 0.005em;
+    }
+    #muster-modal-body h3 {
+      font-family: 'Literata', Georgia, serif;
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 1.5rem 0 0.5rem;
+    }
+    #muster-modal-body h3 em { color: var(--ink-muted); font-weight: 500; }
+    #muster-modal-body p {
+      font-family: 'Literata', Georgia, serif;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--ink);
+      margin: 0 0 1rem;
+    }
+    #muster-modal-body strong { color: var(--ink); font-weight: 600; }
+    #muster-modal-body ul, #muster-modal-body ol { padding-left: 1.4rem; margin: 0 0 1rem; }
+    #muster-modal-body li {
+      font-family: 'Literata', Georgia, serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+    #muster-modal-body code {
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: 0.82rem;
+      background: rgba(44, 36, 22, 0.06);
+      padding: 0.08rem 0.34rem;
+      border-radius: 4px;
+      color: var(--ink-muted);
+    }
+    #muster-modal-body pre {
+      background: rgba(44, 36, 22, 0.05);
+      border: 1px solid var(--rule-soft);
+      border-radius: 8px;
+      padding: 0.9rem 1.1rem;
+      overflow-x: auto;
+      margin: 0 0 1rem;
+    }
+    #muster-modal-body pre code { background: transparent; padding: 0; color: var(--ink); }
+    #muster-modal-body blockquote {
+      border-left: 3px solid var(--accent);
+      background: rgba(44, 36, 22, 0.03);
+      border-radius: 0 6px 6px 0;
+      padding: 0.7rem 1rem;
+      margin: 0 0 1.25rem;
+      color: var(--ink-muted);
+    }
+    #muster-modal-body blockquote p { margin: 0; }
+    #muster-modal-body hr { border: none; border-top: 1px solid var(--rule); margin: 1.75rem 0; }
+    #muster-modal-body table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      margin: 0 0 1.25rem;
+    }
+    #muster-modal-body th, #muster-modal-body td {
+      text-align: left;
+      padding: 0.55rem 0.85rem;
+      border: 1px solid var(--rule);
+      vertical-align: top;
+      line-height: 1.45;
+    }
+    #muster-modal-body th {
+      background: rgba(44, 36, 22, 0.05);
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+    #muster-modal-body td { color: var(--ink-muted); }
+    #muster-modal-body td strong { color: var(--ink); }
+    @media (max-width: 480px) {
+      #muster-modal-body { padding: 1.25rem 1.25rem 1.75rem; }
+    }
+    /* Story-level grouping inside context modal */
+    .context-story-group {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .context-story-group:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .context-story-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.1rem;
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    .context-type-group { margin-bottom: 1.5rem; }
+    .context-type-group:last-child { margin-bottom: 0; }
+    .context-type-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 0.75rem;
+    }
+    .context-entry { padding-bottom: 0.5rem; }
+    .context-entry-name {
+      font-family: 'Literata', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+    }
+    .context-entry-body {
+      font-family: 'Literata', Georgia, serif;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--ink-muted);
+    }
+    .context-entry-body p { margin-bottom: 0.5rem; }
+    .context-entry-body p:last-child { margin-bottom: 0; }
+    hr.context-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 1.5rem 0;
+    }
+
+    /* ============================================================
+       SETTINGS — fixed top-right gear + modal. Mirrors the sources
+       modal float-up pattern; slider drives --ui-font-scale.
+       ============================================================ */
+    /* No wrapper chrome — the SVG's own glyph (gear) is the whole
+       visible icon. Wrapper is just a transparent 44px hit area. */
+    .settings-btn {
+      position: fixed; top: 0.9rem; right: 0.9rem; z-index: 90;
+      width: 44px; height: 44px; padding: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent; border: none;
+      color: var(--btn-earth); cursor: pointer;
+      transition: color 150ms var(--ease), transform 150ms var(--ease), filter 150ms var(--ease);
+    }
+    .settings-btn svg { width: 44px; height: 44px; display: block; }
+    .settings-btn:hover { color: var(--btn-earth-hover); filter: drop-shadow(0 2px 6px rgba(44,36,22,0.10)); }
+    .settings-btn:active { transform: scale(0.95); transition: none; }
+    .settings-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+    @media (max-width: 480px) { .settings-btn { top: 0.6rem; right: 0.6rem; } }
+
+    .settings-overlay {
+      position: fixed; inset: 0; background: rgba(44,36,22,0.45);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 110; padding: 1rem;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.2s var(--ease), visibility 0s 0.2s;
+    }
+    .settings-overlay.open {
+      opacity: 1; visibility: visible; pointer-events: auto;
+      transition: opacity 0.2s var(--ease), visibility 0s;
+    }
+    .settings-modal {
+      background: var(--bg); border: 1px solid var(--rule); border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(44,36,22,0.18);
+      max-width: 420px; width: 100%; max-height: 80vh;
+      display: flex; flex-direction: column; overflow: hidden;
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.2s var(--ease);
+    }
+    .settings-overlay.open .settings-modal { transform: translateY(0) scale(1); }
+    .settings-modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 1.5rem 1rem; border-bottom: 1px solid var(--rule); flex-shrink: 0;
+    }
+    .settings-modal-title {
+      font-family: 'DM Serif Display', Georgia, serif; font-size: 0.8rem; font-weight: 400;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent);
+    }
+    /* Reusable modal close button — SVG (with its own squircle background)
+       IS the 44px button. No wrapper chrome, no separate background/border. */
+    .modal-close-btn {
+      width: 44px; height: 44px; padding: 0; flex-shrink: 0; margin-right: -10px;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent; border: none;
+      color: var(--ink-muted); cursor: pointer;
+      transition: color 150ms var(--ease), transform 150ms var(--ease);
+    }
+    .modal-close-btn svg { width: 100%; height: 100%; display: block; }
+    .modal-close-btn:hover { color: var(--accent); }
+    .modal-close-btn:active { transform: scale(0.95); transition: none; }
+    .modal-close-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 10px; }
+    .settings-modal-body { overflow-y: auto; padding: 1.5rem; -webkit-overflow-scrolling: touch; }
+    .set-row-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.5rem; }
+    .set-label { font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); }
+    .set-val { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+    .set-reset-btn {
+      font-family: 'Inter', sans-serif; font-size: 0.62rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink-muted); background: transparent;
+      border: 1px solid var(--rule); border-radius: 4px;
+      padding: 0.15rem 0.45rem; cursor: pointer; margin-left: 0.5rem;
+      transition: color 150ms, border-color 150ms;
+    }
+    .set-reset-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .set-reset-btn:active { opacity: 0.7; }
+    .set-slider {
+      -webkit-appearance: none; appearance: none; width: 100%; height: 4px;
+      border-radius: 20px; background: var(--rule); outline: none; cursor: pointer;
+      margin: 0.25rem 0 0.85rem;
+    }
+    .set-slider::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none; width: 22px; height: 22px;
+      border-radius: 50%; background: var(--accent); border: 3px solid var(--bg);
+      box-shadow: 0 1px 4px rgba(44,36,22,0.25); cursor: pointer;
+    }
+    .set-slider::-moz-range-thumb {
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent);
+      border: 3px solid var(--bg); box-shadow: 0 1px 4px rgba(44,36,22,0.25); cursor: pointer;
+    }
+    .set-slider:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    .set-hint { font-family: 'Inter', sans-serif; font-size: 0.72rem; color: var(--ink-soft); line-height: 1.5; }
+
+    /* ============================================================
+       GLOBAL SEARCH — squircle trigger + Cmd/Ctrl+K palette overlay.
+       Lives next to the gear, top-right. Indexes every subject.
+       ============================================================ */
+    /* No wrapper chrome — the SVG's own glyph (lens + handle) is the
+       whole visible icon. Wrapper is just a transparent 44px hit area. */
+    .search-btn {
+      position: fixed; top: 0.9rem; right: 3.7rem; z-index: 90;
+      width: 44px; height: 44px; padding: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent; border: none;
+      color: var(--btn-earth); cursor: pointer;
+      transition: color 150ms var(--ease), transform 150ms var(--ease), filter 150ms var(--ease);
+    }
+    .search-btn svg { width: 44px; height: 44px; display: block; }
+    .search-btn:hover { color: var(--btn-earth-hover); filter: drop-shadow(0 2px 6px rgba(44,36,22,0.10)); }
+    .search-btn:active { transform: scale(0.95); transition: none; }
+    .search-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+    @media (max-width: 480px) { .search-btn { top: 0.6rem; right: 3.2rem; } }
+
+    /* Marius / P&C expand-collapse icon button — sits left of search.
+       The SVG itself draws the squircle (background path, opacity 0.5)
+       — it IS the button. No separate wrapper background/border/radius. */
+    .marius-collapse-btn {
+      position: fixed; top: 0.9rem; right: 6.5rem; z-index: 90;
+      width: 44px; height: 44px; padding: 0;
+      display: none; align-items: center; justify-content: center;
+      background: transparent; border: none;
+      color: var(--btn-earth); cursor: pointer;
+      transition: color 150ms var(--ease), transform 150ms var(--ease), filter 150ms var(--ease);
+    }
+    /* Universal expand/collapse button defaults to visible; JS (syncCollapseIcon)
+       hides it only on tabs/views with nothing collapsible. */
+    #collapse-btn { display: flex; }
+    .marius-collapse-btn .icon-stack { position: relative; width: 100%; height: 100%; }
+    .marius-collapse-btn .icon-stack svg {
+      position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+      transition: opacity 320ms var(--ease), transform 320ms var(--ease);
+    }
+    .marius-collapse-btn .icon-collapse { opacity: 1; transform: scale(1) rotate(0deg); }
+    .marius-collapse-btn .icon-expand   { opacity: 0; transform: scale(0.6) rotate(-45deg); }
+    .marius-collapse-btn[data-icon="expand"] .icon-collapse { opacity: 0; transform: scale(0.6) rotate(45deg); }
+    .marius-collapse-btn[data-icon="expand"] .icon-expand   { opacity: 1; transform: scale(1) rotate(0deg); }
+    .marius-collapse-btn:hover { color: var(--btn-earth-hover); filter: drop-shadow(0 2px 6px rgba(44,36,22,0.10)); }
+    .marius-collapse-btn:active { transform: scale(0.95); transition: none; }
+    .marius-collapse-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 14px; }
+    @media (max-width: 480px) { .marius-collapse-btn { display: none !important; } }
+
+    /* Shelf button — opens the Archive drawer. Sits in the fixed top-right
+       icon row, left of the collapse-all toggle. */
+    .shelf-btn {
+      position: fixed; top: 0.9rem; right: 9.3rem; z-index: 90;
+      width: 44px; height: 44px; padding: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent; border: none;
+      color: var(--btn-earth); cursor: pointer;
+      transition: color 150ms var(--ease), transform 150ms var(--ease);
+    }
+    .shelf-btn svg { width: 40px; height: 40px; display: block; }
+    .shelf-btn:hover { color: var(--btn-earth-hover); }
+    .shelf-btn:active { transform: scale(0.95); transition: none; }
+    .shelf-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+    @media (max-width: 480px) { .shelf-btn { right: 5.4rem; } }
+
+    /* Sources fountain — icon button in the top-right row, immediately LEFT of
+       the archive (shelf) button. Shown only on Tech + Israel via renderSources(). */
+    /* Shown state is display:flex (centers the glyph). The button starts hidden
+       via the inline style="display:none" in markup; renderSources() clears that
+       (style.display='') to reveal it, falling back to this flex, or sets 'none'
+       to hide — so the CSS default here must be flex, not none. */
+    .sources-fountain-btn {
+      position: fixed; top: 0.9rem; right: 11.9rem; z-index: 90;
+      width: 44px; height: 44px; padding: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent; border: none;
+      cursor: pointer;
+      transition: transform 150ms var(--ease), filter 150ms var(--ease);
+    }
+    .sources-fountain-btn svg { width: 44px; height: 44px; display: block; }
+    .sources-fountain-btn:hover { filter: drop-shadow(0 2px 6px rgba(44,36,22,0.14)); transform: translateY(-1px); }
+    .sources-fountain-btn:active { transform: scale(0.95); transition: none; }
+    .sources-fountain-btn:focus-visible { outline: 2px solid var(--btn-earth-hover); outline-offset: 2px; border-radius: 8px; }
+    @media (max-width: 480px) { .sources-fountain-btn { right: 8.4rem; } }
+
+    .search-overlay {
+      position: fixed; inset: 0; background: rgba(44,36,22,0.5);
+      display: flex; align-items: flex-start; justify-content: center;
+      z-index: 120; padding: 8vh 1rem 1rem;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.2s var(--ease), visibility 0s 0.2s;
+    }
+    .search-overlay.open {
+      opacity: 1; visibility: visible; pointer-events: auto;
+      transition: opacity 0.2s var(--ease), visibility 0s;
+    }
+    .search-modal {
+      background: var(--bg); border: 1px solid var(--rule); border-radius: 14px;
+      box-shadow: 0 12px 48px rgba(44,36,22,0.22);
+      max-width: 680px; width: 100%; max-height: 78vh;
+      display: flex; flex-direction: column; overflow: hidden;
+      transform: translateY(-12px) scale(0.98);
+      transition: transform 0.2s var(--ease);
+    }
+    .search-overlay.open .search-modal { transform: translateY(0) scale(1); }
+    .search-input-row {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.85rem 1rem; border-bottom: 1px solid var(--rule); flex-shrink: 0;
+    }
+    .search-input-row svg.search-icon {
+      width: 18px; height: 18px; color: var(--ink-muted); flex-shrink: 0;
+    }
+    .search-input {
+      flex: 1; min-width: 0; background: transparent; border: 0; outline: 0;
+      font-family: 'Inter', sans-serif; font-size: 1rem; color: var(--ink);
+      padding: 0.25rem 0;
+    }
+    .search-input::placeholder { color: var(--ink-soft); }
+    .search-status {
+      padding: 0.9rem 1.1rem; font-family: 'Inter', sans-serif;
+      font-size: 0.78rem; color: var(--ink-muted); letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--rule);
+    }
+    .search-status.hidden { display: none; }
+    .search-results {
+      overflow-y: auto; flex: 1; min-height: 0;
+      -webkit-overflow-scrolling: touch;
+    }
+    .search-group-label {
+      font-family: 'Inter', sans-serif; font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft);
+      padding: 0.85rem 1.1rem 0.35rem;
+    }
+    .search-result {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 0.5rem 0.85rem; align-items: center;
+      padding: 0.6rem 1.1rem;
+      border-top: 1px solid var(--rule);
+      cursor: pointer;
+      transition: background 120ms var(--ease);
+    }
+    .search-result:hover, .search-result.active {
+      background: rgba(125,98,56,0.06);
+    }
+    .search-result-main { min-width: 0; }
+    .search-result-title {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 0.98rem; color: var(--ink); line-height: 1.25;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .search-result-meta {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin-top: 0.18rem;
+      font-family: 'Inter', sans-serif; font-size: 0.7rem; color: var(--ink-muted);
+    }
+    .search-result-chip {
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      border: 1px solid var(--rule); border-radius: 20px;
+      padding: 2px 8px;
+    }
+    .search-result-context {
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .search-result-snippet {
+      grid-column: 1 / -1;
+      font-family: 'Inter', sans-serif; font-size: 0.78rem;
+      color: var(--ink-soft); line-height: 1.4;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .search-result-snippet mark {
+      background: rgba(184,112,48,0.22); color: var(--ink);
+      padding: 0 2px; border-radius: 2px;
+    }
+    .search-jump-btn {
+      background: transparent; border: none; border-radius: 8px;
+      color: var(--ink-soft); cursor: pointer;
+      width: 32px; height: 32px; padding: 0; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: color 150ms var(--ease), transform 150ms var(--ease);
+    }
+    .search-jump-btn svg { width: 20px; height: 20px; display: block; }
+    .search-jump-btn:hover { color: var(--accent); }
+    .search-jump-btn:active { transform: scale(0.95); transition: none; }
+    .search-empty {
+      padding: 1.5rem 1.1rem; font-family: 'Inter', sans-serif;
+      font-size: 0.82rem; color: var(--ink-soft); text-align: center;
+    }
+    /* Persistent jump highlight — survives until user dismisses */
+    mark.mr-search-hit {
+      background: rgba(184,112,48,0.35);
+      box-shadow: 0 0 0 2px rgba(184,112,48,0.35);
+      border-radius: 3px;
+      animation: mr-search-pulse 1.2s var(--ease) 1;
+    }
+    @keyframes mr-search-pulse {
+      0%   { background: rgba(184,112,48,0.7); box-shadow: 0 0 0 6px rgba(184,112,48,0.35); }
+      100% { background: rgba(184,112,48,0.35); box-shadow: 0 0 0 2px rgba(184,112,48,0.35); }
+    }
+  </style>
+  <script>try{var _s=localStorage.getItem('ui-font-scale');if(_s)document.documentElement.style.setProperty('--ui-font-scale',_s);}catch(e){}</script>
+</head>
+<body class="style-literary">
+
+  <!-- ============================================================
+       SUBJECT PILL BAR (built dynamically from /subjects.json)
+       ============================================================ -->
+  <nav class="pillbar" id="pillbar" aria-label="Subjects"></nav>
+
+  <header>
+    <h1 class="masthead-title" id="masthead-title">Charles Hub</h1>
+    <div class="masthead-date" id="masthead-date">Loading&hellip;</div>
+    <div class="read-indicator" id="read-indicator" style="display:none;" aria-label="Read"></div>
+    <div class="stale-banner" id="stale-banner" style="display:none;"></div>
+    <!-- Dispatch: dateline block (geography · date, or STILL MATTERING row) -->
+    <div class="dispatch-dateline-block" id="dispatch-dateline" style="display:none;"></div>
+    <!-- Dispatch: context modal trigger (hidden until file with context loads) -->
+    <button class="context-btn" id="context-btn" aria-haspopup="dialog">Context</button>
+  </header>
+
+  <!-- Sources lives outside <header> so position:fixed is viewport-relative.
+       The header has a CSS animation that uses transform:translateY — any transform on
+       a parent creates a new containing block for fixed children, breaking fixed positioning. -->
+  <!-- Sources trigger — fountain icon, sits in the top-right row LEFT of the
+       archive button. Only Tech (literary) and Israel (dispatch) ever show it
+       (renderSources() gates visibility). Basins are bronze, water is blue. -->
+  <button class="sources-fountain-btn" id="sources-btn" style="display:none;" aria-haspopup="dialog" aria-label="Sources">
+    <svg viewBox="0 0 1024 1024" aria-hidden="true">
+      <path d="M490.666667 192v341.333333h42.666666V192c0-23.466667 19.2-42.666667 42.666667-42.666667s42.666667 19.2 42.666667 42.666667c0 12.8 8.533333 21.333333 21.333333 21.333333s21.333333-8.533333 21.333333-21.333333c0-46.933333-38.4-85.333333-85.333333-85.333333s-85.333333 38.4-85.333333 85.333333z" fill="#1976D2"/>
+      <path d="M533.333333 192v341.333333h-42.666666V192c0-23.466667-19.2-42.666667-42.666667-42.666667s-42.666667 19.2-42.666667 42.666667c0 12.8-8.533333 21.333333-21.333333 21.333333s-21.333333-8.533333-21.333333-21.333333c0-46.933333 38.4-85.333333 85.333333-85.333333s85.333333 38.4 85.333333 85.333333z" fill="#1976D2"/>
+      <path d="M640 256m-21.333333 0a21.333333 21.333333 0 1 0 42.666666 0 21.333333 21.333333 0 1 0-42.666666 0Z" fill="#1976D2"/>
+      <path d="M640 512m-21.333333 0a21.333333 21.333333 0 1 0 42.666666 0 21.333333 21.333333 0 1 0-42.666666 0Z" fill="#1976D2"/>
+      <path d="M640 384m-21.333333 0a21.333333 21.333333 0 1 0 42.666666 0 21.333333 21.333333 0 1 0-42.666666 0Z" fill="#1976D2"/>
+      <path d="M384 256m-21.333333 0a21.333333 21.333333 0 1 0 42.666666 0 21.333333 21.333333 0 1 0-42.666666 0Z" fill="#1976D2"/>
+      <path d="M384 512m-21.333333 0a21.333333 21.333333 0 1 0 42.666666 0 21.333333 21.333333 0 1 0-42.666666 0Z" fill="#1976D2"/>
+      <path d="M640 576m-21.333333 0a21.333333 21.333333 0 1 0 42.666666 0 21.333333 21.333333 0 1 0-42.666666 0Z" fill="#1976D2"/>
+      <path d="M384 576m-21.333333 0a21.333333 21.333333 0 1 0 42.666666 0 21.333333 21.333333 0 1 0-42.666666 0Z" fill="#1976D2"/>
+      <path d="M384 384m-21.333333 0a21.333333 21.333333 0 1 0 42.666666 0 21.333333 21.333333 0 1 0-42.666666 0Z" fill="#1976D2"/>
+      <path d="M640 448m-21.333333 0a21.333333 21.333333 0 1 0 42.666666 0 21.333333 21.333333 0 1 0-42.666666 0Z" fill="#1976D2"/>
+      <path d="M384 448m-21.333333 0a21.333333 21.333333 0 1 0 42.666666 0 21.333333 21.333333 0 1 0-42.666666 0Z" fill="#1976D2"/>
+      <path d="M426.666667 661.333333h170.666666v192h-170.666666z" fill="#6b5030"/>
+      <path d="M490.666667 437.333333V597.333333h42.666666v-160c0-53.333333 42.666667-96 96-96s96 42.666667 96 96v10.666667c0 12.8 8.533333 21.333333 21.333334 21.333333s21.333333-8.533333 21.333333-21.333333v-10.666667c0-76.8-61.866667-138.666667-138.666667-138.666666S490.666667 360.533333 490.666667 437.333333z" fill="#2196F3"/>
+      <path d="M746.666667 512m-21.333334 0a21.333333 21.333333 0 1 0 42.666667 0 21.333333 21.333333 0 1 0-42.666667 0Z" fill="#2196F3"/>
+      <path d="M746.666667 576m-21.333334 0a21.333333 21.333333 0 1 0 42.666667 0 21.333333 21.333333 0 1 0-42.666667 0Z" fill="#2196F3"/>
+      <path d="M533.333333 437.333333V597.333333h-42.666666v-160c0-53.333333-42.666667-96-96-96S298.666667 384 298.666667 437.333333v10.666667c0 12.8-8.533333 21.333333-21.333334 21.333333s-21.333333-8.533333-21.333333-21.333333v-10.666667c0-76.8 61.866667-138.666667 138.666667-138.666666s138.666667 61.866667 138.666666 138.666666z" fill="#2196F3"/>
+      <path d="M277.333333 512m-21.333333 0a21.333333 21.333333 0 1 0 42.666667 0 21.333333 21.333333 0 1 0-42.666667 0Z" fill="#2196F3"/>
+      <path d="M277.333333 576m-21.333333 0a21.333333 21.333333 0 1 0 42.666667 0 21.333333 21.333333 0 1 0-42.666667 0Z" fill="#2196F3"/>
+      <path d="M740.266667 917.333333H283.733333c-81.066667 0-151.466667-51.2-177.066666-128h810.666666c-25.6 76.8-96 128-177.066666 128zM614.4 746.666667h-202.666667c-102.4 0-194.133333-70.4-217.6-170.666667h640c-27.733333 100.266667-117.333333 170.666667-219.733333 170.666667z" fill="#9a7b4f"/>
+    </svg>
+  </button>
+
+  <!-- Shelf button — unified Archive / Musters / Sweeps trigger (icon stays
+       the same everywhere; click handler picks the right panel based on tab) -->
+  <button class="shelf-btn" id="shelf-btn" aria-expanded="false" aria-haspopup="menu" aria-label="Archive">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M16 2H0V5H16V2Z" fill="currentColor"/>
+      <path d="M1 7H5V9H11V7H15V15H1V7Z" fill="currentColor"/>
+    </svg>
+  </button>
+
+  <!-- Dim backdrop shared by the Archive and Musters drawers -->
+  <div class="archive-backdrop" id="archive-backdrop"></div>
+
+  <!-- Archive drawer lives outside <header> so position:fixed is viewport-relative
+       (a transform on <header> would otherwise make fixed behave like absolute) -->
+  <div class="archive-panel" id="archive-panel" role="menu"></div>
+
+  <!-- Universal expand/collapse-all icon button — lives in the fixed top-right
+       icon row on EVERY tab (archive to its left, search to its right).
+       collapseDispatch() routes the click to the active tab's collapse logic;
+       syncCollapseIcon() keeps the icon/visibility in step with on-screen state. -->
+  <button class="marius-collapse-btn" id="collapse-btn" data-icon="expand" aria-pressed="true" aria-label="Expand all">
+    <span class="icon-stack">
+      <svg class="icon-collapse" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path opacity="0.5" d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M6.46967 17.5303C6.17678 17.2374 6.17678 16.7626 6.46967 16.4697L8.68934 14.25H7.5C7.08579 14.25 6.75 13.9142 6.75 13.5C6.75 13.0858 7.08579 12.75 7.5 12.75H10.5C10.9142 12.75 11.25 13.0858 11.25 13.5V16.5C11.25 16.9142 10.9142 17.25 10.5 17.25C10.0858 17.25 9.75 16.9142 9.75 16.5V15.3107L7.53033 17.5303C7.23744 17.8232 6.76256 17.8232 6.46967 17.5303Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M17.25 10.5C17.25 10.9142 16.9142 11.25 16.5 11.25H13.5C13.0858 11.25 12.75 10.9142 12.75 10.5V7.5C12.75 7.08579 13.0858 6.75 13.5 6.75C13.9142 6.75 14.25 7.08579 14.25 7.5V8.68934L16.4697 6.46967C16.7626 6.17678 17.2374 6.17678 17.5303 6.46967C17.8232 6.76256 17.8232 7.23744 17.5303 7.53033L15.3107 9.75H16.5C16.9142 9.75 17.25 10.0858 17.25 10.5Z" fill="currentColor"/></svg>
+      <svg class="icon-expand" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path opacity="0.5" d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M14 7.75C13.5858 7.75 13.25 7.41421 13.25 7C13.25 6.58579 13.5858 6.25 14 6.25H17C17.4142 6.25 17.75 6.58579 17.75 7V10C17.75 10.4142 17.4142 10.75 17 10.75C16.5858 10.75 16.25 10.4142 16.25 10V8.81066L14.0303 11.0303C13.7374 11.3232 13.2626 11.3232 12.9697 11.0303C12.6768 10.7374 12.6768 10.2626 12.9697 9.96967L15.1893 7.75H14ZM11.0303 12.9697C11.3232 13.2626 11.3232 13.7374 11.0303 14.0303L8.81066 16.25H10C10.4142 16.25 10.75 16.5858 10.75 17C10.75 17.4142 10.4142 17.75 10 17.75H7C6.58579 17.75 6.25 17.4142 6.25 17V14C6.25 13.5858 6.58579 13.25 7 13.25C7.41421 13.25 7.75 13.5858 7.75 14V15.1893L9.96967 12.9697C10.2626 12.6768 10.7374 12.6768 11.0303 12.9697Z" fill="currentColor"/></svg>
+    </span>
+  </button>
+
+  <!-- Global search: fixed top-right icon button next to the gear -->
+  <button class="search-btn" id="search-btn" aria-haspopup="dialog" aria-label="Search (Cmd/Ctrl+K)">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path opacity="0.5" d="M20.3133 11.1566C20.3133 16.2137 16.2137 20.3133 11.1566 20.3133C6.09956 20.3133 2 16.2137 2 11.1566C2 6.09956 6.09956 2 11.1566 2C16.2137 2 20.3133 6.09956 20.3133 11.1566Z" fill="currentColor"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M18.8387 18.8387C19.121 18.5564 19.5787 18.5564 19.861 18.8387L21.7887 20.7664C22.071 21.0487 22.071 21.5064 21.7887 21.7887C21.5064 22.071 21.0487 22.071 20.7664 21.7887L18.8387 19.861C18.5564 19.5787 18.5564 19.121 18.8387 18.8387Z" fill="currentColor"/>
+    </svg>
+  </button>
+
+  <!-- Search command-palette overlay -->
+  <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="search-modal" id="search-modal">
+      <div class="search-input-row">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path>
+        </svg>
+        <input class="search-input" id="search-input" type="text" placeholder="Search every tab…" autocomplete="off" spellcheck="false">
+        <button class="modal-close-btn" id="search-modal-close" aria-label="Close search">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path opacity="0.5" d="M12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22Z" fill="currentColor"/>
+            <path d="M8.96967 8.96967C9.26256 8.67678 9.73744 8.67678 10.0303 8.96967L12 10.9394L13.9697 8.96969C14.2626 8.6768 14.7374 8.6768 15.0303 8.96969C15.3232 9.26258 15.3232 9.73746 15.0303 10.0303L13.0607 12L15.0303 13.9697C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0304 15.0303C9.73746 15.3232 9.26258 15.3232 8.96969 15.0303C8.6768 14.7374 8.6768 14.2626 8.96969 13.9697L10.9394 12L8.96967 10.0303C8.67678 9.73744 8.67678 9.26256 8.96967 8.96967Z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+      <div class="search-status" id="search-status">Building search index…</div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Settings: fixed top-right gear -->
+  <button class="settings-btn" id="settings-btn" aria-haspopup="dialog" aria-label="Settings — text size">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M14.2788 2.15224C13.9085 2 13.439 2 12.5 2C11.561 2 11.0915 2 10.7212 2.15224C10.2274 2.35523 9.83509 2.74458 9.63056 3.23463C9.53719 3.45834 9.50065 3.7185 9.48635 4.09799C9.46534 4.65568 9.17716 5.17189 8.69017 5.45093C8.20318 5.72996 7.60864 5.71954 7.11149 5.45876C6.77318 5.2813 6.52789 5.18262 6.28599 5.15102C5.75609 5.08178 5.22018 5.22429 4.79616 5.5472C4.47814 5.78938 4.24339 6.1929 3.7739 6.99993C3.30441 7.80697 3.06967 8.21048 3.01735 8.60491C2.94758 9.1308 3.09118 9.66266 3.41655 10.0835C3.56506 10.2756 3.77377 10.437 4.0977 10.639C4.57391 10.936 4.88032 11.4419 4.88029 12C4.88026 12.5581 4.57386 13.0639 4.0977 13.3608C3.77372 13.5629 3.56497 13.7244 3.41645 13.9165C3.09108 14.3373 2.94749 14.8691 3.01725 15.395C3.06957 15.7894 3.30432 16.193 3.7738 17C4.24329 17.807 4.47804 18.2106 4.79606 18.4527C5.22008 18.7756 5.75599 18.9181 6.28589 18.8489C6.52778 18.8173 6.77305 18.7186 7.11133 18.5412C7.60852 18.2804 8.2031 18.27 8.69012 18.549C9.17714 18.8281 9.46533 19.3443 9.48635 19.9021C9.50065 20.2815 9.53719 20.5417 9.63056 20.7654C9.83509 21.2554 10.2274 21.6448 10.7212 21.8478C11.0915 22 11.561 22 12.5 22C13.439 22 13.9085 22 14.2788 21.8478C14.7726 21.6448 15.1649 21.2554 15.3694 20.7654C15.4628 20.5417 15.4994 20.2815 15.5137 19.902C15.5347 19.3443 15.8228 18.8281 16.3098 18.549C16.7968 18.2699 17.3914 18.2804 17.8886 18.5412C18.2269 18.7186 18.4721 18.8172 18.714 18.8488C19.2439 18.9181 19.7798 18.7756 20.2038 18.4527C20.5219 18.2105 20.7566 17.807 21.2261 16.9999C21.6956 16.1929 21.9303 15.7894 21.9827 15.395C22.0524 14.8691 21.9088 14.3372 21.5835 13.9164C21.4349 13.7243 21.2262 13.5628 20.9022 13.3608C20.4261 13.0639 20.1197 12.558 20.1197 11.9999C20.1197 11.4418 20.4261 10.9361 20.9022 10.6392C21.2263 10.4371 21.435 10.2757 21.5836 10.0835C21.9089 9.66273 22.0525 9.13087 21.9828 8.60497C21.9304 8.21055 21.6957 7.80703 21.2262 7C20.7567 6.19297 20.522 5.78945 20.2039 5.54727C19.7799 5.22436 19.244 5.08185 18.7141 5.15109C18.4722 5.18269 18.2269 5.28136 17.8887 5.4588C17.3915 5.71959 16.7969 5.73002 16.3099 5.45096C15.8229 5.17191 15.5347 4.65566 15.5136 4.09794C15.4993 3.71848 15.4628 3.45833 15.3694 3.23463C15.1649 2.74458 14.7726 2.35523 14.2788 2.15224Z" fill="currentColor"/>
+      <path d="M15.5227 12C15.5227 13.6569 14.1694 15 12.4999 15C10.8304 15 9.47705 13.6569 9.47705 12C9.47705 10.3431 10.8304 9 12.4999 9C14.1694 9 15.5227 10.3431 15.5227 12Z" fill="currentColor"/>
+    </svg>
+  </button>
+
+  <!-- Settings modal -->
+  <div class="settings-overlay" id="settings-overlay" role="dialog" aria-modal="true" aria-labelledby="settings-modal-title">
+    <div class="settings-modal">
+      <div class="settings-modal-header">
+        <span class="settings-modal-title" id="settings-modal-title">Settings</span>
+        <button class="modal-close-btn" id="settings-modal-close" aria-label="Close settings">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path opacity="0.5" d="M12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22Z" fill="currentColor"/>
+            <path d="M8.96967 8.96967C9.26256 8.67678 9.73744 8.67678 10.0303 8.96967L12 10.9394L13.9697 8.96969C14.2626 8.6768 14.7374 8.6768 15.0303 8.96969C15.3232 9.26258 15.3232 9.73746 15.0303 10.0303L13.0607 12L15.0303 13.9697C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0304 15.0303C9.73746 15.3232 9.26258 15.3232 8.96969 15.0303C8.6768 14.7374 8.6768 14.2626 8.96969 13.9697L10.9394 12L8.96967 10.0303C8.67678 9.73744 8.67678 9.26256 8.96967 8.96967Z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+      <div class="settings-modal-body">
+        <div class="set-row">
+          <div class="set-row-top">
+            <div style="display:flex;align-items:center;">
+              <label class="set-label" for="set-fontscale">Text size</label>
+              <button class="set-reset-btn" id="set-fontscale-reset" type="button" aria-label="Reset text size to default">Reset</button>
+            </div>
+            <span class="set-val" id="set-fontscale-val">100%</span>
+          </div>
+          <input class="set-slider" id="set-fontscale" type="range" min="0.8" max="1.4" step="0.05" value="1" aria-label="Text size">
+          <div class="set-hint">Scales every tab's text together. Saved on this device.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sources modal -->
+  <div class="sources-overlay" id="sources-overlay" role="dialog" aria-modal="true" aria-labelledby="sources-modal-title">
+    <div class="sources-modal">
+      <div class="sources-modal-header">
+        <span class="sources-modal-title" id="sources-modal-title">Sources</span>
+        <button class="sources-modal-close" id="sources-modal-close" aria-label="Close sources">Close</button>
+      </div>
+      <div class="sources-modal-body" id="sources-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Context modal (dispatch / Israel Tracker only) -->
+  <div class="context-overlay" id="context-overlay" role="dialog" aria-modal="true" aria-labelledby="context-modal-title">
+    <div class="context-modal">
+      <div class="context-modal-header">
+        <span class="context-modal-title" id="context-modal-title">Context for this date</span>
+        <button class="context-modal-close" id="context-modal-close" aria-label="Close context">Close</button>
+      </div>
+      <div class="context-modal-body" id="context-modal-body"></div>
+    </div>
+  </div>
+
+  <main id="content">
+    <div class="loading">Loading&hellip;</div>
+  </main>
+
+  <footer class="page-footer" id="page-footer" style="display:none;"></footer>
+
+  <script>
+    /* =====================================================================
+       STATE
+       ===================================================================== */
+    let SUBJECTS = [];                  // loaded from /subjects.json
+    let activeSubject = null;           // current subject object
+    let activeFile = null;              // currently displayed filename (non-dispatch)
+    let activeDate = null;              // currently selected date string (dispatch)
+    let activeIndex = [];               // current subject's parsed index.json
+    const subjectIndexCache = {};       // { briefs: [...], lexis: [...] } — avoid re-fetch
+
+    /* =====================================================================
+       UTILITIES
+       ===================================================================== */
+    const cb = () => `?t=${Date.now()}`; // cache-buster query string
+
+    function formatDateLong(dateStr) {
+      const [y, m, d] = dateStr.split('-').map(Number);
+      const dt = new Date(Date.UTC(y, m - 1, d));
+      return new Intl.DateTimeFormat('en-US', {
+        month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC'
+      }).format(dt);
+    }
+    function todayInEastern() {
+      const now = new Date();
+      const parts = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'America/New_York',
+        year: 'numeric', month: '2-digit', day: '2-digit'
+      }).formatToParts(now);
+      const get = t => parts.find(p => p.type === t).value;
+      return `${get('year')}-${get('month')}-${get('day')}`;
+    }
+    function dayOfWeek(dateStr) {
+      const [y, m, d] = dateStr.split('-').map(Number);
+      const dt = new Date(Date.UTC(y, m - 1, d, 12));
+      return new Intl.DateTimeFormat('en-US', { weekday: 'long', timeZone: 'UTC' }).format(dt);
+    }
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+    function parseDomain(url) {
+      try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; }
+    }
+
+    /* =====================================================================
+       FRONTMATTER PARSING
+       ===================================================================== */
+    function parseFrontmatter(text) {
+      const fm = /^---\n([\s\S]*?)\n---\n?([\s\S]*)$/.exec(text);
+      if (!fm) return { frontmatter: {}, body: text };
+      try {
+        const frontmatter = jsyaml.load(fm[1]) || {};
+        if (frontmatter.date instanceof Date) {
+          const d = frontmatter.date;
+          frontmatter.date = `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`;
+        }
+        if (Array.isArray(frontmatter.sources)) {
+          frontmatter.sources.forEach(src => {
+            if (src && src.date instanceof Date) {
+              const d = src.date;
+              src.date = `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`;
+            }
+          });
+        }
+        return { frontmatter, body: fm[2] };
+      } catch (err) {
+        console.warn('Frontmatter parse error:', err);
+        return { frontmatter: {}, body: fm[2] };
+      }
+    }
+
+    /* =====================================================================
+       SUBJECT MANAGEMENT
+       ===================================================================== */
+    async function loadSubjects() {
+      try {
+        const res = await fetch(`/subjects.json${cb()}`);
+        if (!res.ok) throw new Error(`subjects fetch failed: ${res.status}`);
+        SUBJECTS = await res.json();
+        // LOCAL-ONLY overlay: subjects.local.json is gitignored, so it is
+        // absent on the public Vercel deploy (this fetch 404s and is ignored)
+        // and present only when running the viewer locally. Used for private
+        // subjects (e.g. Progress Clarity) that must never be published.
+        try {
+          const localRes = await fetch(`/subjects.local.json${cb()}`);
+          if (localRes.ok) {
+            const localSubjects = await localRes.json();
+            if (Array.isArray(localSubjects)) SUBJECTS = SUBJECTS.concat(localSubjects);
+          }
+        } catch (_) { /* no local overlay — expected on public deploy */ }
+      } catch (err) {
+        console.error('Failed to load subjects.json', err);
+        document.getElementById('content').innerHTML =
+          `<div class="error-message">Could not load subjects manifest. (See console for details.)</div>`;
+        return false;
+      }
+      return true;
+    }
+
+    function renderPillbar() {
+      const bar = document.getElementById('pillbar');
+      bar.innerHTML = '';
+      SUBJECTS.forEach(s => {
+        const btn = document.createElement('button');
+        btn.className = 'pill';
+        btn.textContent = s.name;
+        btn.dataset.id = s.id;
+        btn.addEventListener('click', () => switchSubject(s.id));
+        bar.appendChild(btn);
+      });
+    }
+
+    function updatePillSelection() {
+      document.querySelectorAll('.pill').forEach(p => {
+        p.classList.toggle('selected', p.dataset.id === activeSubject.id);
+      });
+    }
+
+    // Accent is now a single unified bronze across every tab — the per-tab
+    // colors (red/green/blue) from subjects.json are intentionally ignored so
+    // nothing in the UI or article bodies tints by tab anymore.
+    function setAccent(_color) {
+      document.documentElement.style.setProperty('--accent', '#7d6238');
+    }
+
+    async function switchSubject(subjectId) {
+      const next = SUBJECTS.find(s => s.id === subjectId);
+      if (!next) return;
+      activeSubject = next;
+      try { localStorage.setItem('active-subject', next.id); } catch(e) {}
+      setAccent(next.accent);
+      document.body.classList.remove(
+        'style-literary', 'style-dispatch'
+      );
+      document.body.classList.add('style-' + (next.style || 'neutral'));
+      updatePillSelection();
+
+      // Restore buttons that specialized views may hide; hide progress-specific ones
+      document.getElementById('shelf-btn').setAttribute('aria-label', 'Archive');
+      // Universal collapse button visibility/icon is governed per-render by
+      // syncCollapseIcon(); no per-tab show/hide needed here.
+      stopLitScrollTracker();
+
+      // A: Clear stale sources + read indicator immediately (before any async)
+      renderSources(null);
+      updateReadIndicator(null);
+
+      document.getElementById('content').innerHTML = '<div class="loading">Loading&hellip;</div>';
+      await loadSubjectIndex(next);
+
+      // Dispatch: load latest date; non-dispatch: reset dispatch DOM
+      if (next.style === 'dispatch') {
+        const latestDate = activeIndex.length > 0 ? (activeIndex[0].run_date || activeIndex[0].date) : null;
+        if (latestDate) { loadDate(latestDate); return; }
+      } else {
+        document.getElementById('context-btn').classList.remove('has-context');
+        document.getElementById('dispatch-dateline').style.display = 'none';
+      }
+
+      if (activeIndex.length > 0) {
+        loadFile(activeIndex[0].file);
+      } else {
+        document.getElementById('masthead-title').textContent = next.displayTitle || next.name;
+        document.getElementById('masthead-date').textContent = '';
+        document.getElementById('content').innerHTML =
+          `<div class="error-message">No files yet in this subject. Add a markdown file to <code>/${next.folder}/</code> and an entry to <code>/${next.folder}/index.json</code>.</div>`;
+        document.getElementById('sources-btn').style.display = 'none';
+        document.getElementById('stale-banner').style.display = 'none';
+      }
+    }
+
+    // D: Sort parchment + lvls reverse-chrono; undated entries sink to bottom.
+    // Shared by loadSubjectIndex() AND buildSearchIndex() — both populate
+    // subjectIndexCache, and whichever runs first "wins" the cached array for
+    // every later reader. If only one of them sorted, a subject whose
+    // index.json got cached by the other path first would render unsorted
+    // (this is what was happening to FI: buildSearchIndex's background prefetch
+    // cached it raw before the tab was ever opened, so loadSubjectIndex's
+    // cache-hit branch returned the unsorted array and skipped sorting).
+    function sortSubjectIndex(subject, idx) {
+      return idx;
+    }
+
+    async function loadSubjectIndex(subject) {
+      if (subjectIndexCache[subject.id]) {
+        activeIndex = subjectIndexCache[subject.id];
+        return;
+      }
+      try {
+        const res = await fetch(`/${subject.folder}/index.json${cb()}`);
+        if (!res.ok) throw new Error(`index fetch failed: ${res.status}`);
+        activeIndex = await res.json();
+        sortSubjectIndex(subject, activeIndex);
+        subjectIndexCache[subject.id] = activeIndex;
+      } catch (err) {
+        console.error('Subject index fetch failed:', err);
+        activeIndex = [];
+      }
+    }
+
+    /* =====================================================================
+       FILE LOADING
+       ===================================================================== */
+    async function loadFile(filename) {
+      activeFile = filename;
+      updateReadIndicator(null); // clear while loading
+      const url = `/${activeSubject.folder}/${filename}${cb()}`;
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`file fetch failed: ${res.status}`);
+        const raw = await res.text();
+        const { frontmatter, body } = parseFrontmatter(raw);
+        renderMasthead(frontmatter);
+        renderContent(body);
+        renderSources(frontmatter.sources || null);
+        checkStale(frontmatter, isLatestFile(filename));
+        appendReadCheckbox(filename); // F: add read checkbox
+      } catch (err) {
+        console.error('File fetch failed:', err);
+        document.getElementById('content').innerHTML =
+          `<div class="error-message">Could not load <code>${escapeHtml(filename)}</code>.<br><small style="opacity:0.6;font-size:0.75rem">${escapeHtml(err.message || String(err))}</small></div>`;
+      }
+    }
+
+    function isLatestFile(filename) {
+      return activeIndex.length > 0 && activeIndex[0].file === filename;
+    }
+
+    /* =====================================================================
+       DISPATCH DATE LOADING — fetches all stories for a date, renders digest
+       ===================================================================== */
+    async function loadDate(runDate) {
+      activeDate = runDate;
+      activeFile = null;
+      // A: Clear stale sources + read indicator while loading
+      renderSources(null);
+      updateReadIndicator(null);
+      // Filter by run_date (falls back to date for legacy entries without run_date)
+      const stories = activeIndex.filter(item => (item.run_date || item.date) === runDate);
+      if (!stories.length) return;
+
+      // Masthead: subject name + formatted run date
+      // Remove landing-mode in case we're arriving from a card-style tab (LvIs/FI/etc.) —
+      // that class hides masthead-title via CSS, and loadDate() doesn't go through
+      // renderMasthead() which is the normal place this gets cleared.
+      document.querySelector('header').classList.remove('landing-mode');
+      const titleEl = document.getElementById('masthead-title');
+      const dateEl  = document.getElementById('masthead-date');
+      titleEl.textContent = activeSubject.displayTitle || activeSubject.name;
+      dateEl.textContent = formatDateDispatch(runDate);
+      document.getElementById('dispatch-dateline').style.display = 'none';
+      document.getElementById('stale-banner').style.display = 'none';
+
+      document.getElementById('content').innerHTML = '<div class="loading">Loading&hellip;</div>';
+
+      // Fetch all story files in parallel
+      const fetched = await Promise.all(stories.map(async (item, idx) => {
+        try {
+          const res = await fetch(`/${activeSubject.folder}/${item.file}${cb()}`);
+          if (!res.ok) throw new Error(`${res.status}`);
+          const raw = await res.text();
+          return { ...parseFrontmatter(raw), indexItem: item };
+        } catch (err) {
+          return { frontmatter: { title: item.title, date: item.date, significance: item.significance || 0 }, body: `*Could not load ${item.file}.*`, indexItem: item };
+        }
+      }));
+
+      // Sort by significance desc (highest first)
+      fetched.sort((a, b) => (b.frontmatter.significance || 0) - (a.frontmatter.significance || 0));
+
+      // Build combined HTML
+      const content = document.getElementById('content');
+      content.innerHTML = '';
+
+      try {
+        // At a glance — Roman-numeral summaries linking to each story below
+        const glanceH2 = document.createElement('h2');
+        glanceH2.className = 'glance-heading';
+        glanceH2.textContent = 'At a glance';
+        const glanceOl = document.createElement('ol');
+        fetched.forEach(({ frontmatter: fm, indexItem: ii }, idx) => {
+          const text = (ii && ii.summary) ? ii.summary : (fm.title || `Story ${idx + 1}`);
+          const li = document.createElement('li');
+          li.className = 'glance-link';
+          li.textContent = text;
+          li.addEventListener('click', () => scrollToStory(idx + 1));
+          glanceOl.appendChild(li);
+        });
+        content.appendChild(glanceH2);
+        content.appendChild(glanceOl);
+
+        fetched.forEach(({ frontmatter: fm, body, indexItem }, idx) => {
+          const block = document.createElement('div');
+          block.className = 'dispatch-day-story';
+          block.id = `dispatch-story-${idx + 1}`;
+
+          // Dateline: all sources as stacked clickable links, each with their own date
+          const allSources = Array.isArray(fm.sources) ? fm.sources : [];
+          const sourceItems = allSources.map(src => {
+            const label = (src.outlet || src.publication || parseDomain(src.url || '') || '').toUpperCase();
+            const date  = src.date ? ` · ${formatDateDispatch(src.date)}` : '';
+            const text  = escapeHtml(label + date);
+            return src.url
+              ? `<a href="${escapeHtml(src.url)}" target="_blank" rel="noopener noreferrer" class="dispatch-dateline">${text}</a>`
+              : `<span class="dispatch-dateline">${text}</span>`;
+          });
+          if (!sourceItems.length && fm.date) {
+            sourceItems.push(`<span class="dispatch-dateline">${escapeHtml(formatDateDispatch(fm.date))}</span>`);
+          }
+
+          const hasStoryContext = Array.isArray(fm.context) && fm.context.length > 0;
+          let html = '';
+          if (sourceItems.length) {
+            const ctxBtn = hasStoryContext
+              ? `<button class="story-context-btn" aria-haspopup="dialog">Context</button>`
+              : '';
+            html += `<div class="dispatch-dateline-block">
+              <div class="dispatch-dateline-row">
+                <div class="dispatch-source-list">${sourceItems.join('')}</div>
+                ${ctxBtn}
+              </div>
+              <span class="dispatch-rule" aria-hidden="true"></span>
+            </div>`;
+          }
+
+          // Story headline
+          if (fm.title) {
+            html += `<h2 class="dispatch-day-headline">${escapeHtml(fm.title)}</h2>`;
+          }
+          // C: One-sentence summary tagline from index metadata
+          if (indexItem && indexItem.summary) {
+            html += `<p class="dispatch-day-summary">${escapeHtml(indexItem.summary)}</p>`;
+          }
+
+          // Story body
+          html += `<div class="dispatch-body-wrap">${marked.parse(body || '')}</div>`;
+
+          block.innerHTML = html;
+          if (hasStoryContext) {
+            const btn = block.querySelector('.story-context-btn');
+            if (btn) btn.addEventListener('click', () => openContextForStory(fm, fm.title || `Story ${idx + 1}`, btn));
+          }
+          content.appendChild(block);
+        });
+      } catch (err) {
+        console.error('Dispatch render error:', err);
+        content.innerHTML += `<div class="error-message" style="margin-top:1rem;">Render error: ${escapeHtml(String(err))}<br><small style="opacity:0.6;font-size:0.75rem">${escapeHtml(err.stack || '')}</small></div>`;
+      }
+
+      makeDispatchStoriesCollapsible(content);   // Israel: each story collapses like Tech
+      syncCollapseIcon();
+
+      // Sources modal: tech-brief format — numbered groups by story headline
+      const sourceGroups = fetched.map(({ frontmatter: fm }, i) => ({
+        group: `${i + 1} · ${(fm.title || 'Story').toUpperCase()}`,
+        why: fm.significance_reason || '',
+        links: (fm.sources || []).map(s => ({
+          title: s.outlet || s.publication || parseDomain(s.url || '') || s.url,
+          url: s.url || '#'
+        }))
+      })).filter(g => g.links.length > 0);
+      renderSources(sourceGroups.length ? sourceGroups : null);
+
+      // Context modal: group by story, dedup across stories (first story wins for shared entries)
+      const seenNames = new Set();
+      const storyContextGroups = fetched.map(({ frontmatter: fm }, idx) => {
+        const storyContext = [];
+        (fm.context || []).forEach(entry => {
+          if (!seenNames.has(entry.name)) {
+            seenNames.add(entry.name);
+            storyContext.push(entry);
+          }
+        });
+        return { storyNum: idx + 1, title: fm.title || `Story ${idx + 1}`, context: storyContext };
+      }).filter(g => g.context.length > 0);
+      renderContext(storyContextGroups);
+      appendReadCheckbox(runDate); // F: add read checkbox
+      syncCollapseIcon();          // Israel/dispatch has no .lvl-section → hides the button
+    }
+
+    function renderMasthead(fm) {
+      // Restore title visibility if we're coming from a landing-card view
+      document.querySelector('header').classList.remove('landing-mode');
+
+      const titleEl = document.getElementById('masthead-title');
+      const dateEl = document.getElementById('masthead-date');
+
+      titleEl.textContent = activeSubject.displayTitle || activeSubject.name;
+
+      // Dispatch uses loadDate() — renderMasthead not called for dispatch
+      if (activeSubject.style === 'dispatch') return;
+
+      if (activeSubject.style === 'literary' && fm.date) {
+        const day = (fm.day || dayOfWeek(fm.date)).toUpperCase();
+        const formatted = formatDateLong(fm.date).toUpperCase();
+        dateEl.textContent = `${day} · ${formatted}`;
+      } else if (fm.date) {
+        dateEl.textContent = formatDateLong(fm.date);
+      } else {
+        const entry = activeIndex.find(e => e.file === activeFile);
+        dateEl.textContent = entry ? (entry.title || entry.file) : activeFile;
+      }
+    }
+
+    function checkStale(fm, isLatest) {
+      const banner = document.getElementById('stale-banner');
+      if (activeSubject.style !== 'literary' || !isLatest || !fm.date) {
+        banner.style.display = 'none';
+        return;
+      }
+      if (fm.date < todayInEastern()) {
+        const day = fm.day || dayOfWeek(fm.date);
+        banner.textContent = `Last brief · ${day} · ${formatDateLong(fm.date)}`;
+        banner.style.display = 'block';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
+    function renderContent(body) {
+      const html = marked.parse(body);
+      const content = document.getElementById('content');
+      content.innerHTML = html;
+      if (activeSubject.style === 'literary') {
+        tagStructure(content);
+        wrapStories(content);
+        makeStoriesCollapsible(content);        // Tech: each story becomes a collapsible section
+        makeMinorSectionsCollapsible(content);  // …and so do UNDER THE RADAR / FEEDBACK QUESTIONS
+        wireGlanceLinks(content);
+        startLitScrollTracker();
+        updateActiveLitStory();
+      }
+      applyFooter();
+      syncCollapseIcon();   // refresh the universal expand/collapse button
+    }
+
+    function applyFooter() {
+      document.getElementById('page-footer').style.display = 'none';
+    }
+
+    function openLvlSection(section, instant) {
+      const body = section.querySelector('.lvl-body');
+      const summary = section.querySelector('.lvl-summary');
+      section.classList.add('open');
+      summary.setAttribute('aria-expanded', 'true');
+      // Animate from current height to scrollHeight
+      const target = body.scrollHeight;
+      if (instant) {
+        body.style.transition = 'none';
+        body.style.maxHeight = 'none';   // let it grow with content
+        // Force reflow then re-enable transition
+        void body.offsetHeight;
+        body.style.transition = '';
+      } else {
+        body.style.maxHeight = target + 'px';
+        // After bloom completes, drop the constraint so future content reflow doesn't clip
+        body.addEventListener('transitionend', function settle(e) {
+          if (e.propertyName !== 'max-height') return;
+          if (section.classList.contains('open')) {
+            body.style.maxHeight = 'none';
+          }
+          body.removeEventListener('transitionend', settle);
+        });
+      }
+    }
+
+    function closeLvlSection(section) {
+      const body = section.querySelector('.lvl-body');
+      const summary = section.querySelector('.lvl-summary');
+      // Lock to current pixel height first, force reflow, then animate to 0
+      body.style.maxHeight = body.scrollHeight + 'px';
+      void body.offsetHeight;
+      section.classList.remove('open');
+      summary.setAttribute('aria-expanded', 'false');
+      requestAnimationFrame(() => { body.style.maxHeight = '0px'; });
+    }
+
+    function toggleLvlSection(section) {
+      if (section.classList.contains('open')) {
+        closeLvlSection(section);
+      } else {
+        openLvlSection(section, false);
+      }
+    }
+
+    // Both icon SVGs are baked into each collapse-toggle button's markup
+    // (see .icon-collapse / .icon-expand). Toggling is just a data attribute —
+    // CSS crossfades + scales between them. SVG_EXPAND/SVG_COLLAPSE strings
+    // are gone; use setBtnIcon(btn, 'expand' | 'collapse') instead.
+    function setBtnIcon(btn, which) {
+      if (!btn) return;
+      btn.dataset.icon = which;
+    }
+
+    // Open/close every .lvl-section on the page (used by FI, Lvls, P&C, Lexis,
+    // WebDev, and the collapsible Tech stories). Icon state is handled separately
+    // by syncCollapseIcon().
+    function toggleAllLvlSections() {
+      const sections = Array.from(document.querySelectorAll('.lvl-section'));
+      if (sections.length === 0) return;
+      const allOpen = sections.every(s => s.classList.contains('open'));
+      if (allOpen) {
+        sections.forEach(s => closeLvlSection(s));
+      } else {
+        sections.forEach(s => { if (!s.classList.contains('open')) openLvlSection(s, false); });
+      }
+    }
+
+    /* =====================================================================
+       UNIVERSAL EXPAND/COLLAPSE BUTTON — one fixed top-right icon (#collapse-btn)
+       drives whatever is collapsible on the active tab.
+       ===================================================================== */
+    // Is anything currently expanded on this tab?
+    function anyCollapsibleOpen() {
+      return Array.from(document.querySelectorAll('.lvl-section'))
+        .some(s => s.classList.contains('open'));
+    }
+    // How many collapsible things exist on this tab? (0 → hide the button)
+    function collapsibleCount() {
+      return document.querySelectorAll('.lvl-section').length;
+    }
+    // Keep the button's icon/label/visibility in step with the page.
+    function syncCollapseIcon() {
+      const btn = document.getElementById('collapse-btn');
+      if (!btn) return;
+      btn.style.display = 'flex';
+      const open = anyCollapsibleOpen();
+      setBtnIcon(btn, open ? 'collapse' : 'expand');
+      btn.setAttribute('aria-label', open ? 'Collapse all' : 'Expand all');
+      btn.setAttribute('aria-pressed', open ? 'false' : 'true');
+    }
+    // Route a click to the active tab's collapse-all behavior.
+    function collapseDispatch() {
+      toggleAllLvlSections();
+      syncCollapseIcon();
+    }
+    document.getElementById('collapse-btn').addEventListener('click', collapseDispatch);
+
+    /* =====================================================================
+       LITERARY STRUCTURAL TAGGING — briefs only
+       ===================================================================== */
+    function tagStructure(root) {
+      const h1 = root.querySelector('h1');
+      if (h1) h1.remove();
+
+      const h2s = Array.from(root.querySelectorAll('h2'));
+      if (h2s.length === 0) return;
+
+      h2s[0].classList.add('glance-heading');
+
+      let firstStory = true;
+      for (let i = 1; i < h2s.length; i++) {
+        const h2 = h2s[i];
+        const txt = h2.textContent.trim();
+
+        if (/^\d+\./.test(txt)) {
+          h2.classList.add('story-heading');
+          if (firstStory) { h2.classList.add('first'); firstStory = false; }
+
+          let sib = h2.nextElementSibling;
+          while (sib && sib.tagName !== 'P' && sib.tagName !== 'H2') {
+            sib = sib.nextElementSibling;
+          }
+          if (sib && sib.tagName === 'P'
+              && sib.firstChild && sib.firstChild.nodeName === 'STRONG') {
+            sib.classList.add('story-meta');
+          }
+
+          let walker = h2.nextElementSibling;
+          while (walker && walker.tagName !== 'H2') {
+            if (walker.tagName === 'P') {
+              const em = walker.querySelector('em');
+              if (em && /^why it matters/i.test(em.textContent.trim())) {
+                walker.classList.add('why-it-matters');
+                break;
+              }
+            }
+            walker = walker.nextElementSibling;
+          }
+        } else {
+          h2.classList.add('section-minor');
+        }
+      }
+
+      const hr = root.querySelector('hr');
+      if (hr) {
+        let next = hr.nextElementSibling;
+        while (next && next.tagName !== 'P' && next.tagName !== 'H2') {
+          next = next.nextElementSibling;
+        }
+        if (next && next.tagName === 'P') {
+          const em = next.querySelector('em');
+          if (em && next.textContent.trim() === em.textContent.trim()) {
+            next.classList.add('lede');
+          }
+        }
+      }
+    }
+
+    function wrapStories(root) {
+      Array.from(root.querySelectorAll('h2.story-heading')).forEach((h2, idx) => {
+        const elements = [h2];
+        let next = h2.nextElementSibling;
+        while (next && next.tagName !== 'H2' && next.tagName !== 'HR') {
+          elements.push(next);
+          next = next.nextElementSibling;
+        }
+        const wrap = document.createElement('div');
+        wrap.className = 'story-block';
+        wrap.id = `story-${idx + 1}`;
+        h2.parentNode.insertBefore(wrap, h2);
+        elements.forEach(el => wrap.appendChild(el));
+      });
+    }
+
+    // Tech: turn each wrapped story into a collapsible .lvl-section so the
+    // universal expand/collapse button works here exactly like the other tabs.
+    // The story heading becomes the summary bar; everything else moves into the
+    // collapsible body. The story-N id + .story-block class are kept so glance
+    // links, scroll, and the glow animation keep working.
+    function makeStoriesCollapsible(root) {
+      Array.from(root.querySelectorAll('.story-block')).forEach(block => {
+        const heading = block.querySelector('h2.story-heading');
+        if (!heading) return;
+        const labelText = heading.textContent.trim();
+
+        const section = document.createElement('div');
+        section.className = 'lvl-section story-block lit-section';
+        section.id = block.id;   // keep story-N for glance links / scroll
+
+        const summary = document.createElement('button');
+        summary.className = 'lvl-summary';
+        summary.type = 'button';
+        summary.setAttribute('aria-expanded', 'false');
+        summary.innerHTML =
+          `<span class="lvl-label-wrap">
+            <span class="lvl-label">${escapeHtml(labelText)}</span>
+          </span>
+          <svg class="lvl-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 6 15 12 9 18"></polyline>
+          </svg>`;
+
+        const bodyWrap = document.createElement('div');
+        bodyWrap.className = 'lvl-body';
+        Array.from(block.childNodes).forEach(node => {
+          if (node === heading) return;
+          bodyWrap.appendChild(node);
+        });
+
+        block.parentNode.insertBefore(section, block);
+        section.appendChild(summary);
+        section.appendChild(bodyWrap);
+        block.remove();
+
+        summary.addEventListener('click', () => toggleLvlSection(section));
+        // Starts collapsed for a clean "At a glance + headlines" first view.
+      });
+    }
+
+    // Tech: wrap the "section-minor" headings (UNDER THE RADAR, FEEDBACK QUESTIONS)
+    // and their content into collapsible .lvl-section units like the stories.
+    // Removing the h2 also drops its thick top rule, so these read as clean cards.
+    function makeMinorSectionsCollapsible(root) {
+      Array.from(root.querySelectorAll('h2.section-minor')).forEach(h2 => {
+        const labelText = h2.textContent.trim();
+        const section = document.createElement('div');
+        section.className = 'lvl-section lit-section lit-minor-section';
+
+        const summary = document.createElement('button');
+        summary.className = 'lvl-summary';
+        summary.type = 'button';
+        summary.setAttribute('aria-expanded', 'false');
+        summary.innerHTML =
+          `<span class="lvl-label-wrap">
+            <span class="lvl-label">${escapeHtml(labelText)}</span>
+          </span>
+          <svg class="lvl-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 6 15 12 9 18"></polyline>
+          </svg>`;
+
+        const bodyWrap = document.createElement('div');
+        bodyWrap.className = 'lvl-body';
+
+        // Collect siblings until the next section-minor heading (or end).
+        let walker = h2.nextElementSibling;
+        const toMove = [];
+        while (walker && !(walker.tagName === 'H2' && walker.classList.contains('section-minor'))) {
+          toMove.push(walker);
+          walker = walker.nextElementSibling;
+        }
+
+        h2.parentNode.insertBefore(section, h2);
+        section.appendChild(summary);
+        section.appendChild(bodyWrap);
+        toMove.forEach(el => bodyWrap.appendChild(el));
+        h2.remove();
+
+        summary.addEventListener('click', () => toggleLvlSection(section));
+      });
+    }
+
+    // Israel (dispatch): wrap each .dispatch-day-story into a collapsible lvl-section.
+    // Headline becomes the summary bar; dateline, summary, and body collapse inside.
+    // Preserves dispatch-story-N id so glance links + scrollToStory keep working.
+    function makeDispatchStoriesCollapsible(root) {
+      Array.from(root.querySelectorAll('.dispatch-day-story')).forEach(block => {
+        const headline = block.querySelector('h2.dispatch-day-headline');
+        const labelText = headline ? headline.textContent.trim() : 'Story';
+
+        const section = document.createElement('div');
+        section.className = 'lvl-section story-block dispatch-section';
+        section.id = block.id;   // keep dispatch-story-N for glance links / scroll
+
+        const summary = document.createElement('button');
+        summary.className = 'lvl-summary';
+        summary.type = 'button';
+        summary.setAttribute('aria-expanded', 'false');
+        summary.innerHTML =
+          `<span class="lvl-label-wrap">
+            <span class="lvl-label">${escapeHtml(labelText)}</span>
+          </span>
+          <svg class="lvl-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 6 15 12 9 18"></polyline>
+          </svg>`;
+
+        const bodyWrap = document.createElement('div');
+        bodyWrap.className = 'lvl-body';
+        Array.from(block.childNodes).forEach(node => bodyWrap.appendChild(node));
+
+        block.parentNode.insertBefore(section, block);
+        section.appendChild(summary);
+        section.appendChild(bodyWrap);
+        block.remove();
+
+        summary.addEventListener('click', () => toggleLvlSection(section));
+      });
+    }
+
+    function wireGlanceLinks(root) {
+      const list = root.querySelector('h2.glance-heading + ol');
+      if (!list) return;
+      list.querySelectorAll('li').forEach((li, idx) => {
+        li.classList.add('glance-link');
+        li.addEventListener('click', () => scrollToStory(idx + 1));
+      });
+    }
+
+    function scrollToStory(num) {
+      // Works for both Tech (story-N) and Dispatch (dispatch-story-N)
+      const block = document.getElementById(`story-${num}`) || document.getElementById(`dispatch-story-${num}`);
+      if (!block) return;
+      // Tech stories are now collapsible — open the target first so the jump lands
+      // on visible content, then refresh the corner button state.
+      if (block.classList.contains('lvl-section') && !block.classList.contains('open')) {
+        openLvlSection(block, true);
+        syncCollapseIcon();
+      }
+      // Subtract sticky pillbar height so the heading isn't hidden behind it
+      const pillbar = document.getElementById('pillbar');
+      const offset = (pillbar ? pillbar.getBoundingClientRect().height : 44) + 16;
+      const top = block.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+      block.classList.remove('story-glow');
+      void block.offsetWidth;
+      block.classList.add('story-glow');
+      block.addEventListener('animationend', () => block.classList.remove('story-glow'), { once: true });
+    }
+
+    /* =====================================================================
+       READ STATE — localStorage-backed, keyed by subject + file/date
+       Key format:  mr:{subjectId}:{filename or runDate}
+       ===================================================================== */
+    function readKey(identifier) {
+      return `mr:${activeSubject ? activeSubject.id : 'unknown'}:${identifier}`;
+    }
+    function isRead(identifier) {
+      return localStorage.getItem(readKey(identifier)) === '1';
+    }
+    function setRead(identifier, val) {
+      val ? localStorage.setItem(readKey(identifier), '1')
+          : localStorage.removeItem(readKey(identifier));
+    }
+    function updateReadIndicator(identifier) {
+      const el = document.getElementById('read-indicator');
+      // P&C carries the ✓ inline on its LEDGER/SWEEP label, so the standalone
+      // indicator stays hidden there and we just re-render the label.
+      if (!el) return;
+      if (!identifier) { el.style.display = 'none'; return; }
+      el.style.display = isRead(identifier) ? 'block' : 'none';
+    }
+    function appendReadCheckbox(identifier) {
+      const content = document.getElementById('content');
+      if (!content || !identifier) return;
+      // Remove any previous checkbox
+      const old = document.getElementById('read-checkbox-wrap');
+      if (old) old.remove();
+      const already = isRead(identifier);
+      const wrap = document.createElement('div');
+      wrap.className = 'read-checkbox-wrap';
+      wrap.id = 'read-checkbox-wrap';
+      wrap.innerHTML =
+        `<label class="read-label" for="read-cb-input">
+          <input type="checkbox" id="read-cb-input" ${already ? 'checked' : ''}>
+          <span id="read-cb-text">${already ? '✓ Marked as read' : 'Mark as read'}</span>
+        </label>`;
+      content.appendChild(wrap);
+      const cb   = wrap.querySelector('#read-cb-input');
+      const span = wrap.querySelector('#read-cb-text');
+      cb.addEventListener('change', () => {
+        setRead(identifier, cb.checked);
+        span.textContent = cb.checked ? '✓ Marked as read' : 'Mark as read';
+        updateReadIndicator(identifier);
+        // Refresh archive panel if open so the checkmark updates live
+        const panel = document.getElementById('archive-panel');
+        if (panel && panel.classList.contains('open')) renderArchive();
+      });
+      updateReadIndicator(identifier);
+    }
+
+    /* =====================================================================
+       PROGRESS CLARITY — per-entry "Request plan" action
+       Runs only on the P&C subject's LEDGER.md. Finds each entry heading
+       (h3 like "REL-05 — Title"), injects a Request plan button + inline
+       form, and writes the request via the local server's /api/pc-feedback.
+       Degrades quietly if no feedback server is present.
+       ===================================================================== */
+
+    /* =====================================================================
+       P&C NOTES SYSTEM
+       localStorage keys: "pc-note:entry:INC-01", "pc-note:cat:income",
+         "pc-note:sweep:current"
+       On save, syncs to /api/pc-note-sync so serve.py writes notes.json.
+       The Claude Code sweep routine reads notes.json to collate feedback.md.
+       ===================================================================== */
+
+    // --- Storage --------------------------------------------------------
+    function renderSources(sources) {
+      const btn = document.getElementById('sources-btn');
+      const body = document.getElementById('sources-modal-body');
+      // Fountain Sources button only ever appears on Tech (literary) + Israel (dispatch).
+      const sourcesTab = activeSubject && (activeSubject.style === 'literary' || activeSubject.style === 'dispatch');
+      if (!sourcesTab || !sources || !sources.length) {
+        btn.style.display = 'none';
+        body.innerHTML = '';
+        return;
+      }
+      btn.style.display = '';
+      body.innerHTML = sources.map(group => {
+        const links = (group.links || []).map(link =>
+          `<div class="source-item">
+            <a class="source-link" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.title)}</a>
+            <div class="source-domain">${escapeHtml(parseDomain(link.url))}</div>
+          </div>`
+        ).join('');
+        return `<div class="source-group">
+          <div class="source-group-label">${escapeHtml(group.group || '')}</div>
+          ${group.why ? `<div class="source-group-why">${escapeHtml(group.why)}</div>` : ''}
+          ${links}
+        </div>`;
+      }).join('');
+    }
+
+    function openSources() {
+      const overlay = document.getElementById('sources-overlay');
+      overlay.classList.add('open');
+      document.getElementById('sources-modal-close').focus();
+      document.body.style.overflow = 'hidden';
+      // Snap the modal to the source group for the story currently on screen
+      if (activeSubject && activeSubject.style === 'literary') {
+        requestAnimationFrame(() => {
+          const body   = document.getElementById('sources-modal-body');
+          const groups = body ? body.querySelectorAll('.source-group') : [];
+          const idx    = litActiveStory - 1;
+          if (groups.length > 0 && groups[idx]) {
+            body.scrollTop = groups[idx].offsetTop - 4;
+          }
+        });
+      }
+    }
+    function closeSources() {
+      const overlay = document.getElementById('sources-overlay');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      document.getElementById('sources-btn').focus();
+    }
+    document.getElementById('sources-btn').addEventListener('click', openSources);
+    document.getElementById('sources-modal-close').addEventListener('click', closeSources);
+    document.getElementById('sources-overlay').addEventListener('click', e => {
+      if (e.target === document.getElementById('sources-overlay')) closeSources();
+    });
+
+    /* ===== Settings — global text size (drives --ui-font-scale) ===== */
+    (function () {
+      var KEY = 'ui-font-scale';
+      var overlay = document.getElementById('settings-overlay');
+      var btn     = document.getElementById('settings-btn');
+      var closeB  = document.getElementById('settings-modal-close');
+      var slider  = document.getElementById('set-fontscale');
+      var valEl   = document.getElementById('set-fontscale-val');
+      function applyScale(v, persist) {
+        document.documentElement.style.setProperty('--ui-font-scale', v);
+        valEl.textContent = Math.round(parseFloat(v) * 100) + '%';
+        if (persist) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+      }
+      var saved = null;
+      try { saved = localStorage.getItem(KEY); } catch (e) {}
+      var cur = saved ? parseFloat(saved) : 1;
+      if (isNaN(cur)) cur = 1;
+      cur = Math.min(1.4, Math.max(0.8, cur));
+      slider.value = cur;
+      applyScale(cur, false);
+      slider.addEventListener('input', function () { applyScale(slider.value, true); });
+      var resetB = document.getElementById('set-fontscale-reset');
+      resetB.addEventListener('click', function () { slider.value = 1; applyScale(1, true); });
+      function openSettings() { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; closeB.focus(); }
+      function closeSettings() { overlay.classList.remove('open'); document.body.style.overflow = ''; btn.focus(); }
+      btn.addEventListener('click', openSettings);
+      closeB.addEventListener('click', closeSettings);
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) closeSettings(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeSettings();
+      });
+    })();
+
+    /* =====================================================================
+       DISPATCH — geography lookup + date formatting
+       ===================================================================== */
+    const DISPATCH_GEO_LABELS = {
+      'gaza':           'GAZA',
+      'west-bank':      'WEST BANK',
+      'east-jerusalem': 'EAST JERUSALEM',
+      'israel-48':      'ISRAEL',
+      'lebanon':        'LEBANON',
+      'syria':          'SYRIA',
+      'iran':           'IRAN',
+      'yemen':          'YEMEN',
+      'usa':            'UNITED STATES',
+      'eu':             'EUROPE',
+      'un':             'UNITED NATIONS',
+      // sub-locations (preferred over parent when both present)
+      'jenin':          'JENIN, WEST BANK',
+      'khan-yunis':     'KHAN YUNIS, GAZA',
+      'huwara':         'HUWARA, WEST BANK',
+      'al-aqsa':        'AL-AQSA, EAST JERUSALEM',
+      'kiryat-shmona':  'KIRYAT SHMONA, ISRAEL',
+    };
+
+    function formatDateDispatch(dateStr) {
+      // Returns "30 APRIL 2026" — day month year, no commas
+      const [y, m, d] = dateStr.split('-').map(Number);
+      const dt = new Date(Date.UTC(y, m - 1, d));
+      return new Intl.DateTimeFormat('en-GB', {
+        day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'
+      }).format(dt).toUpperCase();
+    }
+
+    function dispatchGeographyLabel(geography) {
+      if (!Array.isArray(geography) || !geography.length) return '';
+      const tagged = geography.map(g => ({
+        slug: g,
+        label: DISPATCH_GEO_LABELS[g] || g.replace(/-/g, ' ').toUpperCase()
+      }));
+      // Prefer sub-locations (labels containing a comma, e.g. "JENIN, WEST BANK")
+      const sub = tagged.find(t => t.label.includes(','));
+      return sub ? sub.label : tagged[0].label;
+    }
+
+    /* =====================================================================
+       DISPATCH GEOGRAPHY HELPERS (used in loadDate)
+       ===================================================================== */
+
+    /* =====================================================================
+       CONTEXT MODAL (dispatch only)
+       ===================================================================== */
+    function renderContext(storyGroups) {
+      const btn  = document.getElementById('context-btn');
+      const body = document.getElementById('context-modal-body');
+      const hasAny = Array.isArray(storyGroups) && storyGroups.some(g => g.context && g.context.length);
+      if (activeSubject.style !== 'dispatch' || !hasAny) {
+        btn.classList.remove('has-context');
+        body.innerHTML = '';
+        return;
+      }
+      btn.classList.add('has-context');
+
+      const TYPE_ORDER = ['person', 'place', 'institution', 'event', 'policy', 'concept'];
+      const plural = t => t.endsWith('s') ? t : t + 's';
+
+      body.innerHTML = storyGroups.map(({ storyNum, title, context }) => {
+        if (!context || !context.length) return '';
+
+        // Group entries by type within this story
+        const groups = {};
+        for (const entry of context) {
+          const t = (entry.type || 'other').toLowerCase();
+          if (!groups[t]) groups[t] = [];
+          groups[t].push(entry);
+        }
+        const allTypes = [
+          ...TYPE_ORDER.filter(t => groups[t]),
+          ...Object.keys(groups).filter(t => !TYPE_ORDER.includes(t) && groups[t])
+        ];
+
+        return `<div class="context-story-group">
+          <div class="context-story-label">${escapeHtml(storyNum + ' · ' + title)}</div>
+          ${allTypes.map(t => {
+            const entries   = groups[t];
+            const typeLabel = escapeHtml(plural(t.charAt(0).toUpperCase() + t.slice(1)));
+            return `<div class="context-type-group">
+              <div class="context-type-label">${typeLabel}</div>
+              ${entries.map((e, i) => `
+                <div class="context-entry">
+                  <div class="context-entry-name">${escapeHtml(e.name || '')}</div>
+                  <div class="context-entry-body">${marked.parse(e.summary || '')}</div>
+                  ${i < entries.length - 1 ? '<hr class="context-rule">' : ''}
+                </div>
+              `).join('')}
+            </div>`;
+          }).join('')}
+        </div>`;
+      }).join('');
+    }
+
+    let _contextTrigger = null;
+
+    function openContext() {
+      document.getElementById('context-overlay').classList.add('open');
+      document.getElementById('context-modal-close').focus();
+      document.body.style.overflow = 'hidden';
+    }
+    function closeContext() {
+      document.getElementById('context-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+      const t = _contextTrigger;
+      _contextTrigger = null;
+      if (t) t.focus();
+      else document.getElementById('context-btn').focus();
+    }
+
+    function openContextForStory(fm, title, triggerEl) {
+      const body = document.getElementById('context-modal-body');
+      const TYPE_ORDER = ['person', 'place', 'institution', 'event', 'policy', 'concept'];
+      const plural = t => t.endsWith('s') ? t : t + 's';
+      const context = fm.context || [];
+      const groups = {};
+      for (const entry of context) {
+        const t = (entry.type || 'other').toLowerCase();
+        if (!groups[t]) groups[t] = [];
+        groups[t].push(entry);
+      }
+      const allTypes = [
+        ...TYPE_ORDER.filter(t => groups[t]),
+        ...Object.keys(groups).filter(t => !TYPE_ORDER.includes(t) && groups[t])
+      ];
+      body.innerHTML = allTypes.map(t => {
+        const entries = groups[t];
+        const typeLabel = plural(t.charAt(0).toUpperCase() + t.slice(1));
+        return `<div class="context-type-group">
+          <div class="context-type-label">${escapeHtml(typeLabel)}</div>
+          ${entries.map((e, i) => `
+            <div class="context-entry">
+              <div class="context-entry-name">${escapeHtml(e.name || '')}</div>
+              <div class="context-entry-body">${marked.parse(e.summary || '')}</div>
+              ${i < entries.length - 1 ? '<hr class="context-rule">' : ''}
+            </div>
+          `).join('')}
+        </div>`;
+      }).join('');
+      document.getElementById('context-modal-title').textContent = title;
+      _contextTrigger = triggerEl;
+      document.getElementById('context-overlay').classList.add('open');
+      document.getElementById('context-modal-close').focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.getElementById('context-btn').addEventListener('click', openContext);
+    document.getElementById('context-modal-close').addEventListener('click', closeContext);
+    document.getElementById('context-overlay').addEventListener('click', e => {
+      if (e.target === document.getElementById('context-overlay')) closeContext();
+    });
+
+    /* =====================================================================
+       ARCHIVE DROPDOWN — current subject's files
+       ===================================================================== */
+    function renderArchive() {
+      const panel = document.getElementById('archive-panel');
+      panel.innerHTML = '';
+      if (!Array.isArray(activeIndex) || activeIndex.length === 0) {
+        panel.innerHTML = '<div class="archive-empty">No files yet.</div>';
+        return;
+      }
+
+      // Dispatch: group by run_date, show one item per run
+      if (activeSubject.style === 'dispatch') {
+        const runMap = new Map(); // run_date -> count
+        activeIndex.forEach(item => {
+          const rd = item.run_date || item.date;
+          if (rd) runMap.set(rd, (runMap.get(rd) || 0) + 1);
+        });
+        // Maintain insertion order (index is newest-first)
+        const runDates = [...runMap.keys()];
+        runDates.forEach(rd => {
+          const count = runMap.get(rd);
+          const read = isRead(rd);
+          const btn = document.createElement('button');
+          btn.className = 'archive-item';
+          btn.setAttribute('role', 'menuitem');
+          btn.dataset.date = rd;
+          const primary = formatDateLong(rd) + (read ? ' <span class="archive-read-check">✓</span>' : '');
+          const secondary = dayOfWeek(rd) + (count > 1 ? ` · ${count} stories` : '');
+          btn.innerHTML =
+            `<div class="date">${primary}</div>` +
+            `<div class="day">${escapeHtml(secondary)}</div>`;
+          if (rd === activeDate) btn.classList.add('current');
+          btn.addEventListener('click', () => {
+            togglePanel(false);
+            loadDate(rd);
+          });
+          panel.appendChild(btn);
+        });
+        return;
+      }
+
+      // All other subjects: one item per file
+      // Progress style: Sweeps panel shows only sweep/audit entries (LEDGER has its own button)
+      const items = (activeSubject.style === 'progress')
+        ? activeIndex.filter(e => /^(audit|sweep)-/.test(e.file))
+        : activeIndex;
+      items.forEach(item => {
+        const read = isRead(item.file);
+        const btn = document.createElement('button');
+        btn.className = 'archive-item';
+        btn.setAttribute('role', 'menuitem');
+        btn.dataset.file = item.file;
+        const primaryText = item.title || (item.date ? formatDateLong(item.date) : item.file);
+        const readCheck = read ? ' <span class="archive-read-check">✓</span>' : '';
+        const secondary = item.day || (item.date ? formatDateLong(item.date) : '');
+        btn.innerHTML =
+          `<div class="date">${escapeHtml(primaryText)}${readCheck}</div>` +
+          (secondary ? `<div class="day">${escapeHtml(secondary)}</div>` : '');
+        if (item.file === activeFile) btn.classList.add('current');
+        btn.addEventListener('click', () => {
+          togglePanel(false);
+          loadFile(item.file);
+        });
+        panel.appendChild(btn);
+      });
+    }
+
+    // Drawer is positioned entirely by CSS (full-height, docked right); no JS
+    // positioning needed. Kept as a no-op so existing callers stay valid.
+    function positionPanel() {}
+
+    /* =====================================================================
+       PIN CONTENT-EDGE BUTTONS — precise fixed position for Sources.
+       Measures the header's actual bounding rect on load so the button
+       lands exactly where it'd appear at scroll = 0, then stays there.
+       (Archive moved to .shelf-btn, which is fixed via CSS and needs no JS.)
+       ===================================================================== */
+    // Sources is now a fixed icon in the top-right row (CSS-positioned), so it no
+    // longer needs JS pinning to the content's left edge. Kept as a no-op.
+    function pinContentEdgeButtons() {}
+    window.addEventListener('load', function() {
+      pinContentEdgeButtons();
+      window.addEventListener('resize', pinContentEdgeButtons);
+    });
+
+    /* =====================================================================
+       LIT SCROLL TRACKER — tracks which story is in view so Sources modal
+       can snap to the matching source group when opened.
+       ===================================================================== */
+    let litActiveStory = 1;
+    let _litScrollTimer = null;
+
+    function updateActiveLitStory() {
+      const pillbar = document.getElementById('pillbar');
+      const threshold = (pillbar ? pillbar.getBoundingClientRect().bottom : 50) + 40;
+      const blocks = document.querySelectorAll('#content .story-block');
+      let active = 1;
+      for (let i = 0; i < blocks.length; i++) {
+        if (blocks[i].getBoundingClientRect().top <= threshold) active = i + 1;
+        else break;
+      }
+      litActiveStory = active;
+    }
+
+    function _onLitScroll() {
+      clearTimeout(_litScrollTimer);
+      _litScrollTimer = setTimeout(updateActiveLitStory, 50);
+    }
+    function startLitScrollTracker() {
+      stopLitScrollTracker();
+      window.addEventListener('scroll', _onLitScroll, { passive: true });
+    }
+    function stopLitScrollTracker() {
+      window.removeEventListener('scroll', _onLitScroll);
+      clearTimeout(_litScrollTimer);
+    }
+
+    function togglePanel(force) {
+      const panel = document.getElementById('archive-panel');
+      const backdrop = document.getElementById('archive-backdrop');
+      const btn = document.getElementById('shelf-btn');
+      const shouldOpen = typeof force === 'boolean' ? force : !panel.classList.contains('open');
+      panel.classList.toggle('open', shouldOpen);
+      backdrop.classList.toggle('open', shouldOpen);
+      btn.setAttribute('aria-expanded', String(shouldOpen));
+      if (shouldOpen) renderArchive();
+    }
+
+    // Clicking the dim backdrop closes whichever drawer is open.
+    document.getElementById('archive-backdrop').addEventListener('click', () => {
+      togglePanel(false);
+    });
+
+    // Shelf button: Marius tab opens Musters, everything else opens
+    // Archive (which renders Sweeps content for Progress tabs).
+    document.getElementById('shelf-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      togglePanel();
+    });
+
+    document.addEventListener('click', e => {
+      const panel = document.getElementById('archive-panel');
+      const shelfBtn = document.getElementById('shelf-btn');
+      if (!panel.contains(e.target) && !shelfBtn.contains(e.target)) {
+        togglePanel(false);
+      }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Escape') return;
+      if (document.getElementById('context-overlay').classList.contains('open')) {
+        closeContext();
+      } else if (document.getElementById('sources-overlay').classList.contains('open')) {
+        closeSources();
+      } else {
+        togglePanel(false);
+      }
+    });
+
+    /* =====================================================================
+       INIT
+       ===================================================================== */
+    (async function init() {
+      const ok = await loadSubjects();
+      if (!ok) return;
+      renderPillbar();
+      const savedId = (() => { try { return localStorage.getItem('active-subject'); } catch(e) { return null; } })();
+      const startId = (savedId && SUBJECTS.find(s => s.id === savedId)) ? savedId : SUBJECTS[0].id;
+      switchSubject(startId);
+    })();
+
+    function searchTokenize(text) {
+      if (!text) return [];
+      const out = [];
+      const parts = String(text).toLowerCase().split(/[^a-z0-9]+/);
+      for (let i = 0; i < parts.length; i++) {
+        const t = parts[i];
+        if (!t || t.length < 3) continue;
+        if (SEARCH_STOPWORDS.has(t)) continue;
+        if (/^\d+$/.test(t) && t.length < 4) continue; // skip tiny numerics
+        out.push(t);
+      }
+      return out;
+    }
+
+    function searchStripMarkdown(md) {
+      if (!md) return '';
+      return String(md)
+        .replace(/```[\s\S]*?```/g, ' ')         // code fences
+        .replace(/`[^`]*`/g, ' ')                 // inline code
+        .replace(/!\[[^\]]*]\([^)]*\)/g, ' ')     // images
+        .replace(/\[([^\]]+)]\([^)]*\)/g, '$1')   // links → text
+        .replace(/^\s{0,3}#{1,6}\s+/gm, '')       // heading hashes
+        .replace(/[*_~>#]+/g, ' ')                // misc md
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function searchAddDoc(doc) {
+      doc.id = SEARCH.docs.length;
+      SEARCH.docs.push(doc);
+      const seen = new Set();
+      const combined = (doc.title || '') + ' ' + (doc.body || '');
+      const tokens = searchTokenize(combined);
+      for (const tok of tokens) {
+        if (seen.has(tok)) continue;
+        seen.add(tok);
+        let set = SEARCH.postings.get(tok);
+        if (!set) { set = new Set(); SEARCH.postings.set(tok, set); }
+        set.add(doc.id);
+      }
+      // Also index title-only tokens with a marker for title-hit scoring
+      const titleTokens = new Set(searchTokenize(doc.title || ''));
+      doc.titleTokens = titleTokens;
+    }
+
+    async function searchFetchText(url) {
+      try {
+        const res = await fetch(url + cb());
+        if (!res.ok) return null;
+        return await res.text();
+      } catch (e) { return null; }
+    }
+
+    async function buildSearchIndex() {
+      if (SEARCH.building || SEARCH.ready) return;
+      SEARCH.building = true;
+      const statusEl = document.getElementById('search-status');
+
+      // 1) Subjects with markdown files
+      for (const subj of SUBJECTS) {
+        let idx = subjectIndexCache[subj.id];
+        if (!idx) {
+          try {
+            const r = await fetch(`/${subj.folder}/index.json${cb()}`);
+            if (r.ok) { idx = await r.json(); sortSubjectIndex(subj, idx); subjectIndexCache[subj.id] = idx; }
+          } catch (e) { idx = []; }
+        }
+        if (!Array.isArray(idx)) continue;
+
+        // Fetch files in parallel batches to keep it snappy
+        const BATCH = 6;
+        for (let i = 0; i < idx.length; i += BATCH) {
+          const slice = idx.slice(i, i + BATCH);
+          await Promise.all(slice.map(async item => {
+            const fname = item.file;
+            if (!fname) return;
+            const raw = await searchFetchText(`/${subj.folder}/${fname}`);
+            if (!raw) return;
+            const { frontmatter, body } = parseFrontmatter(raw);
+            const fmText = [
+              frontmatter.headline, frontmatter.title, frontmatter.topic,
+              frontmatter.topic_simple, frontmatter.subtitle, frontmatter.summary,
+              Array.isArray(frontmatter.tags) ? frontmatter.tags.join(' ') : ''
+            ].filter(Boolean).join(' ');
+            const title =
+              frontmatter.headline || frontmatter.title || frontmatter.topic ||
+              frontmatter.topic_simple || item.title || fname.replace(/\.md$/, '');
+            const date = frontmatter.date || item.date || item.run_date || '';
+            const isDispatch = subj.style === 'dispatch';
+            SEARCH.docs.length; // noop; just to keep linters quiet
+            searchAddDoc({
+              subjectId: subj.id,
+              subjectName: subj.displayTitle || subj.name,
+              style: subj.style,
+              file: fname,
+              date,
+              dateField: isDispatch ? (item.run_date || item.date || '') : '',
+              title: String(title),
+              body: fmText + ' ' + searchStripMarkdown(body),
+            });
+          }));
+        }
+      }
+
+
+      SEARCH.ready = true;
+      SEARCH.building = false;
+      if (statusEl) {
+        statusEl.textContent = `Indexed ${SEARCH.docs.length} entries across ${SUBJECTS.length} tabs.`;
+        // Re-run any pending query
+        const inputEl = document.getElementById('search-input');
+        if (inputEl && inputEl.value.trim()) runSearch(inputEl.value);
+        else statusEl.classList.add('hidden');
+      }
+    }
+
+    /* ---------- Query ---------- */
+    function searchEscapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+    function searchEscapeHtml(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function searchBuildSnippet(body, tokens, phrase) {
+      const text = String(body || '');
+      if (!text) return '';
+      let hitIdx = -1;
+      if (phrase && phrase.length >= 2) {
+        const re = new RegExp(searchEscapeRegex(phrase), 'i');
+        const m = re.exec(text); if (m) hitIdx = m.index;
+      }
+      if (hitIdx < 0) {
+        for (const t of tokens) {
+          const re = new RegExp('\\b' + searchEscapeRegex(t), 'i');
+          const m = re.exec(text); if (m) { hitIdx = m.index; break; }
+        }
+      }
+      if (hitIdx < 0) hitIdx = 0;
+      const start = Math.max(0, hitIdx - 60);
+      const end = Math.min(text.length, hitIdx + 140);
+      let snippet = (start > 0 ? '…' : '') + text.slice(start, end) + (end < text.length ? '…' : '');
+      snippet = searchEscapeHtml(snippet);
+      // Highlight every token + phrase
+      const all = phrase ? [phrase, ...tokens] : tokens.slice();
+      const unique = Array.from(new Set(all.filter(Boolean)));
+      if (unique.length) {
+        const re = new RegExp('(' + unique.map(searchEscapeRegex).join('|') + ')', 'gi');
+        snippet = snippet.replace(re, '<mark>$1</mark>');
+      }
+      return snippet;
+    }
+
+    function runSearch(query) {
+      const q = String(query || '').trim();
+      SEARCH.lastQuery = q;
+      const resultsEl = document.getElementById('search-results');
+      const statusEl = document.getElementById('search-status');
+      if (!q) {
+        resultsEl.innerHTML = '';
+        if (SEARCH.ready) statusEl.classList.add('hidden');
+        SEARCH.results = []; SEARCH.activeIndex = -1;
+        return;
+      }
+      if (!SEARCH.ready) {
+        statusEl.classList.remove('hidden');
+        statusEl.textContent = 'Building search index… your query will run as soon as it finishes.';
+        return;
+      }
+      statusEl.classList.add('hidden');
+      const tokens = searchTokenize(q);
+      if (!tokens.length) {
+        resultsEl.innerHTML = '<div class="search-empty">Try a longer search term.</div>';
+        SEARCH.results = []; SEARCH.activeIndex = -1;
+        return;
+      }
+      // Gather candidates: union of postings, but rank by how many tokens hit
+      const tokenHitCounts = new Map(); // docId -> hit count
+      for (const t of tokens) {
+        const set = SEARCH.postings.get(t);
+        if (!set) continue;
+        for (const id of set) tokenHitCounts.set(id, (tokenHitCounts.get(id) || 0) + 1);
+      }
+      // Score
+      const phrase = tokens.length > 1 ? q.toLowerCase() : '';
+      const scored = [];
+      for (const [docId, hits] of tokenHitCounts) {
+        const doc = SEARCH.docs[docId];
+        let score = hits * 10;
+        if (hits === tokens.length) score += 25;     // all-tokens bonus
+        // Title hits
+        let titleHits = 0;
+        for (const t of tokens) if (doc.titleTokens.has(t)) titleHits++;
+        score += titleHits * 30;
+        // Phrase bonus
+        if (phrase && doc.body && doc.body.toLowerCase().indexOf(phrase) !== -1) score += 40;
+        if (phrase && doc.title && doc.title.toLowerCase().indexOf(phrase) !== -1) score += 60;
+        scored.push({ doc, score, hits });
+      }
+      scored.sort((a, b) => b.score - a.score);
+      const top = scored.slice(0, 40);
+      SEARCH.results = top;
+      SEARCH.activeIndex = top.length ? 0 : -1;
+      renderSearchResults(tokens, phrase);
+    }
+
+    function renderSearchResults(tokens, phrase) {
+      const resultsEl = document.getElementById('search-results');
+      const top = SEARCH.results;
+      if (!top.length) {
+        resultsEl.innerHTML = '<div class="search-empty">No matches.</div>';
+        return;
+      }
+      // Group by subject
+      const groups = new Map();
+      for (const r of top) {
+        const key = r.doc.subjectName;
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(r);
+      }
+      let html = '';
+      let rowIdx = 0;
+      for (const [name, items] of groups) {
+        html += `<div class="search-group-label">${searchEscapeHtml(name)}</div>`;
+        for (const r of items) {
+          const d = r.doc;
+          const ctx = d.style === 'marius' ? (d.projectId || '') :
+                      (d.date ? d.date + ' · ' : '') + (d.file || '');
+          const snippet = searchBuildSnippet(d.body, tokens, phrase);
+          const isActive = rowIdx === SEARCH.activeIndex;
+          html += `<div class="search-result${isActive ? ' active' : ''}" data-row="${rowIdx}" data-doc="${d.id}">
+            <div class="search-result-main">
+              <div class="search-result-title">${searchEscapeHtml(d.title)}</div>
+              <div class="search-result-meta">
+                <span class="search-result-chip">${searchEscapeHtml(d.subjectName)}</span>
+                <span class="search-result-context">${searchEscapeHtml(ctx)}</span>
+              </div>
+              <div class="search-result-snippet">${snippet}</div>
+            </div>
+            <button class="search-jump-btn" data-doc="${d.id}" aria-label="Jump to result">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14.1427 15.9621C14.2701 16.2169 14.1593 16.5264 13.8991 16.6424L4.49746 20.835C3.00163 21.5021 1.45007 20.0209 2.19099 18.6331L5.34302 12.7294C5.58818 12.2702 5.58818 11.7298 5.34302 11.2706L2.19099 5.36689C1.45006 3.97914 3.00163 2.49789 4.49746 3.16496L8.02178 4.73662C8.44465 4.9252 8.78899 5.25466 8.99606 5.6688L14.1427 15.9621Z" fill="currentColor"/>
+                <path opacity="0.5" d="M15.5332 15.3904C15.6529 15.6297 15.9397 15.7324 16.1841 15.6235L21.0066 13.4728C22.3304 12.8825 22.3304 11.1181 21.0066 10.5278L12.1089 6.55983C11.6802 6.36864 11.2481 6.82023 11.458 7.24008L15.5332 15.3904Z" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>`;
+          rowIdx++;
+        }
+      }
+      resultsEl.innerHTML = html;
+      // Wire row clicks
+      resultsEl.querySelectorAll('.search-result').forEach(el => {
+        el.addEventListener('click', () => {
+          const id = parseInt(el.dataset.doc, 10);
+          jumpToDoc(id, SEARCH.lastQuery);
+        });
+      });
+      resultsEl.querySelectorAll('.search-jump-btn').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = parseInt(el.dataset.doc, 10);
+          jumpToDoc(id, SEARCH.lastQuery);
+        });
+      });
+    }
+
+    function searchSetActive(delta) {
+      if (!SEARCH.results.length) return;
+      let i = SEARCH.activeIndex + delta;
+      if (i < 0) i = SEARCH.results.length - 1;
+      if (i >= SEARCH.results.length) i = 0;
+      SEARCH.activeIndex = i;
+      const rows = document.querySelectorAll('.search-result');
+      rows.forEach((r, idx) => r.classList.toggle('active', idx === i));
+      const active = rows[i];
+      if (active) active.scrollIntoView({ block: 'nearest' });
+    }
+
+    /* ---------- Palette open/close ---------- */
+    function openSearchPalette() {
+      const overlay = document.getElementById('search-overlay');
+      overlay.classList.add('open');
+      const inp = document.getElementById('search-input');
+      // Defer focus so transition can begin
+      setTimeout(() => { inp.focus(); inp.select(); }, 30);
+      // Kick off index build if not already done
+      if (!SEARCH.ready && !SEARCH.building) {
+        const statusEl = document.getElementById('search-status');
+        if (statusEl) { statusEl.classList.remove('hidden'); statusEl.textContent = 'Building search index…'; }
+        buildSearchIndex();
+      } else if (SEARCH.ready) {
+        const statusEl = document.getElementById('search-status');
+        if (statusEl && !inp.value.trim()) {
+          statusEl.classList.remove('hidden');
+          statusEl.textContent = `Indexed ${SEARCH.docs.length} entries across ${SUBJECTS.length} tabs.`;
+        }
+      }
+    }
+    function closeSearchPalette() {
+      document.getElementById('search-overlay').classList.remove('open');
+    }
+
+    /* ---------- Jump + persistent highlight ---------- */
+    function clearSearchHighlight() {
+      const m = document.querySelector('mark.mr-search-hit');
+      if (!m) return;
+      const parent = m.parentNode;
+      while (m.firstChild) parent.insertBefore(m.firstChild, m);
+      parent.removeChild(m);
+      parent.normalize && parent.normalize();
+      SEARCH.lastHighlight = null;
+    }
+
+    function highlightInContent(query) {
+      clearSearchHighlight();
+      const root = document.getElementById('content');
+      if (!root || !query) return false;
+      const needle = String(query).trim();
+      if (!needle) return false;
+      // Try full phrase first; if not present in content, fall back to the
+      // first content-bearing token so a jump always lands on *something*.
+      const tokens = searchTokenize(needle);
+      let pattern = searchEscapeRegex(needle);
+      let re = new RegExp(pattern, 'i');
+      const rootText = root.textContent || '';
+      if (!re.test(rootText) && tokens.length) {
+        const found = tokens.find(t => new RegExp('\\b' + searchEscapeRegex(t), 'i').test(rootText));
+        if (!found) return false;
+        re = new RegExp('\\b' + searchEscapeRegex(found), 'i');
+      }
+      // Walk text nodes
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          // Skip inside <script>, <style>, or existing mark
+          let p = node.parentNode;
+          while (p && p !== root) {
+            const tag = p.nodeName;
+            if (tag === 'SCRIPT' || tag === 'STYLE') return NodeFilter.FILTER_REJECT;
+            if (p.classList && p.classList.contains('mr-search-hit')) return NodeFilter.FILTER_REJECT;
+            p = p.parentNode;
+          }
+          return re.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+        }
+      });
+      const node = walker.nextNode();
+      if (!node) return false;
+      const m = re.exec(node.nodeValue);
+      if (!m) return false;
+      const before = node.nodeValue.slice(0, m.index);
+      const hit = node.nodeValue.slice(m.index, m.index + m[0].length);
+      const after = node.nodeValue.slice(m.index + m[0].length);
+      const parent = node.parentNode;
+      const beforeNode = document.createTextNode(before);
+      const mark = document.createElement('mark');
+      mark.className = 'mr-search-hit';
+      mark.textContent = hit;
+      const afterNode = document.createTextNode(after);
+      parent.insertBefore(beforeNode, node);
+      parent.insertBefore(mark, node);
+      parent.insertBefore(afterNode, node);
+      parent.removeChild(node);
+      SEARCH.lastHighlight = mark;
+      // Scroll into view, accounting for the sticky pillbar
+      const pillbar = document.getElementById('pillbar');
+      const offset = (pillbar ? pillbar.getBoundingClientRect().height : 44) + 24;
+      const rect = mark.getBoundingClientRect();
+      const y = window.scrollY + rect.top - offset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      return true;
+    }
+
+    async function jumpToDoc(docId, query) {
+      const doc = SEARCH.docs[docId];
+      if (!doc) return;
+      closeSearchPalette();
+      // Switch subject if not already active
+      if (!activeSubject || activeSubject.id !== doc.subjectId) {
+        await switchSubject(doc.subjectId);
+      }
+      // Subject-specific navigation
+      if (doc.style === 'dispatch') {
+        await loadDate(doc.dateField || doc.date);
+      } else if (doc.file) {
+        await loadFile(doc.file);
+      }
+      // Give the renderer a tick to paint, then highlight
+      setTimeout(() => { highlightInContent(query); }, 120);
+    }
+
+    /* ---------- Wire it up ---------- */
+    function initSearchUI() {
+      const btn = document.getElementById('search-btn');
+      const overlay = document.getElementById('search-overlay');
+      const input = document.getElementById('search-input');
+      btn.addEventListener('click', openSearchPalette);
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSearchPalette(); });
+      const closeBtn = document.getElementById('search-modal-close');
+      if (closeBtn) closeBtn.addEventListener('click', closeSearchPalette);
+      // Global shortcuts
+      document.addEventListener('keydown', (e) => {
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC') !== -1;
+        const cmdK = (isMac ? e.metaKey : e.ctrlKey) && (e.key === 'k' || e.key === 'K');
+        if (cmdK) { e.preventDefault(); openSearchPalette(); return; }
+        if (e.key === 'Escape') {
+          if (overlay.classList.contains('open')) { closeSearchPalette(); return; }
+          if (SEARCH.lastHighlight) { clearSearchHighlight(); return; }
+        }
+        // Dismiss highlight on any click outside it handled below
+      });
+      document.addEventListener('click', (e) => {
+        if (!SEARCH.lastHighlight) return;
+        if (e.target === SEARCH.lastHighlight) return;
+        if (overlay.contains(e.target)) return;
+        // Clicking the search button shouldn't clear, but anything else should
+        if (btn.contains(e.target)) return;
+        clearSearchHighlight();
+      }, true);
+      // Palette-scoped keys
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') { e.preventDefault(); searchSetActive(1); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); searchSetActive(-1); }
+        else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (SEARCH.activeIndex >= 0 && SEARCH.results[SEARCH.activeIndex]) {
+            jumpToDoc(SEARCH.results[SEARCH.activeIndex].doc.id, SEARCH.lastQuery);
+          }
+        }
+      });
+      let qTimer = null;
+      input.addEventListener('input', () => {
+        clearTimeout(qTimer);
+        qTimer = setTimeout(() => runSearch(input.value), 80);
+      });
+    }
+
+    // Hook into existing init flow — initSearchUI immediately, build index after a tick
+    document.addEventListener('DOMContentLoaded', () => {
+      initSearchUI();
+      // Defer the heavy walk so initial subject paint isn't blocked
+      setTimeout(() => { buildSearchIndex(); }, 600);
+    });
+    // If DOMContentLoaded already fired (script at end of body), run now
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+      initSearchUI();
+      setTimeout(() => { buildSearchIndex(); }, 600);
+    }
+
+  </script>
+
+</body>
+</html>
