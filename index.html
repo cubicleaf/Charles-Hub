@@ -1552,6 +1552,36 @@
       0%   { background: rgba(184,112,48,0.7); box-shadow: 0 0 0 6px rgba(184,112,48,0.35); }
       100% { background: rgba(184,112,48,0.35); box-shadow: 0 0 0 2px rgba(184,112,48,0.35); }
     }
+
+    /* ============================================================
+       MOBILE TWO-ROW HEADER (<=480px) — corner icons sit in a top
+       strip; the pill nav drops to its own full-width row beneath so
+       pills never slide under the icons as more tabs are added.
+       Mobile only — desktop layout is unchanged.
+       ============================================================ */
+    @media (max-width: 480px) {
+      /* Opaque strip behind the fixed corner icons so page content
+         scrolls cleanly under them. Painted by the pillbar's ::before:
+         it sits above page content (inside the pillbar's stacking
+         context, z-index 60) but below the icons (z-index 90). */
+      .pillbar::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        height: 3.4rem;
+        background: var(--bg);
+        z-index: 1;
+        pointer-events: none;
+      }
+      /* Push the pills below the icon strip at rest, and make them
+         stick just under it on scroll instead of at the very top. */
+      .pillbar {
+        margin-top: 3.4rem;
+        top: 3.4rem;
+        padding: 0.4rem 0 0.6rem;
+      }
+    }
+
   </style>
   <script>try{var _s=localStorage.getItem('ui-font-scale');if(_s)document.documentElement.style.setProperty('--ui-font-scale',_s);}catch(e){}</script>
 </head>

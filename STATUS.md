@@ -46,3 +46,17 @@ Companion status file. Records major structural decisions and progress.
 - Chose `dispatch` style (same engine as Israel): one `.md` per story, grouped by `run_date`, auto-sorted by `significance`, with per-entry Sources + Context panels. Rationale: a commodity tracker logs individual dated, source-backed items — same shape as the Israel tracker. To switch to `literary` (one hand-written doc per day), change the single `"style"` field.
 - **No `index.html` change required.** The Sources (fountain) and Archive (shelf) icons are driven by the tab's `style`, not by per-tab markup. Any `dispatch`/`literary` tab gets them automatically: the shelf is always present; the fountain appears once an entry has `sources` in its front-matter.
 - Left empty per request, so the fountain stays hidden until the first sourced entry is added.
+
+## 2026-06-28 — Mobile header: two-row layout
+
+**Problem:** On phones (≤480px) the third pill ("1st Commodity") slid *under* the fixed top-right icon cluster (Sources, Archive, Search, Settings) — they were sharing the same top strip. Adding tabs made it worse.
+
+**Decision:** Two-row header, mobile only (Tim's choice). Icons stay in a top strip; the pill nav drops to its own full-width row beneath. Desktop is untouched (it has room).
+
+**What was done (CSS only, additive `@media (max-width:480px)` block at end of `<style>`)**
+
+- `.pillbar::before` paints an opaque `var(--bg)` strip (height 3.4rem) fixed across the top, so content scrolls cleanly under the icons. It renders above page content (inside the pillbar's z-index:60 stacking context) but below the icons (z-index:90).
+- `.pillbar` gets `margin-top: 3.4rem` (drops it below the strip at rest) and sticky `top: 3.4rem` (sticks just under the strip on scroll), with tighter `padding: 0.4rem 0 0.6rem`.
+- No HTML or JS changed; desktop rules untouched. Verified CSS brace balance (295/295).
+
+**Note:** This is a first pass — exact strip height / pill padding are easy to dial if the spacing feels off on his device.
