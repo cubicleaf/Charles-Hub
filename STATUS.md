@@ -1,5 +1,7 @@
 # Charles Hub — Status
 
+**Last updated:** 2026-06-28
+
 Companion status file. Records major structural decisions and progress.
 
 ## 2026-06-28 — Initial fork from Master Reader
