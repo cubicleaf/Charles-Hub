@@ -1,15 +1,110 @@
 {
-  "idf": {"full_name": "Israel Defense Forces", "type": "institution"},
-  "hezbollah": {"full_name": "Hezbollah", "type": "institution"},
-  "unifil": {"full_name": "United Nations Interim Force in Lebanon", "type": "institution"},
-  "netanyahu": {"full_name": "Benjamin Netanyahu", "type": "person"},
-  "irgc": {"full_name": "Islamic Revolutionary Guard Corps", "type": "institution"},
-  "centcom": {"full_name": "US Central Command", "type": "institution"},
-  "trump": {"full_name": "Donald Trump", "type": "person"},
-  "pezeshkian": {"full_name": "Masoud Pezeshkian", "type": "person"},
-  "smotrich": {"full_name": "Bezalel Smotrich", "type": "person"},
-  "icc": {"full_name": "International Criminal Court", "type": "institution"},
-  "ben-gvir": {"full_name": "Itamar Ben-Gvir", "type": "person"},
-  "msf": {"full_name": "Médecins Sans Frontières", "type": "institution"},
-  "vance": {"full_name": "JD Vance", "type": "person"}
+  "idf": {
+    "full_name": "Israel Defense Forces",
+    "type": "institution",
+    "context_text": "",
+    "verified_on": null
+  },
+  "hezbollah": {
+    "full_name": "Hezbollah",
+    "type": "institution",
+    "context_text": "",
+    "verified_on": null
+  },
+  "unifil": {
+    "full_name": "United Nations Interim Force in Lebanon",
+    "type": "institution",
+    "context_text": "",
+    "verified_on": null
+  },
+  "netanyahu": {
+    "full_name": "Benjamin Netanyahu",
+    "type": "person",
+    "context_text": "",
+    "verified_on": null
+  },
+  "irgc": {
+    "full_name": "Islamic Revolutionary Guard Corps",
+    "type": "institution",
+    "context_text": "",
+    "verified_on": null
+  },
+  "centcom": {
+    "full_name": "US Central Command",
+    "type": "institution",
+    "context_text": "",
+    "verified_on": null
+  },
+  "trump": {
+    "full_name": "Donald Trump",
+    "type": "person",
+    "context_text": "",
+    "verified_on": null
+  },
+  "pezeshkian": {
+    "full_name": "Masoud Pezeshkian",
+    "type": "person",
+    "context_text": "",
+    "verified_on": null
+  },
+  "smotrich": {
+    "full_name": "Bezalel Smotrich",
+    "type": "person",
+    "context_text": "",
+    "verified_on": null
+  },
+  "icc": {
+    "full_name": "International Criminal Court",
+    "type": "institution",
+    "context_text": "",
+    "verified_on": null
+  },
+  "ben-gvir": {
+    "full_name": "Itamar Ben-Gvir",
+    "type": "person",
+    "context_text": "",
+    "verified_on": null
+  },
+  "msf": {
+    "full_name": "Médecins Sans Frontières",
+    "type": "institution",
+    "context_text": "",
+    "verified_on": null
+  },
+  "vance": {
+    "full_name": "JD Vance",
+    "type": "person",
+    "context_text": "",
+    "verified_on": null
+  },
+  "israel-katz": {
+    "full_name": "Israel Katz",
+    "type": "person",
+    "context_text": "Israel Katz (b. 1955, Ashkelon) is an Israeli Likud politician and member of the Knesset since 1998, previously holding the Foreign Affairs, Finance, Energy, Transport, and Intelligence portfolios. Netanyahu appointed him Defense Minister on 5 November 2024 after dismissing Yoav Gallant. Israeli media have described Katz, seen as close and loyal to Netanyahu, as a 'bulldozer' for his combative political style.",
+    "verified_on": "2026-07-25"
+  },
+  "francesca-albanese": {
+    "full_name": "Francesca Albanese",
+    "type": "person",
+    "context_text": "Francesca Albanese is an Italian international lawyer who has served as UN Special Rapporteur on the situation of human rights in the Palestinian territories occupied since 1967 since May 2022. She has authored reports characterizing Israeli conduct in Gaza as genocide and has been a prominent international legal voice calling for an arms embargo on Israel. The US State Department sanctioned her in 2025 over her criticism of Israel and the United States; the sanctions were lifted in 2026 after a federal judge found they restricted her free speech.",
+    "verified_on": "2026-07-25"
+  },
+  "hrw": {
+    "full_name": "Human Rights Watch",
+    "type": "institution",
+    "context_text": "Human Rights Watch (HRW) is an international non-governmental organization founded in 1978, headquartered in New York, that investigates and reports on human rights abuses worldwide. Its Israel-Palestine research has documented settler violence, military conduct in the West Bank and Gaza, and occupation-related policy.",
+    "verified_on": "2026-07-25"
+  },
+  "khalil-al-hayya": {
+    "full_name": "Khalil al-Hayya",
+    "type": "person",
+    "context_text": "Khalil al-Hayya is the newly elected head of Hamas's political bureau, chosen by the group's General Shura Council on 20 July 2026 in a run-off vote against former political chief Khaled Meshaal. He succeeds Yahya Sinwar, killed by the Israeli army in Gaza in 2024. He has long been a senior Hamas figure involved in ceasefire and prisoner-exchange negotiations.",
+    "verified_on": "2026-07-25"
+  },
+  "ro-khanna": {
+    "full_name": "Ro Khanna",
+    "type": "person",
+    "context_text": "Ro Khanna is a Democratic member of the US House of Representatives representing a Silicon Valley district in California, first elected in 2016. He has been an outspoken critic of US military aid to Israel and has visited the occupied West Bank on congressional delegations.",
+    "verified_on": "2026-07-25"
+  }
 }
