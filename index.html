@@ -1520,6 +1520,75 @@
     .shelf-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
     @media (max-width: 480px) { .shelf-btn { right: 5.4rem; } }
 
+    /* 2026-07-28: Tech News only — adjacent-entry arrows in the fixed
+       top-right icon row, immediately left of Sources. This is slot B in
+       the tab-action system (see script) — Sources (slot A) sits at
+       right:11.9rem; slot B sits further left at right:14.15rem so the two
+       read left-to-right on entrance / right-to-left on exit. */
+    .tech-chron-nav {
+      position: fixed;
+      top: 0.9rem;
+      right: 14.15rem;
+      z-index: 90;
+      display: none;
+      justify-content: flex-end;
+      gap: calc(2.6rem - 44px);
+    }
+    .tech-chron-nav.is-visible { display: flex; }
+    .tech-chron-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--btn-earth);
+      cursor: pointer;
+      transition: transform 400ms var(--ease),
+                  color 400ms var(--ease),
+                  filter 400ms var(--ease),
+                  opacity 400ms var(--ease);
+    }
+    .tech-chron-btn:hover:not(:disabled) {
+      color: var(--btn-earth-hover);
+      filter: drop-shadow(0 6px 11px rgba(44,36,22,0.14));
+      transform: translateY(-4px) scale(1.08);
+    }
+    .tech-chron-btn:active:not(:disabled) {
+      transform: scale(0.95);
+      transition-duration: 0s;
+    }
+    .tech-chron-btn:disabled {
+      opacity: 0.28;
+      cursor: default;
+    }
+    .tech-chron-arrow {
+      width: 44px;
+      height: 44px;
+      display: block;
+      flex: 0 0 auto;
+    }
+    .tech-chron-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 8px;
+    }
+    .tech-chron-arrow--prev { transform: rotate(180deg); }
+    @media (max-width: 480px) {
+      .tech-chron-nav {
+        top: 0.6rem;
+        right: 10.75rem;
+        left: auto;
+        gap: calc(3rem - 44px);
+      }
+      .tech-chron-btn {
+        width: 44px;
+        flex: 0 0 44px;
+      }
+    }
+
     /* Sources fountain — icon button in the top-right row, immediately LEFT of
        the archive (shelf) button. Shown only on Tech + Israel via renderSources().
        Not part of the shared 4-selector base rule above — its SVG carries its
@@ -1560,6 +1629,7 @@
     .marius-collapse-btn:hover:active,
     .shelf-btn:hover:active,
     .sources-fountain-btn:hover:active,
+    .tech-chron-btn:hover:active:not(:disabled),
     .modal-close-btn:hover:active,
     .sources-modal-close:hover:active,
     .context-modal-close:hover:active {
@@ -1772,6 +1842,11 @@
       <path d="M740.266667 917.333333H283.733333c-81.066667 0-151.466667-51.2-177.066666-128h810.666666c-25.6 76.8-96 128-177.066666 128zM614.4 746.666667h-202.666667c-102.4 0-194.133333-70.4-217.6-170.666667h640c-27.733333 100.266667-117.333333 170.666667-219.733333 170.666667z" fill="#9a7b4f"/>
     </svg>
   </button>
+
+  <!-- 2026-07-28: Tech News only — prev/next chronology arrows, immediately
+       left of Sources. Content is filled by appendTechChronNav(); visibility
+       is owned by the tab-action slot system (requestTabActionSlot). -->
+  <nav class="tech-chron-nav" id="tech-chron-nav" aria-label="Tech News chronology"></nav>
 
   <!-- Shelf button — unified Archive / Musters / Sweeps trigger (icon stays
        the same everywhere; click handler picks the right panel based on tab) -->
@@ -2082,9 +2157,17 @@
       return Array.from(document.querySelectorAll('#pillbar .pill'));
     }
     function getChromeCascadeIcons() {
-      // Charles Hub's whole fixed top-right icon row — no P&C/Marius-only
-      // members exist here.
-      const ids = ['sources-btn', 'shelf-btn', 'collapse-btn', 'search-btn', 'settings-btn'];
+      // 2026-07-28: only the truly static, always-present icons — NOT
+      // sources-btn or tech-chron-nav. Those are contextual (driven by
+      // requestTabActionSlot() below) and already get their own dedicated
+      // entrance/exit every time they're shown, including on first load.
+      // Including a contextual icon here too used to cause exactly the bug
+      // Tim reported: on first load only, this cascade's own
+      // clearChromeCascadeNode() call could race the slot system's identical
+      // timer property name and cancel its pending entrance, so the fountain
+      // just never appeared — then worked fine on every subsequent
+      // navigation once this one-time cascade had already played.
+      const ids = ['shelf-btn', 'collapse-btn', 'search-btn', 'settings-btn'];
       return ids
         .map(id => document.getElementById(id))
         .filter((node, index, arr) => node && arr.indexOf(node) === index && isVisibleChromeNode(node));
@@ -2154,55 +2237,236 @@
     }
 
     /* =====================================================================
-       FOUNTAIN ENTRANCE/EXIT
-       2026-07-28: ported and simplified from Master Reader's tab-action slot
-       system. MR needs a two-slot reconciler because several icons compete
-       for the same screen position (P&C's pen, Marius's activity icon).
-       Charles Hub has exactly one contextual top-right icon — the sources
-       fountain, shared by Tech + Israel + commodity1 — so there's no second
-       occupant to ever reconcile against; this is just a single-node
-       animated show/hide instead of an instant style.display toggle.
+       TAB-ACTION SLOT SYSTEM
+       2026-07-28: ported from Master Reader (including the round-4 ordering
+       fix — see Master Reader's viewer/index.html STATUS.md for the full
+       history of what didn't work before this). Charles Hub now has two
+       contextual top-right icons that can be on screen at once on the Tech
+       tab: the sources fountain and the chron-nav prev/next arrows. Each
+       lives in its own fixed-position "slot"; slot B (chron-nav, further
+       left on screen) always leads on entrance and follows on exit, slot A
+       (fountain, further right) always follows on entrance and leads on
+       exit — matching the reference whole-row cascade's own left-to-right
+       sweep. The cross-slot head-start delay is computed from live
+       desired/occupant state, deferred to a microtask so it never depends
+       on which of the two ever gets requested first in source order.
+       Deliberately NOT reusing the generic chrome cascade's
+       clearChromeCascadeNode()/__chChromeCascadeTimer — that shared-timer
+       collision is exactly what caused the fountain-invisible-on-first-load
+       bug (see getChromeCascadeIcons() above). This system has its own
+       clear helper and its own timer property, fully isolated.
        ===================================================================== */
-    let fountainAnimRun = 0;
-    function animateFountainToggle(show) {
-      const node = document.getElementById('sources-btn');
+    const TAB_ACTION_SLOT_MEMBERS = {
+      slotA: ['sources-btn'],
+      slotB: ['tech-chron-nav']
+    };
+    const tabActionSlotState = {
+      slotA: { occupant: null, desired: null, animating: false, run: 0, reconcileQueued: false },
+      slotB: { occupant: null, desired: null, animating: false, run: 0, reconcileQueued: false }
+    };
+
+    function getSlotMemberNodes(id) {
+      if (id === 'tech-chron-nav') {
+        const nav = document.getElementById('tech-chron-nav');
+        return nav ? Array.from(nav.querySelectorAll('.tech-chron-btn')) : [];
+      }
+      const node = document.getElementById(id);
+      return node ? [node] : [];
+    }
+    function showSlotMemberImmediate(id) {
+      if (id === 'tech-chron-nav') {
+        const nav = document.getElementById('tech-chron-nav');
+        if (nav) nav.classList.add('is-visible');
+        return;
+      }
+      const node = document.getElementById(id);
+      if (node) node.style.display = 'flex';
+    }
+    function hideSlotMemberImmediate(id) {
+      if (id === 'tech-chron-nav') {
+        const nav = document.getElementById('tech-chron-nav');
+        if (nav) nav.classList.remove('is-visible');
+        return;
+      }
+      const node = document.getElementById(id);
+      if (node) node.style.display = 'none';
+    }
+    function clearTabActionNode(node) {
       if (!node) return;
-      const isVisible = isVisibleChromeNode(node);
-      if (show === isVisible) return; // already in the desired state
-      fountainAnimRun += 1;
-      const myRun = fountainAnimRun;
-      clearChromeCascadeNode(node);
-      const stagger = 0; // single node — no cross-icon stagger needed
+      if (typeof node.getAnimations === 'function') {
+        node.getAnimations().forEach(anim => anim.cancel());
+      }
+      if (node.__chTabActionTimer) {
+        clearTimeout(node.__chTabActionTimer);
+        node.__chTabActionTimer = null;
+      }
+      node.style.opacity = '';
+      node.style.transform = '';
+      node.style.filter = '';
+      node.style.transition = '';
+      node.style.willChange = '';
+    }
+
+    // Public API: "I want slot X to show member Y (or null for empty)."
+    // Safe to call repeatedly — only the most recent call before the slot
+    // settles wins, and calls that arrive mid-animation are picked up once
+    // the current step finishes.
+    function requestTabActionSlot(slotKey, memberId) {
+      const state = tabActionSlotState[slotKey];
+      if (!state) return;
+      state.desired = memberId || null;
+      if (state.reconcileQueued) return;
+      state.reconcileQueued = true;
+      queueMicrotask(() => {
+        state.reconcileQueued = false;
+        reconcileTabActionSlot(slotKey);
+      });
+    }
+
+    function reconcileTabActionSlot(slotKey) {
+      const state = tabActionSlotState[slotKey];
+      if (!state || state.animating) return; // re-checked in the .then() below
+      const current = state.occupant;
+      const desired = state.desired;
+      if (current === desired) return;
+
+      const stagger = CHROME_CASCADE_SETTINGS.iconStagger;
+      const otherKey = slotKey === 'slotA' ? 'slotB' : 'slotA';
+      const other = tabActionSlotState[otherKey];
+
+      if (current) {
+        state.animating = true;
+        const nodes = getSlotMemberNodes(current);
+        state.run += 1;
+        const myRun = state.run;
+        // Exit: slot A (screen-right, fountain) leads, slot B (screen-left,
+        // chron-nav) follows.
+        const otherExiting = !!other.occupant && other.occupant !== other.desired;
+        const baseDelay = (slotKey === 'slotB' && otherExiting)
+          ? getSlotMemberNodes(other.occupant).length * stagger
+          : 0;
+        animateTabActionCascadeGroup(nodes, 'out', () => myRun !== state.run, baseDelay).then(() => {
+          hideSlotMemberImmediate(current);
+          state.occupant = null;
+          state.animating = false;
+          reconcileTabActionSlot(slotKey);
+        });
+      } else if (desired) {
+        state.animating = true;
+        showSlotMemberImmediate(desired);
+        const nodes = getSlotMemberNodes(desired);
+        state.run += 1;
+        const myRun = state.run;
+        // Entrance: slot B (screen-left, chron-nav) leads, slot A
+        // (screen-right, fountain) follows.
+        const otherEntering = !!other.desired && !other.occupant;
+        const baseDelay = (slotKey === 'slotA' && otherEntering)
+          ? getSlotMemberNodes(other.desired).length * stagger
+          : 0;
+        animateTabActionCascadeGroup(nodes, 'in', () => myRun !== state.run, baseDelay).then(() => {
+          state.occupant = desired;
+          state.animating = false;
+          if (state.desired !== desired) reconcileTabActionSlot(slotKey);
+        });
+      }
+    }
+
+    function animateTabActionCascadeGroup(nodes, direction, isStale, baseDelay) {
+      if (!nodes.length) return Promise.resolve();
+      const stagger = CHROME_CASCADE_SETTINGS.iconStagger;
       const distance = (CHROME_CASCADE_SETTINGS.distance * -0.85 * 0.85).toFixed(3);
       const exitDistance = Math.abs(parseFloat(distance)).toFixed(3);
-      if (show) node.style.display = 'flex';
-      node.style.transition = 'none';
-      node.style.willChange = 'opacity, transform, filter';
-      node.style.opacity = show ? String(CHROME_CASCADE_SETTINGS.opacityFloor) : '1';
-      node.style.transform = show ? `translateY(${distance}px) scale(${CHROME_CASCADE_SETTINGS.scaleFrom})` : 'translateY(0px) scale(1)';
-      node.style.filter = show ? `blur(${CHROME_CASCADE_SETTINGS.blurFrom.toFixed(1)}px)` : 'blur(0px)';
-      void node.offsetWidth;
-      node.__chChromeCascadeTimer = setTimeout(() => {
-        if (myRun !== fountainAnimRun) { clearChromeCascadeNode(node); return; }
-        node.style.transition =
-          `opacity ${CHROME_CASCADE_SETTINGS.duration}ms ${CHROME_CASCADE_SETTINGS.ease}, ` +
-          `transform ${CHROME_CASCADE_SETTINGS.duration}ms ${CHROME_CASCADE_SETTINGS.ease}, ` +
-          `filter ${CHROME_CASCADE_SETTINGS.duration}ms ${CHROME_CASCADE_SETTINGS.ease}`;
-        if (show) {
-          node.style.opacity = '1';
-          node.style.transform = 'translateY(0px) scale(1)';
-          node.style.filter = 'blur(0px)';
-        } else {
-          node.style.opacity = String(CHROME_CASCADE_SETTINGS.opacityFloor);
-          node.style.transform = `translateY(${exitDistance}px) scale(${CHROME_CASCADE_SETTINGS.scaleFrom})`;
-          node.style.filter = `blur(${CHROME_CASCADE_SETTINGS.blurFrom.toFixed(1)}px)`;
-        }
-        node.__chChromeCascadeTimer = setTimeout(() => {
-          if (myRun !== fountainAnimRun) return;
-          clearChromeCascadeNode(node);
-          if (!show) node.style.display = 'none';
-        }, CHROME_CASCADE_SETTINGS.duration);
-      }, stagger);
+      const lead = baseDelay || 0;
+      let longest = 0;
+      nodes.forEach((node, index) => {
+        clearTabActionNode(node);
+        // Entrance staggers forward (first node in the array leads); exit
+        // staggers backward (last node leads) so a multi-node member (the
+        // two chron-nav arrows) closes in the opposite order it opened in.
+        const staggerIndex = direction === 'out' ? (nodes.length - 1 - index) : index;
+        const delay = lead + staggerIndex * stagger;
+        longest = Math.max(longest, delay + CHROME_CASCADE_SETTINGS.duration);
+        const restOpacity = node.disabled ? '0.28' : '1';
+        node.style.transition = 'none';
+        node.style.willChange = 'opacity, transform, filter';
+        node.style.opacity = direction === 'in' ? String(CHROME_CASCADE_SETTINGS.opacityFloor) : restOpacity;
+        node.style.transform = direction === 'in'
+          ? `translateY(${distance}px) scale(${CHROME_CASCADE_SETTINGS.scaleFrom})`
+          : 'translateY(0px) scale(1)';
+        node.style.filter = direction === 'in'
+          ? `blur(${CHROME_CASCADE_SETTINGS.blurFrom.toFixed(1)}px)`
+          : 'blur(0px)';
+        void node.offsetWidth;
+        node.__chTabActionTimer = setTimeout(() => {
+          if (isStale()) { clearTabActionNode(node); return; }
+          node.style.transition =
+            `opacity ${CHROME_CASCADE_SETTINGS.duration}ms ${CHROME_CASCADE_SETTINGS.ease}, ` +
+            `transform ${CHROME_CASCADE_SETTINGS.duration}ms ${CHROME_CASCADE_SETTINGS.ease}, ` +
+            `filter ${CHROME_CASCADE_SETTINGS.duration}ms ${CHROME_CASCADE_SETTINGS.ease}`;
+          if (direction === 'in') {
+            node.style.opacity = restOpacity;
+            node.style.transform = 'translateY(0px) scale(1)';
+            node.style.filter = 'blur(0px)';
+          } else {
+            node.style.opacity = String(CHROME_CASCADE_SETTINGS.opacityFloor);
+            node.style.transform = `translateY(${exitDistance}px) scale(${CHROME_CASCADE_SETTINGS.scaleFrom})`;
+            node.style.filter = `blur(${CHROME_CASCADE_SETTINGS.blurFrom.toFixed(1)}px)`;
+          }
+          node.__chTabActionTimer = setTimeout(() => {
+            clearTabActionNode(node);
+          }, CHROME_CASCADE_SETTINGS.duration);
+        }, delay);
+      });
+      return new Promise(resolve => setTimeout(resolve, longest));
+    }
+
+    function techChronArrow(direction) {
+      const cls = direction === 'prev' ? ' tech-chron-arrow--prev' : '';
+      return `<svg class="tech-chron-arrow${cls}" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M14.1427 15.9621C14.2701 16.2169 14.1593 16.5264 13.8991 16.6424L4.49746 20.835C3.00163 21.5021 1.45007 20.0209 2.19099 18.6331L5.34302 12.7294C5.58818 12.2702 5.58818 11.7298 5.34302 11.2706L2.19099 5.36689C1.45006 3.97914 3.00163 2.49789 4.49746 3.16496L8.02178 4.73662C8.44465 4.9252 8.78899 5.25466 8.99606 5.6688L14.1427 15.9621Z" fill="currentColor"/>
+        <path opacity="0.5" d="M15.5332 15.3904C15.6529 15.6297 15.9397 15.7324 16.1841 15.6235L21.0066 13.4728C22.3304 12.8825 22.3304 11.1181 21.0066 10.5278L12.1089 6.55983C11.6802 6.36864 11.2481 6.82023 11.458 7.24008L15.5332 15.3904Z" fill="currentColor"/>
+      </svg>`;
+    }
+
+    // Tech News only: builds the prev/next entry arrows into #tech-chron-nav
+    // and asks slot B to show (or clear) that container. Content is always
+    // made correct here before the slot is asked to show it.
+    function appendTechChronNav(filename) {
+      const nav = document.getElementById('tech-chron-nav');
+      if (!nav) return;
+      if (!activeSubject || activeSubject.id !== 'briefs') {
+        nav.innerHTML = '';
+        requestTabActionSlot('slotB', null);
+        return;
+      }
+      const currentIndex = activeIndex.findIndex(item => item.file === filename);
+      if (currentIndex < 0) {
+        nav.innerHTML = '';
+        requestTabActionSlot('slotB', null);
+        return;
+      }
+      // index.json is newest-first, so the NEXT (older, index+1) entry is
+      // the "prev" arrow and the PREVIOUS (newer, index-1) entry is "next".
+      const older = activeIndex[currentIndex + 1] || null;
+      const newer = activeIndex[currentIndex - 1] || null;
+      nav.innerHTML = `
+        <button class="tech-chron-btn" type="button" data-file="${older ? escapeHtml(older.file) : ''}"
+          aria-label="${older ? `Open previous Tech News entry, ${escapeHtml(older.date || older.title || '')}` : 'No previous Tech News entry'}"
+          ${older ? '' : 'disabled'}>
+          ${techChronArrow('prev')}
+        </button>
+        <button class="tech-chron-btn" type="button" data-file="${newer ? escapeHtml(newer.file) : ''}"
+          aria-label="${newer ? `Open next Tech News entry, ${escapeHtml(newer.date || newer.title || '')}` : 'No next Tech News entry'}"
+          ${newer ? '' : 'disabled'}>
+          ${techChronArrow('next')}
+        </button>`;
+      nav.querySelectorAll('.tech-chron-btn:not(:disabled)').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          await loadFile(btn.dataset.file);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+      requestTabActionSlot('slotB', 'tech-chron-nav');
     }
 
     function formatDateLong(dateStr) {
@@ -2337,6 +2601,13 @@
       // A: Clear stale sources + read indicator immediately (before any async)
       renderSources(null);
       updateReadIndicator(null);
+      // 2026-07-28: slot A (fountain) just got reset via renderSources(null)
+      // above; slot B (chron-nav) needs its own explicit reset here too,
+      // since only Tech's loadFile()→appendTechChronNav() path ever
+      // populates it — Israel/commodity1 use loadDate() and never touch
+      // slot B at all, so leaving Tech for either of them would otherwise
+      // leave the arrows stuck on screen.
+      requestTabActionSlot('slotB', null);
 
       // 2026-07-28: old content now stays visible (instead of being replaced
       // by a "Loading…" placeholder the instant a tab is clicked) while the
@@ -2364,7 +2635,7 @@
         document.getElementById('masthead-date').textContent = '';
         document.getElementById('content').innerHTML =
           `<div class="error-message">No files yet in this subject. Add a markdown file to <code>/${next.folder}/</code> and an entry to <code>/${next.folder}/index.json</code>.</div>`;
-        document.getElementById('sources-btn').style.display = 'none';
+        requestTabActionSlot('slotA', null);
         document.getElementById('stale-banner').style.display = 'none';
         finishViewReveal();
       }
@@ -2417,6 +2688,7 @@
         beginViewReveal();
         renderMasthead(frontmatter);
         renderContent(body);
+        appendTechChronNav(filename);
         renderSources(frontmatter.sources || null);
         checkStale(frontmatter, isLatestFile(filename));
         appendReadCheckbox(filename); // F: add read checkbox
@@ -3054,13 +3326,13 @@
       // Fountain Sources button only ever appears on Tech (literary) + Israel (dispatch).
       const sourcesTab = activeSubject && (activeSubject.style === 'literary' || activeSubject.style === 'dispatch');
       if (!sourcesTab || !sources || !sources.length) {
-        // 2026-07-28: animated exit instead of an instant style.display flip —
-        // see animateFountainToggle() above.
-        animateFountainToggle(false);
+        // 2026-07-28: routed through the slot A reconciler instead of an
+        // instant style.display flip — see TAB-ACTION SLOT SYSTEM above.
+        requestTabActionSlot('slotA', null);
         body.innerHTML = '';
         return;
       }
-      animateFountainToggle(true);
+      requestTabActionSlot('slotA', 'sources-btn');
       body.innerHTML = sources.map(group => {
         const links = (group.links || []).map(link =>
           `<div class="source-item">
