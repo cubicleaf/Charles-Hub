@@ -1,8 +1,24 @@
 # Charles Hub — Status
 
-**Last updated:** 2026-06-28
+**Last updated:** 2026-07-28
 
 Companion status file. Records major structural decisions and progress.
+
+## 2026-07-28 — Full aesthetic/motion port from Master Reader (the four weeks of design work since the June fork)
+
+**What:** Charles Hub was forked from Master Reader on 2026-06-28, before essentially the entire authored-surface-language pass Master Reader has been through since (bronze/parchment palette refinements, the SVG fixed-corner plate shell system, "Crisp Lift" hover, the "Soft Drop" first-load chrome cascade, close-button unification, whole-view reveal gating). Ported the applicable parts — everything shared-shell (pill bar, fixed top-right icon row, close buttons, section-bar plates) — into `index.html`:
+- `.pill` and `.lvl-summary` converted from CSS border/border-radius to the fixed-corner SVG plate shell (`ensureSvgCornerPlate()`/`updateSvgCornerPlatesNow()`/`updateSvgCornerPlates()`, `SVG_PLATE_SELECTORS` scoped to just those two — Master Reader's list also covers P&C/Marius controls that don't exist here). Added the `body.style-dispatch .lvl-summary` headline-wrapping override Charles Hub never had (long Israel/commodity1 headlines were forcing every row to their width).
+- Fixed top-right icon row (settings/search/collapse/shelf) and the sources fountain moved from a 150ms micro-shadow hover to "Crisp Lift" (bronze color shift, warm drop-shadow, `translateY(-4px) scale(1.08)`, 400ms), plus the hover+press "whiplash" fix (`:hover:active` combined-state rule) so pressing while hovering doesn't snap through below-rest size.
+- `.modal-close-btn` unified with `.sources-modal-close`/`.context-modal-close` onto one 44px X-icon close family — those two used to be bordered text "Close" pills with their own separate 150ms hover; swapped their HTML markup to the same stroked-X SVG Master Reader uses everywhere else.
+- Added whole-view reveal gating (`beginViewReveal()`/`finishViewReveal()`, `body.mr-reveal-pending`/`.mr-reveal-ready`) so a tab/file switch no longer blacks out to a "Loading…" placeholder the instant it's clicked — old content stays visible during the fetch, and the finished surface fades in once, right before real content replaces it. Replaces the header's old one-time `animation: enter` keyframe.
+- Added the session-gated "Soft Drop" first-load chrome cascade (`CHROME_CASCADE_SETTINGS`, `playChromeCascade()`): pill bar cascades in left-to-right, then a beat later the fixed icon row cascades in, once per browser tab.
+- Added animated entrance/exit for the sources fountain (`animateFountainToggle()`) instead of an instant `style.display` flip. This is a simplified single-node version of Master Reader's two-slot tab-action reconciler — Charles Hub only has one contextual top-right icon (the fountain, shared by Tech/Israel/commodity1), so there's no second occupant ever competing for that screen position and no cross-slot ordering logic needed.
+
+**Explicitly left out of scope:** anything tied to tabs/subsystems Charles Hub doesn't have — P&C's pen icon and field-note slot, Marius's activity icon and board, chron-nav (prev/next paging between daily briefs, a feature added to Master Reader after this fork — not ported since it's new functionality, not an aesthetic mirror), `syncLvlSummaryWidths()` (a multi-bar width-matching routine only relevant to P&C's ledger). The `:root` palette tokens were already identical between the two files — no color/typography values needed to change, only the structural/motion layer.
+
+**Why:** Tim asked to align Charles Hub with everything changed in Master Reader's UI since the fork — tab buttons, cascade entrance, hover states, top-right icon entrance/exit, SVG plates, buttons everywhere.
+
+**How to apply:** Charles Hub's shared-shell elements (pill, lvl-summary, the fixed icon row, close buttons) should now be treated as the same authored surface language as Master Reader's — future Master Reader chrome changes to those same elements should be mirrored here the same way, since Charles Hub's underlying markup/class names are still close enough to make that a direct port rather than a reinterpretation.
 
 ## 2026-06-28 — Initial fork from Master Reader
 
