@@ -2580,9 +2580,25 @@
       document.documentElement.style.setProperty('--accent', '#7d6238');
     }
 
+    function renderSubjectLoadingShell(subject) {
+      if (!subject) return;
+      const header = document.querySelector('header');
+      const titleEl = document.getElementById('masthead-title');
+      const dateEl = document.getElementById('masthead-date');
+      const staleEl = document.getElementById('stale-banner');
+      const content = document.getElementById('content');
+
+      header.classList.remove('landing-mode');
+      titleEl.textContent = subject.displayTitle || subject.name;
+      dateEl.textContent = '';
+      staleEl.style.display = 'none';
+      content.innerHTML = '<div class="loading">Loading&hellip;</div>';
+    }
+
     async function switchSubject(subjectId) {
       const next = SUBJECTS.find(s => s.id === subjectId);
       if (!next) return;
+      const hadPreviousSubject = !!activeSubject;
       activeSubject = next;
       try { localStorage.setItem('active-subject', next.id); } catch(e) {}
       setAccent(next.accent);
@@ -2591,6 +2607,9 @@
       );
       document.body.classList.add('style-' + (next.style || 'neutral'));
       updatePillSelection();
+      // Cold open has no previously-rendered subject to preserve, so swap the
+      // static boot shell to the selected subject immediately.
+      if (!hadPreviousSubject) renderSubjectLoadingShell(next);
 
       // Restore buttons that specialized views may hide; hide progress-specific ones
       document.getElementById('shelf-btn').setAttribute('aria-label', 'Archive');
@@ -3735,7 +3754,7 @@
       renderPillbar();
       const savedId = (() => { try { return localStorage.getItem('active-subject'); } catch(e) { return null; } })();
       const startId = (savedId && SUBJECTS.find(s => s.id === savedId)) ? savedId : SUBJECTS[0].id;
-      switchSubject(startId);
+      await switchSubject(startId);
     })();
 
     function searchTokenize(text) {

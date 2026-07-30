@@ -14,6 +14,14 @@ Fixed both together, since fixing #2 properly required fixing #1's underlying ar
 
 **How to apply:** Any future contextual top-right icon added to Charles Hub belongs in the tab-action slot system, never in `getChromeCascadeIcons()`'s candidate list — that list is for icons that are always present and only need a one-time first-load entrance. If a shared timer/counter property is ever reused across two independent animation tracks again, that's the bug class to check first.
 
+## 2026-07-30 — Cold open now renders the selected subject immediately and still lands on the newest batch
+
+**What:** Added `renderSubjectLoadingShell(subject)` and call it only on a true cold open (`switchSubject()` before any prior `activeSubject` exists). Charles Hub already loaded the newest content correctly — Tech via `activeIndex[0].file`, dispatch tabs via the newest `run_date` in `activeIndex` — but it still left the static HTML shell (`Charles Hub` + `Loading...`) onscreen until that first async fetch chain finished. The cold-start shell now immediately swaps to the selected subject's own title and standard in-content loading block while the newest file/batch is fetched. Also changed `init()` to `await switchSubject(startId)` so startup treats the first render as real boot work rather than a fire-and-forget side effect.
+
+**Why:** Tim flagged the same failure mode Charles Hub had just after MR: it technically ends up on the latest batch, but the first impression is a generic hanging shell, which makes the app feel blank or broken.
+
+**How to apply:** Keep this helper scoped to cold start only. Normal tab switches should still preserve the previous rendered subject until the next one is ready; calling the loading-shell helper on every navigation would reintroduce the blackout feel the July 28 reveal work was meant to remove.
+
 ## 2026-07-28 — Full aesthetic/motion port from Master Reader (the four weeks of design work since the June fork)
 
 **What:** Charles Hub was forked from Master Reader on 2026-06-28, before essentially the entire authored-surface-language pass Master Reader has been through since (bronze/parchment palette refinements, the SVG fixed-corner plate shell system, "Crisp Lift" hover, the "Soft Drop" first-load chrome cascade, close-button unification, whole-view reveal gating). Ported the applicable parts — everything shared-shell (pill bar, fixed top-right icon row, close buttons, section-bar plates) — into `index.html`:
