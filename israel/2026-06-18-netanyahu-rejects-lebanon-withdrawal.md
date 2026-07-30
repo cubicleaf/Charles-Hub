@@ -48,6 +48,10 @@ context:
   - type: event
     name: US-Iran Memorandum of Understanding
     summary: "The Memorandum of Understanding between the United States and Iran, brokered by Pakistan and Qatar and signed by Presidents Trump and Pezeshkian in mid-June 2026, ended the active US military phase of the conflict that began in late February 2026. Its reported terms include a 60-day ceasefire window, reopening of the Strait of Hormuz, technical nuclear talks, and potential sanctions relief. Iran has consistently and publicly stated that the MoU requires Israel to end its war in Lebanon and withdraw from occupied Lebanese territory — conditions Israel explicitly rejects. Netanyahu's reaffirmation on 18 June 2026 that Israeli forces would remain in southern Lebanon placed the MoU's implementation in immediate jeopardy, setting up Iran's reclosure of the Strait of Hormuz two days later."
+audit:
+  evidence_status: legacy-cache-migrated
+  verification_profile: legacy-pre-v3
+  notes: "Published before the current script-owned workflow; migrated cache artifacts preserve continuity but not full current-gate provenance."
 estimated_read_minutes: 3
 contested: false
 significance: 4

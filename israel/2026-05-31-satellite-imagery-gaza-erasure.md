@@ -59,6 +59,10 @@ context:
   - type: person
     name: Nickolay Mladenov
     summary: "Nickolay Mladenov is a Bulgarian diplomat and former UN Special Coordinator for the Middle East Peace Process who serves as the high representative for the US-founded Board of Peace for Gaza, the body established under the Trump administration in 2025 to oversee post-ceasefire governance arrangements in the Strip. In late May 2026, he warned the UN Security Council that Gaza's deteriorating conditions risk becoming 'permanent' — a designation that would formalize Israel's expanded territorial control and eliminate the realistic possibility of Palestinian return or statehood in the territory."
+audit:
+  evidence_status: legacy-cache-migrated
+  verification_profile: legacy-pre-v3
+  notes: "Published before the current script-owned workflow; migrated cache artifacts preserve continuity but not full current-gate provenance."
 estimated_read_minutes: 4
 contested: false
 significance: 4

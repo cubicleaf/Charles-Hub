@@ -46,6 +46,10 @@ context:
   - type: place
     name: Nabatieh
     summary: "Nabatieh is a city of roughly 100,000 people in southern Lebanon, capital of the Nabatieh Governorate, approximately 55 kilometers south of Beirut. It has been a major Israeli airstrike target throughout the 2026 Lebanon war that began in March 2026. On 20 June 2026 — one day after the Israel-Hezbollah ceasefire was announced — Israeli forces launched a wave of strikes on Nabatieh, killing 16 and wounding 12 in that city alone, and destroying residential buildings overnight. MSF described conditions as a 'death trap,' with rescue teams unable to reach victims under ongoing shelling. The attacks on Nabatieh contributed to Iran's decision to reclose the Strait of Hormuz on 20 June, and to Tehran delaying its delegation's departure for implementation talks in Switzerland."
+audit:
+  evidence_status: legacy-cache-migrated
+  verification_profile: legacy-pre-v3
+  notes: "Published before the current script-owned workflow; migrated cache artifacts preserve continuity but not full current-gate provenance."
 estimated_read_minutes: 2
 contested: false
 significance: 3

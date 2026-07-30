@@ -23,6 +23,10 @@ sources:
   - url: https://www.thenationalnews.com/news/mena/2026/05/02/a-new-wave-of-israeli-strikes-hit-south-lebanon-despite-continuing-ceasefire/
     outlet: The National
     date: 2026-05-02
+audit:
+  evidence_status: legacy-no-evidence
+  verification_profile: legacy-pre-v2
+  notes: "Predates the evidence/cache system. Keep for archive continuity, not as a current-gated exemplar."
 context:
   - type: place
     name: Southern Lebanon

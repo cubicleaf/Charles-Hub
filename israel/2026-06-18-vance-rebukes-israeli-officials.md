@@ -50,6 +50,10 @@ context:
   - type: person
     name: Itamar Ben-Gvir
     summary: "Itamar Ben-Gvir is Israel's National Security Minister and leader of the Otzma Yehudit (Jewish Power) party, a follower of the late extremist rabbi Meir Kahane whose movement was designated a terrorist organization by the FBI. He has a prior criminal conviction for inciting racism and supporting a terrorist organization. The UK and four other countries sanctioned him in 2024 for inciting violence against Palestinians. He has been among the loudest Israeli voices rejecting the US-Iran MoU, posting 'All of Lebanon must burn' on X, a post later restricted for violating the platform's terms. He was directly named by Vance in White House briefing remarks on 18 June 2026."
+audit:
+  evidence_status: legacy-cache-migrated
+  verification_profile: legacy-pre-v3
+  notes: "Published before the current script-owned workflow; migrated cache artifacts preserve continuity but not full current-gate provenance."
 estimated_read_minutes: 3
 contested: false
 significance: 4

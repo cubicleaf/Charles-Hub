@@ -49,6 +49,10 @@ context:
   - type: institution
     name: Channel 12 (Israel)
     summary: "Channel 12 is one of Israel's major commercial television networks, home to some of the country's most-watched news programming. Its poll published on 20 June 2026 — showing only 11 percent of Israelis believe Israel won the war against Iran and 71 percent no longer trust the Trump administration — marked a dramatic reversal of years of overwhelming Israeli public support for Trump. The poll was widely cited internationally as a barometer of the US-Israel alliance's deteriorating popular foundation, and was referenced in reporting on Israel's domestic political response to the MoU alongside a leaked video of Netanyahu's territorial directive for Gaza aired earlier in the week."
+audit:
+  evidence_status: legacy-cache-migrated
+  verification_profile: legacy-pre-v3
+  notes: "Published before the current script-owned workflow; migrated cache artifacts preserve continuity but not full current-gate provenance."
 estimated_read_minutes: 4
 contested: false
 significance: 3

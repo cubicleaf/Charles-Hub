@@ -68,6 +68,10 @@ context:
   - type: institution
     name: Lebanon National News Agency (NNA)
     summary: "The National News Agency (NNA) is Lebanon's state-run wire service, operating under the Ministry of Information. It is the primary official source for Lebanese government communications and real-time incident reporting from Lebanese civil and military authorities. It is widely cited by international outlets for casualty figures and strike locations during the 2026 Lebanon war."
+audit:
+  evidence_status: legacy-cache-migrated
+  verification_profile: legacy-pre-v3
+  notes: "Published before the current script-owned workflow; migrated cache artifacts preserve continuity but not full current-gate provenance."
 estimated_read_minutes: 4
 contested: false
 significance: 5

@@ -42,6 +42,10 @@ context:
   - type: event
     name: Gaza Ceasefire (October 2025)
     summary: "The US-brokered ceasefire deal reached in October 2025 established a 'Yellow Line' demarcating the portions of Gaza under Israeli military control, with provisions for Israeli withdrawal within specified timeframes. Under the nominal truce, Israel has continued military operations and territorial expansion. By June 2026, Netanyahu had publicly ordered the IDF to expand from 60 percent to 70 percent of Gaza's territory, and the Health Ministry had recorded 1,007 Palestinians killed since the ceasefire's signing. An Al Jazeera tally documented at least 2,400 Israeli violations between October 2025 and April 2026, a pace of violations that conflict monitors said had accelerated following the onset of the US-Iran war in February 2026."
+audit:
+  evidence_status: legacy-cache-migrated
+  verification_profile: legacy-pre-v3
+  notes: "Published before the current script-owned workflow; migrated cache artifacts preserve continuity but not full current-gate provenance."
 estimated_read_minutes: 2
 contested: false
 significance: 3

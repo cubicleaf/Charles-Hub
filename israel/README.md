@@ -45,6 +45,6 @@ Multiple files per day are expected. The viewer's Archive dropdown shows them re
 
 ## Design reference
 
-See `routines/israel-tracker-spec.md` for the full design specification — frontmatter schema, significance scoring, thread-tracking logic, viewer changes, and migration plan.
+See `routines/Israel Tracker Routine Instructions.md` for the live operational and schema reference.
 
-See `routines/israel-add.md` for the operational routine — what runs daily at 7:00 AM Eastern.
+See `routines/Archive Audit Routine Instructions.md` for the monthly post-publication integrity pass.

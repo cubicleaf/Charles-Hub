@@ -106,5 +106,59 @@
     "type": "person",
     "context_text": "Ro Khanna is a Democratic member of the US House of Representatives representing a Silicon Valley district in California, first elected in 2016. He has been an outspoken critic of US military aid to Israel and has visited the occupied West Bank on congressional delegations.",
     "verified_on": "2026-07-25"
+  },
+  "zohran-mamdani": {
+    "full_name": "Zohran Mamdani",
+    "type": "person",
+    "context_text": "Zohran Mamdani is a Democratic Socialist who was sworn in as Mayor of New York City on 1 January 2026, becoming the city's first Muslim mayor and first of South Asian descent after previously representing Queens in the New York State Assembly. A vocal critic of Israeli conduct in Gaza throughout his campaign and tenure, he has called for enforcement of the International Criminal Court's arrest warrant against Netanyahu on US soil.",
+    "verified_on": "2026-07-29"
+  },
+  "volker-turk": {
+    "full_name": "Volker Türk",
+    "type": "person",
+    "context_text": "Volker Türk is an Austrian human rights lawyer who has served as UN High Commissioner for Human Rights since October 2022, the UN's top human rights official, based in Geneva. He has repeatedly warned that Israeli military conduct in Gaza and Lebanon — including demolitions of civilian infrastructure and forced population displacement — may amount to war crimes under international humanitarian law.",
+    "verified_on": "2026-07-29"
+  },
+  "yinon-levi": {
+    "full_name": "Yinon Levi",
+    "type": "person",
+    "context_text": "Yinon Levi is an Israeli settler identified by the Palestinian rights group Al-Haq as the man who fatally shot Palestinian activist Awdah Hathaleen in the West Bank village of Umm al-Khair on 28 July 2025. He runs the illegal Meitarim Farm outpost in the South Hebron Hills and has drawn manpower from Hashomer Yosh, a settler group that supplies volunteers to such outposts. He was not arrested at the scene and was later released to a three-day house arrest.",
+    "verified_on": "2026-07-29"
+  },
+  "al-haq": {
+    "full_name": "Al-Haq",
+    "type": "institution",
+    "context_text": "Al-Haq is a Palestinian human rights organization based in Ramallah, founded in 1979, that documents human rights violations in the occupied Palestinian territories and pursues international legal accountability, including submissions to the International Criminal Court. Its investigations combine video and photographic evidence, legal testimony, and geospatial and open-source analysis.",
+    "verified_on": "2026-07-29"
+  },
+  "awdah-hathaleen": {
+    "full_name": "Awdah Hathaleen",
+    "type": "person",
+    "context_text": "Awdah Hathaleen was a 31-year-old Palestinian activist and father of three from the village of Umm al-Khair in Masafer Yatta, in the South Hebron Hills of the occupied West Bank. He had worked on production of the Oscar-winning documentary 'No Other Land' and was filming an armed settler raid on his village when he was shot and killed on 28 July 2025.",
+    "verified_on": "2026-07-29"
+  },
+  "amnesty-international": {
+    "full_name": "Amnesty International",
+    "type": "institution",
+    "context_text": "Amnesty International is a London-headquartered international human rights organization founded in 1961 that investigates and campaigns against human rights abuses worldwide, including through detailed documentation of arms transfers and their end use. It has published a series of reports since 2023 tracking foreign military supply chains feeding Israel's campaign in Gaza, which it characterizes as genocide.",
+    "verified_on": "2026-07-29"
+  },
+  "agnes-callamard": {
+    "full_name": "Agnès Callamard",
+    "type": "person",
+    "context_text": "Agnès Callamard is a French human rights lawyer who has served as Secretary General of Amnesty International since 2021, after previously serving as UN Special Rapporteur on extrajudicial executions. Under her leadership Amnesty has published reports alleging that Israel's conduct in Gaza meets the legal threshold of genocide and has pressed states and companies supplying Israel's military to halt arms transfers.",
+    "verified_on": "2026-07-29"
+  },
+  "global-affairs-canada": {
+    "full_name": "Global Affairs Canada",
+    "type": "institution",
+    "context_text": "Global Affairs Canada is the Canadian federal department responsible for foreign policy, diplomatic relations, and international trade. It has periodically criticized Israeli settlement expansion in the occupied West Bank as a violation of international law, though critics note Ottawa has rarely followed such statements with concrete policy measures against Israel.",
+    "verified_on": "2026-07-29"
+  },
+  "ohchr": {
+    "full_name": "Office of the UN High Commissioner for Human Rights",
+    "type": "institution",
+    "context_text": "The Office of the UN High Commissioner for Human Rights (OHCHR), headed by Volker Türk, is the principal United Nations entity mandated to promote and protect human rights globally. It regularly documents and reports on Israeli settlement expansion and settler violence in the occupied West Bank, drawing on UN field monitoring data.",
+    "verified_on": "2026-07-29"
   }
 }

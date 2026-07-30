@@ -1,12 +1,12 @@
 {
-  "generated": "2026-07-25T07:34:00-04:00",
-  "lead_file": "2026-07-24-west-bank-idf-offensive-tal-shooting.md",
-  "lead_reason": "Highest significance (5); most recent event date among tied sig-5 stories",
+  "generated": "2026-07-29T23:16:51-04:00",
+  "lead_file": "2026-07-29-us-strikes-iran-jordan-attack.md",
+  "lead_reason": "Highest significance (5); active war with Iran reignites after Jordan base attack",
   "secondary_files": [
-    "2026-07-23-trump-weighs-massive-attack-iran.md",
-    "2026-07-23-trump-saudi-nuclear-deal-israel-condition.md"
+    "2026-07-28-poll-americans-netanyahu-arrest.md",
+    "2026-07-28-lebanon-drone-strikes-apartment.md"
   ],
   "promoted": [],
   "slow_cycle_active": false,
-  "todays_sig3plus_count": 4
+  "todays_sig3plus_count": 5
 }

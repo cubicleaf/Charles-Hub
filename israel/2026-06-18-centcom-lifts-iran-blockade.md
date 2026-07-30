@@ -47,6 +47,10 @@ context:
   - type: place
     name: Strait of Hormuz
     summary: "The Strait of Hormuz is a narrow waterway — roughly 21 kilometers wide at its navigable channel — linking the Persian Gulf to the Gulf of Oman and Arabian Sea. Approximately a fifth of the world's crude oil and liquefied natural gas transits it daily. Iran closed the strait in late February 2026 following the onset of the US-Israel military campaign, causing global oil price spikes. The US imposed a naval blockade on Iranian ports beginning in mid-April 2026 and enforced it with military force. The MoU's signing and the blockade's lifting on 18 June 2026 mark the first reopening of normal shipping since the war began."
+audit:
+  evidence_status: legacy-cache-migrated
+  verification_profile: legacy-pre-v3
+  notes: "Published before the current script-owned workflow; migrated cache artifacts preserve continuity but not full current-gate provenance."
 estimated_read_minutes: 3
 contested: false
 significance: 5

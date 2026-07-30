@@ -58,6 +58,10 @@ context:
   - type: person
     name: Itamar Ben-Gvir
     summary: "Itamar Ben-Gvir is Israel's National Security Minister and leader of the Otzma Yehudit (Jewish Power) party, a follower of the late extremist rabbi Meir Kahane, whose movement was designated a terrorist organization by the FBI. Ben-Gvir has a prior criminal conviction for inciting racism and supporting a terrorist organization. He has repeatedly entered the Al-Aqsa Mosque compound in actions widely understood as provocations. The UK and four other countries sanctioned him alongside Smotrich in 2024 for inciting violence against Palestinians."
+audit:
+  evidence_status: legacy-cache-migrated
+  verification_profile: legacy-pre-v3
+  notes: "Published before the current script-owned workflow; migrated cache artifacts preserve continuity but not full current-gate provenance."
 estimated_read_minutes: 3
 contested: false
 significance: 4

@@ -3,42 +3,142 @@
     "title": "Israeli Military Campaign in Lebanon (2026)",
     "summary": "Israel's sustained air and ground campaign against Hezbollah in southern Lebanon, ongoing since 2 March 2026, producing mounting civilian casualties, repeated incidents involving UNIFIL peacekeepers, and a security zone approximately 10 km inside Lebanese territory. Israel broke the ceasefire announced on 19 June 2026 the following day, killing at least 50 people and triggering Iran's reclosure of the Strait of Hormuz.",
     "started": "2026-05-02",
-    "last_entry": "2026-06-20",
-    "actors": ["idf", "hezbollah", "unifil", "netanyahu", "msf"],
-    "geography": ["southern-lebanon", "nabatieh"],
-    "categories": ["military-strikes", "casualties", "ceasefire-violations", "occupation", "humanitarian"],
+    "last_entry": "2026-07-28",
+    "actors": [
+      "idf",
+      "hezbollah",
+      "unifil",
+      "netanyahu",
+      "msf"
+    ],
+    "geography": [
+      "southern-lebanon",
+      "nabatieh"
+    ],
+    "categories": [
+      "military-strikes",
+      "casualties",
+      "ceasefire-violations",
+      "occupation",
+      "humanitarian"
+    ],
     "entries": [
-      {"date": "2026-05-02", "file": "2026-05-02-israel-lebanon-strikes-41-killed.md", "headline": "Israeli strikes kill 41 in Lebanon in 24 hours as cumulative toll exceeds 2,600"},
-      {"date": "2026-06-18", "file": "2026-06-18-netanyahu-rejects-lebanon-withdrawal.md", "headline": "Netanyahu reaffirms Israel will not withdraw from Lebanon despite US-Iran MoU"},
-      {"date": "2026-06-20", "file": "2026-06-20-msf-nabatieh-death-trap.md", "headline": "MSF calls Nabatieh a 'death trap' as Israeli shelling kills 50 the day after Lebanon ceasefire announcement"}
+      {
+        "date": "2026-05-02",
+        "file": "2026-05-02-israel-lebanon-strikes-41-killed.md",
+        "headline": "Israeli strikes kill 41 in Lebanon in 24 hours as cumulative toll exceeds 2,600"
+      },
+      {
+        "date": "2026-06-18",
+        "file": "2026-06-18-netanyahu-rejects-lebanon-withdrawal.md",
+        "headline": "Netanyahu reaffirms Israel will not withdraw from Lebanon despite US-Iran MoU"
+      },
+      {
+        "date": "2026-06-20",
+        "file": "2026-06-20-msf-nabatieh-death-trap.md",
+        "headline": "MSF calls Nabatieh a 'death trap' as Israeli shelling kills 50 the day after Lebanon ceasefire announcement"
+      },
+      {
+        "date": "2026-07-28",
+        "file": "2026-07-28-lebanon-drone-strikes-apartment.md",
+        "headline": "Israeli drones strike Nabatieh apartment building as demolitions continue; UN warns of war crimes, France demands withdrawal"
+      }
     ]
   },
   "us-iran-mou-2026": {
     "title": "US-Iran Memorandum of Understanding and Implementation Crisis",
     "summary": "The Memorandum of Understanding signed by Presidents Trump and Pezeshkian in mid-June 2026 ended the active US military phase of the US-Iran conflict that began in late February 2026. Its terms included lifting the US naval blockade, reopening the Strait of Hormuz, and a 60-day ceasefire window. Israel's refusal to end its Lebanon offensive placed the MoU in immediate jeopardy; Iran reclosed the Strait of Hormuz on 20 June citing Israeli breaches. Israeli public opinion turned sharply against Trump, with 71 percent no longer trusting the administration.",
     "started": "2026-06-18",
-    "last_entry": "2026-07-23",
-    "actors": ["centcom", "trump", "pezeshkian", "irgc", "vance", "netanyahu", "ben-gvir", "smotrich"],
-    "geography": ["strait-of-hormuz", "persian-gulf", "washington", "israel", "southern-lebanon"],
-    "categories": ["ceasefire", "blockade", "diplomacy", "military-strikes", "public-opinion"],
+    "last_entry": "2026-07-29",
+    "actors": [
+      "centcom",
+      "trump",
+      "pezeshkian",
+      "irgc",
+      "vance",
+      "netanyahu",
+      "ben-gvir",
+      "smotrich"
+    ],
+    "geography": [
+      "strait-of-hormuz",
+      "persian-gulf",
+      "washington",
+      "israel",
+      "southern-lebanon"
+    ],
+    "categories": [
+      "ceasefire",
+      "blockade",
+      "diplomacy",
+      "military-strikes",
+      "public-opinion"
+    ],
     "entries": [
-      {"date": "2026-06-18", "file": "2026-06-18-centcom-lifts-iran-blockade.md", "headline": "CENTCOM lifts US naval blockade on Iran per MoU as oil prices fall"},
-      {"date": "2026-06-18", "file": "2026-06-18-vance-rebukes-israeli-officials.md", "headline": "Vance tells Israeli officials Trump is their only remaining ally; warns they can't 'kill your way out'"},
-      {"date": "2026-06-20", "file": "2026-06-20-iran-closes-hormuz-ceasefire-breach.md", "headline": "Iran closes Strait of Hormuz as Israel breaks Lebanon ceasefire one day after deal"},
-      {"date": "2026-06-20", "file": "2026-06-20-trump-faces-israeli-anger-mou.md", "headline": "Israeli public turns on Trump as poll shows 71 percent no longer trust US; Israel Hayom calls MoU a 'surrender agreement'"},
-      {"date": "2026-07-23", "file": "2026-07-23-trump-weighs-massive-attack-iran.md", "headline": "Trump weighs 'massive attack' on Iran, says Israel would join 'in two minutes' but warns of consequences"}
+      {
+        "date": "2026-06-18",
+        "file": "2026-06-18-centcom-lifts-iran-blockade.md",
+        "headline": "CENTCOM lifts US naval blockade on Iran per MoU as oil prices fall"
+      },
+      {
+        "date": "2026-06-18",
+        "file": "2026-06-18-vance-rebukes-israeli-officials.md",
+        "headline": "Vance tells Israeli officials Trump is their only remaining ally; warns they can't 'kill your way out'"
+      },
+      {
+        "date": "2026-06-20",
+        "file": "2026-06-20-iran-closes-hormuz-ceasefire-breach.md",
+        "headline": "Iran closes Strait of Hormuz as Israel breaks Lebanon ceasefire one day after deal"
+      },
+      {
+        "date": "2026-06-20",
+        "file": "2026-06-20-trump-faces-israeli-anger-mou.md",
+        "headline": "Israeli public turns on Trump as poll shows 71 percent no longer trust US; Israel Hayom calls MoU a 'surrender agreement'"
+      },
+      {
+        "date": "2026-07-23",
+        "file": "2026-07-23-trump-weighs-massive-attack-iran.md",
+        "headline": "Trump weighs 'massive attack' on Iran, says Israel would join 'in two minutes' but warns of consequences"
+      },
+      {
+        "date": "2026-07-29",
+        "file": "2026-07-29-us-strikes-iran-jordan-attack.md",
+        "headline": "US resumes strikes on Iran after IRGC missile attack on Jordan base"
+      }
     ]
   },
   "icc-israel-warrants-2026": {
     "title": "ICC Proceedings Against Israeli Officials",
     "summary": "International Criminal Court proceedings against Israeli officials that escalated in 2025–2026. Following arrest warrants for Prime Minister Netanyahu and former Defense Minister Gallant in November 2024, the ICC prosecutor requested a warrant for Finance Minister Smotrich in May 2026, citing forced displacement orders, support for settler expansion into occupied territory, and his public statement that starving Palestinians may be 'justified and moral.' Smotrich responded by announcing he would sign an evacuation order for the Bedouin community of Khan al-Ahmar.",
     "started": "2026-05-19",
-    "last_entry": "2026-05-19",
-    "actors": ["smotrich", "icc", "netanyahu", "ben-gvir"],
-    "geography": ["the-hague", "west-bank"],
-    "categories": ["icc", "legal-proceedings", "settler-policy", "west-bank"],
+    "last_entry": "2026-07-28",
+    "actors": [
+      "smotrich",
+      "icc",
+      "netanyahu",
+      "ben-gvir"
+    ],
+    "geography": [
+      "the-hague",
+      "west-bank"
+    ],
+    "categories": [
+      "icc",
+      "legal-proceedings",
+      "settler-policy",
+      "west-bank"
+    ],
     "entries": [
-      {"date": "2026-05-19", "file": "2026-05-19-icc-prosecutor-warrants-smotrich.md", "headline": "ICC prosecutor requests arrest warrant for Finance Minister Smotrich, who vows Khan al-Ahmar evacuation"}
+      {
+        "date": "2026-05-19",
+        "file": "2026-05-19-icc-prosecutor-warrants-smotrich.md",
+        "headline": "ICC prosecutor requests arrest warrant for Finance Minister Smotrich, who vows Khan al-Ahmar evacuation"
+      },
+      {
+        "date": "2026-07-28",
+        "file": "2026-07-28-poll-americans-netanyahu-arrest.md",
+        "headline": "Poll: Nearly half of Americans want Netanyahu arrested during Washington visit; Trump says he won't be"
+      }
     ]
   },
   "gaza-territorial-control-2026": {
@@ -46,25 +146,91 @@
     "summary": "Israel's systematic expansion of territorial control in Gaza beyond the October 2025 ceasefire Yellow Line, combined with near-total destruction of civilian infrastructure. Netanyahu directed the IDF to expand control from 60 to 70 percent of Gaza. Satellite imagery from February 2026 shows 94 percent of cemeteries destroyed, 97 percent of schools damaged or destroyed, and less than 5 percent of agricultural land usable. By June 2026, the post-ceasefire killing toll reached 1,007 Palestinians. US-appointed mediator Mladenov warned the Security Council the situation risks becoming 'permanent.'",
     "started": "2026-05-31",
     "last_entry": "2026-07-23",
-    "actors": ["netanyahu", "idf"],
-    "geography": ["gaza", "khan-younis", "rafah"],
-    "categories": ["territorial-control", "displacement", "humanitarian", "civilian-casualties", "ceasefire-violations"],
+    "actors": [
+      "netanyahu",
+      "idf"
+    ],
+    "geography": [
+      "gaza",
+      "khan-younis",
+      "rafah"
+    ],
+    "categories": [
+      "territorial-control",
+      "displacement",
+      "humanitarian",
+      "civilian-casualties",
+      "ceasefire-violations"
+    ],
     "entries": [
-      {"date": "2026-05-31", "file": "2026-05-31-satellite-imagery-gaza-erasure.md", "headline": "Satellite imagery shows erasure of southern Gaza as Netanyahu orders expansion to 70 percent territorial control"},
-      {"date": "2026-06-18", "file": "2026-06-18-israel-kills-three-gaza-ceasefire.md", "headline": "Israeli drone strike kills three in Gaza; Health Ministry says 1,007 Palestinians killed since ceasefire deal"},
-      {"date": "2026-07-23", "file": "2026-07-23-gaza-ceasefire-violations-idf-strikes.md", "headline": "Israeli strikes kill four in Gaza as post-ceasefire Palestinian death toll passes 1,185"}
+      {
+        "date": "2026-05-31",
+        "file": "2026-05-31-satellite-imagery-gaza-erasure.md",
+        "headline": "Satellite imagery shows erasure of southern Gaza as Netanyahu orders expansion to 70 percent territorial control"
+      },
+      {
+        "date": "2026-06-18",
+        "file": "2026-06-18-israel-kills-three-gaza-ceasefire.md",
+        "headline": "Israeli drone strike kills three in Gaza; Health Ministry says 1,007 Palestinians killed since ceasefire deal"
+      },
+      {
+        "date": "2026-07-23",
+        "file": "2026-07-23-gaza-ceasefire-violations-idf-strikes.md",
+        "headline": "Israeli strikes kill four in Gaza as post-ceasefire Palestinian death toll passes 1,185"
+      }
     ]
   },
   "west-bank-crackdown-2026": {
     "title": "West Bank Military Crackdown and Settler Violence Surge (2026)",
     "summary": "A wide-scale Israeli military operation across West Bank villages, ordered by Netanyahu and Defense Minister Katz on 24 July 2026 following an attack near Havat Gilad that killed two Israeli soldiers, and a separate deadly confrontation in the village of Tal that killed four Palestinians. The operation produced mass arrests, home raids across multiple governorates, and continued settler arson attacks, drawing condemnation from the UN Special Rapporteur on the Palestinian territories and Human Rights Watch.",
     "started": "2026-07-24",
-    "last_entry": "2026-07-24",
-    "actors": ["netanyahu", "israel-katz", "idf", "ben-gvir", "smotrich", "francesca-albanese", "hrw"],
-    "geography": ["west-bank", "nablus", "tal", "havat-gilad", "jenin"],
-    "categories": ["west-bank", "settler-violence", "military-operation", "occupation"],
+    "last_entry": "2026-07-29",
+    "actors": [
+      "netanyahu",
+      "israel-katz",
+      "idf",
+      "ben-gvir",
+      "smotrich",
+      "francesca-albanese",
+      "hrw",
+      "yinon-levi",
+      "al-haq",
+      "awdah-hathaleen",
+      "global-affairs-canada",
+      "ohchr"
+    ],
+    "geography": [
+      "west-bank",
+      "nablus",
+      "tal",
+      "havat-gilad",
+      "jenin",
+      "umm-al-khair",
+      "masafer-yatta",
+      "canada"
+    ],
+    "categories": [
+      "west-bank",
+      "settler-violence",
+      "military-operation",
+      "occupation"
+    ],
     "entries": [
-      {"date": "2026-07-24", "file": "2026-07-24-west-bank-idf-offensive-tal-shooting.md", "headline": "Netanyahu orders West Bank-wide military operation after deadly Friday violence near Nablus"}
+      {
+        "date": "2026-07-24",
+        "file": "2026-07-24-west-bank-idf-offensive-tal-shooting.md",
+        "headline": "Netanyahu orders West Bank-wide military operation after deadly Friday violence near Nablus"
+      },
+      {
+        "date": "2026-07-29",
+        "file": "2026-07-29-settler-escaped-justice-hathaleen.md",
+        "headline": "Investigation finds Israeli settler who killed activist Awdah Hathaleen still evading justice a year later"
+      },
+      {
+        "date": "2026-07-29",
+        "file": "2026-07-29-canada-israel-settlement-statement.md",
+        "headline": "Israel accuses Canada of emboldening 'terror' after Ottawa condemns West Bank settlement expansion"
+      }
     ]
   },
   "saudi-israel-normalization-2026": {
@@ -72,11 +238,26 @@
     "summary": "Trump conditioned a newly announced US-Saudi civilian nuclear cooperation agreement on Saudi Arabia normalizing relations with Israel through the Abraham Accords, unsettling a deal unveiled a day earlier and reviving questions about uranium enrichment rights in the region.",
     "started": "2026-07-23",
     "last_entry": "2026-07-23",
-    "actors": ["trump"],
-    "geography": ["saudi-arabia", "washington", "israel"],
-    "categories": ["diplomacy", "abraham-accords", "nuclear-policy", "saudi-arabia"],
+    "actors": [
+      "trump"
+    ],
+    "geography": [
+      "saudi-arabia",
+      "washington",
+      "israel"
+    ],
+    "categories": [
+      "diplomacy",
+      "abraham-accords",
+      "nuclear-policy",
+      "saudi-arabia"
+    ],
     "entries": [
-      {"date": "2026-07-23", "file": "2026-07-23-trump-saudi-nuclear-deal-israel-condition.md", "headline": "Trump says Saudi nuclear deal 'totally subject' to Riyadh normalizing relations with Israel"}
+      {
+        "date": "2026-07-23",
+        "file": "2026-07-23-trump-saudi-nuclear-deal-israel-condition.md",
+        "headline": "Trump says Saudi nuclear deal 'totally subject' to Riyadh normalizing relations with Israel"
+      }
     ]
   },
   "hamas-leadership-transition-2026": {
@@ -84,11 +265,26 @@
     "summary": "Khalil al-Hayya's election as Hamas's new political bureau chief and his first public address, in which he restated the group's existing positions on Gaza reconstruction, prisoner releases, and Palestinian statehood while pressing for enforcement of the October 2025 ceasefire.",
     "started": "2026-07-22",
     "last_entry": "2026-07-22",
-    "actors": ["khalil-al-hayya"],
-    "geography": ["gaza", "west-bank", "east-jerusalem"],
-    "categories": ["hamas", "leadership", "gaza", "ceasefire"],
+    "actors": [
+      "khalil-al-hayya"
+    ],
+    "geography": [
+      "gaza",
+      "west-bank",
+      "east-jerusalem"
+    ],
+    "categories": [
+      "hamas",
+      "leadership",
+      "gaza",
+      "ceasefire"
+    ],
     "entries": [
-      {"date": "2026-07-22", "file": "2026-07-22-al-hayya-first-speech-hamas-leader.md", "headline": "New Hamas leader al-Hayya pledges to rebuild Gaza and unite Palestinian territories in first address"}
+      {
+        "date": "2026-07-22",
+        "file": "2026-07-22-al-hayya-first-speech-hamas-leader.md",
+        "headline": "New Hamas leader al-Hayya pledges to rebuild Gaza and unite Palestinian territories in first address"
+      }
     ]
   },
   "us-politicians-west-bank-2026": {
@@ -96,11 +292,52 @@
     "summary": "Incidents in which US officials visiting the West Bank have been obstructed or detained by Israeli settlers and soldiers, beginning with Representative Ro Khanna's detention on 8 July 2026, highlighting disputes over settler accountability and Israeli government responses to American criticism.",
     "started": "2026-07-08",
     "last_entry": "2026-07-08",
-    "actors": ["ro-khanna"],
-    "geography": ["west-bank"],
-    "categories": ["west-bank", "settler-violence", "us-politics", "congress"],
+    "actors": [
+      "ro-khanna"
+    ],
+    "geography": [
+      "west-bank"
+    ],
+    "categories": [
+      "west-bank",
+      "settler-violence",
+      "us-politics",
+      "congress"
+    ],
     "entries": [
-      {"date": "2026-07-08", "file": "2026-07-08-ro-khanna-detained-west-bank.md", "headline": "US Rep. Ro Khanna detained by armed settlers and Israeli soldiers in West Bank for over an hour"}
+      {
+        "date": "2026-07-08",
+        "file": "2026-07-08-ro-khanna-detained-west-bank.md",
+        "headline": "US Rep. Ro Khanna detained by armed settlers and Israeli soldiers in West Bank for over an hour"
+      }
+    ]
+  },
+  "india-israel-arms-transfers-2026": {
+    "title": "India's Arms Pipeline to Israel During the Gaza War (2026)",
+    "summary": "Documentation, via Amnesty International and Al Jazeera investigations, of the scale of Indian state-owned and private-company arms shipments to Israel during the Gaza war, and the accountability questions this raises under international law.",
+    "started": "2026-07-30",
+    "last_entry": "2026-07-30",
+    "actors": [
+      "amnesty-international",
+      "agnes-callamard",
+      "netanyahu"
+    ],
+    "geography": [
+      "india",
+      "israel",
+      "gaza"
+    ],
+    "categories": [
+      "arms-transfers",
+      "gaza",
+      "india"
+    ],
+    "entries": [
+      {
+        "date": "2026-07-30",
+        "file": "2026-07-30-amnesty-india-arms-israel.md",
+        "headline": "Amnesty: India sent nearly 2,600 arms shipments to Israel during Gaza war"
+      }
     ]
   }
 }
