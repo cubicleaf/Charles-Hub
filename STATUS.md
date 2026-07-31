@@ -1,8 +1,14 @@
 # Charles Hub — Status
 
-**Last updated:** 2026-07-28
+**Last updated:** 2026-07-31
 
 Companion status file. Records major structural decisions and progress.
+
+## 2026-07-31 — Favicon set built and wired
+
+**What:** Full favicon set (`favicon.ico`, 16/32/180/192/512 PNGs, `site.webmanifest`) generated and added to project root; `<link>` tags wired into `index.html`. Design: same nested-squircle shape as Master Reader's favicon (outer white rounded-square shell, inner sand `#d4c9b3` squircle) since Charles Hub is a literal MR fork, but the top bar is replaced with "C-DAWG" text instead of MR's plain third bar. Bar/text color is `#3d2f1f` ("deep espresso," a documented candidate from this file's own `--btn-earth` color-swap comment) — not MR's original ink `#2c2416`, chosen so the mark reads as warm dark bronze rather than near-black. Sized at 95% canvas fill (max safe size), matching MR/Generations.
+**Why:** Part of the portfolio-wide favicon rollout; grounded in Charles Hub's real CSS tokens rather than inventing new colors.
+**How to apply:** Files live in project root with relative `href`s (Charles Hub has no rewrite rule like MR's, so relative paths are correct here). Not pushed yet — see `webdev/_docs/favicon-pipeline-STATUS.md` push blocker; command handed to Tim directly.
 
 ## 2026-07-28 (later same day) — Fixed fountain-invisible-on-first-load, added Tech chron-nav arrows (Tim caught both live)
 
