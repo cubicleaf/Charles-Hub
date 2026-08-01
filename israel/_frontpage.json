@@ -1,12 +1,11 @@
 {
-  "generated": "2026-07-29T23:16:51-04:00",
-  "lead_file": "2026-07-29-us-strikes-iran-jordan-attack.md",
-  "lead_reason": "Highest significance (5); active war with Iran reignites after Jordan base attack",
+  "generated": "2026-08-01T09:15:00-04:00",
+  "lead_file": "2026-07-31-hamas-disarmament-agreement.md",
+  "lead_reason": "Highest significance (5) -- war-ending Gaza disarmament/withdrawal roadmap",
   "secondary_files": [
-    "2026-07-28-poll-americans-netanyahu-arrest.md",
-    "2026-07-28-lebanon-drone-strikes-apartment.md"
+    "2026-07-31-nablus-raid-eleven-injured.md"
   ],
   "promoted": [],
   "slow_cycle_active": false,
-  "todays_sig3plus_count": 5
+  "todays_sig3plus_count": 2
 }

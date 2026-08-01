@@ -3,13 +3,14 @@
     "title": "Israeli Military Campaign in Lebanon (2026)",
     "summary": "Israel's sustained air and ground campaign against Hezbollah in southern Lebanon, ongoing since 2 March 2026, producing mounting civilian casualties, repeated incidents involving UNIFIL peacekeepers, and a security zone approximately 10 km inside Lebanese territory. Israel broke the ceasefire announced on 19 June 2026 the following day, killing at least 50 people and triggering Iran's reclosure of the Strait of Hormuz.",
     "started": "2026-05-02",
-    "last_entry": "2026-07-28",
+    "last_entry": "2026-08-01",
     "actors": [
       "idf",
       "hezbollah",
       "unifil",
       "netanyahu",
-      "msf"
+      "msf",
+      "nawaf-salam"
     ],
     "geography": [
       "southern-lebanon",
@@ -42,6 +43,11 @@
         "date": "2026-07-28",
         "file": "2026-07-28-lebanon-drone-strikes-apartment.md",
         "headline": "Israeli drones strike Nabatieh apartment building as demolitions continue; UN warns of war crimes, France demands withdrawal"
+      },
+      {
+        "date": "2026-08-01",
+        "file": "2026-08-01-lebanon-ceasefire-violation-taher.md",
+        "headline": "Lebanese PM condemns Israeli artillery strike on Ali al-Taher hills as ceasefire violation"
       }
     ]
   },
@@ -145,7 +151,7 @@
     "title": "Israeli Territorial Expansion and Destruction in Gaza",
     "summary": "Israel's systematic expansion of territorial control in Gaza beyond the October 2025 ceasefire Yellow Line, combined with near-total destruction of civilian infrastructure. Netanyahu directed the IDF to expand control from 60 to 70 percent of Gaza. Satellite imagery from February 2026 shows 94 percent of cemeteries destroyed, 97 percent of schools damaged or destroyed, and less than 5 percent of agricultural land usable. By June 2026, the post-ceasefire killing toll reached 1,007 Palestinians. US-appointed mediator Mladenov warned the Security Council the situation risks becoming 'permanent.'",
     "started": "2026-05-31",
-    "last_entry": "2026-07-23",
+    "last_entry": "2026-07-30",
     "actors": [
       "netanyahu",
       "idf"
@@ -177,6 +183,11 @@
         "date": "2026-07-23",
         "file": "2026-07-23-gaza-ceasefire-violations-idf-strikes.md",
         "headline": "Israeli strikes kill four in Gaza as post-ceasefire Palestinian death toll passes 1,185"
+      },
+      {
+        "date": "2026-07-30",
+        "file": "2026-07-30-gaza-strikes-kill-children.md",
+        "headline": "Israeli strikes kill 8-year-old and 18-month-old in Gaza as post-ceasefire toll passes 1,214"
       }
     ]
   },
@@ -184,7 +195,7 @@
     "title": "West Bank Military Crackdown and Settler Violence Surge (2026)",
     "summary": "A wide-scale Israeli military operation across West Bank villages, ordered by Netanyahu and Defense Minister Katz on 24 July 2026 following an attack near Havat Gilad that killed two Israeli soldiers, and a separate deadly confrontation in the village of Tal that killed four Palestinians. The operation produced mass arrests, home raids across multiple governorates, and continued settler arson attacks, drawing condemnation from the UN Special Rapporteur on the Palestinian territories and Human Rights Watch.",
     "started": "2026-07-24",
-    "last_entry": "2026-07-29",
+    "last_entry": "2026-07-31",
     "actors": [
       "netanyahu",
       "israel-katz",
@@ -230,6 +241,11 @@
         "date": "2026-07-29",
         "file": "2026-07-29-canada-israel-settlement-statement.md",
         "headline": "Israel accuses Canada of emboldening 'terror' after Ottawa condemns West Bank settlement expansion"
+      },
+      {
+        "date": "2026-07-31",
+        "file": "2026-07-31-nablus-raid-eleven-injured.md",
+        "headline": "Eleven Palestinians, including four children, injured as Israeli settlers and soldiers storm Nablus-area towns"
       }
     ]
   },
@@ -337,6 +353,37 @@
         "date": "2026-07-30",
         "file": "2026-07-30-amnesty-india-arms-israel.md",
         "headline": "Amnesty: India sent nearly 2,600 arms shipments to Israel during Gaza war"
+      }
+    ]
+  },
+  "gaza-disarmament-roadmap-2026": {
+    "title": "Gaza Disarmament and Ceasefire Roadmap Negotiations (2026)",
+    "summary": "Negotiations brokered by the US-led Board of Peace with Egypt, Qatar and Turkiye over a phased roadmap requiring Hamas to disarm in stages as Israel withdraws its forces from Gaza -- the long-delayed next phase of the October 2025 ceasefire, announced 31 July 2026 amid rejection from Israeli hardliners and unresolved implementation questions.",
+    "started": "2026-07-31",
+    "last_entry": "2026-07-31",
+    "actors": [
+      "trump",
+      "ben-gvir",
+      "netanyahu",
+      "gadi-eisenkot",
+      "ghazi-hamad",
+      "nickolay-mladenov",
+      "kaja-kallas"
+    ],
+    "geography": [
+      "gaza",
+      "israel"
+    ],
+    "categories": [
+      "ceasefire",
+      "disarmament",
+      "diplomacy"
+    ],
+    "entries": [
+      {
+        "date": "2026-07-31",
+        "file": "2026-07-31-hamas-disarmament-agreement.md",
+        "headline": "Hamas agrees to phased Gaza disarmament roadmap as Israeli hardliners reject deal"
       }
     ]
   }

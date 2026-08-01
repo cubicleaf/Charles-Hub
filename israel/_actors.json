@@ -2,8 +2,8 @@
   "idf": {
     "full_name": "Israel Defense Forces",
     "type": "institution",
-    "context_text": "",
-    "verified_on": null
+    "context_text": "The Israel Defense Forces (IDF) is Israel's military, encompassing army, navy, and air force branches under a unified command structure. Since October 2023 it has conducted a sustained military campaign in Gaza and, since March 2026, an expanded campaign in southern Lebanon against Hezbollah, alongside continued operations in the occupied West Bank. A UN commission of inquiry concluded in mid-2026 that the IDF has deliberately targeted children in Gaza, a finding the Israeli government disputes. The IDF operates under civilian government direction but has at times publicly signaled disagreement with government decisions on ceasefire enforcement and troop withdrawal timelines.",
+    "verified_on": "2026-08-01"
   },
   "hezbollah": {
     "full_name": "Hezbollah",
@@ -20,8 +20,8 @@
   "netanyahu": {
     "full_name": "Benjamin Netanyahu",
     "type": "person",
-    "context_text": "",
-    "verified_on": null
+    "context_text": "Benjamin Netanyahu is Israel's Prime Minister, the longest-serving in the country's history, heading a coalition government dependent on far-right and religious parties including Otzma Yehudit and Religious Zionism. He faces an outstanding International Criminal Court arrest warrant, issued in November 2024, over alleged war crimes and crimes against humanity in Gaza, and continues to stand trial domestically on corruption charges. Netanyahu has publicly committed to Hamas's total defeat while simultaneously negotiating phased ceasefire and disarmament frameworks with US mediation.",
+    "verified_on": "2026-08-01"
   },
   "irgc": {
     "full_name": "Islamic Revolutionary Guard Corps",
@@ -38,8 +38,8 @@
   "trump": {
     "full_name": "Donald Trump",
     "type": "person",
-    "context_text": "",
-    "verified_on": null
+    "context_text": "Donald Trump is the 47th President of the United States, having returned to office in January 2025 after a first term from 2017-2021. His administration has pursued a 20-point plan for ending the Gaza war, brokered through what it calls the Board of Peace, an international body intended to oversee Gaza's postwar governance and reconstruction. Trump has repeatedly claimed personal credit for regional ceasefires, including the October 2025 Gaza truce and the mid-2026 US-Iran Memorandum of Understanding, while facing skepticism from allies and adversaries over enforcement. He has framed continued US support for Israel as conditional on progress toward ending the war.",
+    "verified_on": "2026-08-01"
   },
   "pezeshkian": {
     "full_name": "Masoud Pezeshkian",
@@ -62,8 +62,8 @@
   "ben-gvir": {
     "full_name": "Itamar Ben-Gvir",
     "type": "person",
-    "context_text": "",
-    "verified_on": null
+    "context_text": "Itamar Ben-Gvir is Israel's National Security Minister and leader of the far-right Otzma Yehudit (Jewish Power) party, part of Netanyahu's governing coalition since December 2022. A former disciple of the outlawed Kach movement, once convicted of incitement to racism and supporting a terrorist organization, he has built his political career on hardline positions toward Palestinians, including expanded settlement construction and weakened use-of-force restrictions for police and soldiers. He has repeatedly threatened to collapse the governing coalition over ceasefire and peace-plan concessions he views as insufficiently punitive toward Hamas.",
+    "verified_on": "2026-08-01"
   },
   "msf": {
     "full_name": "Médecins Sans Frontières",
@@ -160,5 +160,35 @@
     "type": "institution",
     "context_text": "The Office of the UN High Commissioner for Human Rights (OHCHR), headed by Volker Türk, is the principal United Nations entity mandated to promote and protect human rights globally. It regularly documents and reports on Israeli settlement expansion and settler violence in the occupied West Bank, drawing on UN field monitoring data.",
     "verified_on": "2026-07-29"
+  },
+  "gadi-eisenkot": {
+    "full_name": "Gadi Eisenkot",
+    "type": "person",
+    "context_text": "Gadi Eisenkot is a retired Israeli general who served as IDF Chief of Staff from 2015 to 2019, during which he developed the 'Dahieh Doctrine' calling for disproportionate force to establish deterrence against Hezbollah. He joined Netanyahu's war cabinet as a non-voting observer during the Gaza war's first year before resigning in June 2024 in protest of the government's conduct, having lost his own son and nephew in the fighting. He has since emerged as a leading contender to replace Netanyahu, positioning himself as a critic of the government's failure to secure a decisive end to the conflict.",
+    "verified_on": "2026-08-01"
+  },
+  "ghazi-hamad": {
+    "full_name": "Ghazi Hamad",
+    "type": "person",
+    "context_text": "Ghazi Hamad is a senior Hamas political bureau member and one of the movement's principal negotiators in ceasefire and prisoner-exchange talks. Born in 1964 in the Yibna refugee camp, he trained as a veterinarian before becoming a journalist and later a Hamas official, previously serving as the group's deputy foreign minister and head of the Gaza-Egypt border crossing authority. He left Gaza for Lebanon shortly before the October 2023 Hamas attack on Israel that triggered the war, and has represented Hamas's position in international media as disarmament became a central sticking point in negotiations.",
+    "verified_on": "2026-08-01"
+  },
+  "nickolay-mladenov": {
+    "full_name": "Nickolay Mladenov",
+    "type": "person",
+    "context_text": "Nickolay Mladenov is a Bulgarian diplomat and former Bulgarian foreign and defense minister who served as UN Special Coordinator for the Middle East Peace Process from 2015 to 2020, working extensively with Israeli, Palestinian Authority, and Hamas officials. In January 2026 the Trump administration and Israel named him director-general of the Board of Peace, the international body established to oversee Gaza's postwar governance, weapons decommissioning, and reconstruction. He has cultivated a reputation for balanced engagement with both sides and has stressed that the disarmament roadmap's implementation and verification mechanisms matter more than the agreement's announcement.",
+    "verified_on": "2026-08-01"
+  },
+  "kaja-kallas": {
+    "full_name": "Kaja Kallas",
+    "type": "person",
+    "context_text": "Kaja Kallas is a former Prime Minister of Estonia (2021-2024) who has served since December 2024 as the European Union's High Representative for Foreign Affairs and Security Policy and a Vice-President of the European Commission, the bloc's most senior foreign policy post. The daughter of former Estonian Prime Minister Siim Kallas, she built her earlier career as a lawyer and MEP focused on digital markets and competition law. As EU foreign policy chief she has been a prominent voice on Ukraine and has offered cautious, conditional statements on Israel-Palestine developments.",
+    "verified_on": "2026-08-01"
+  },
+  "nawaf-salam": {
+    "full_name": "Nawaf Salam",
+    "type": "person",
+    "context_text": "Nawaf Salam is the Prime Minister of Lebanon, in office since February 2025. A member of a prominent Beirut Sunni political family, he holds law and political science doctorates from Harvard and Sciences Po and served as Lebanon's ambassador to the United Nations from 2007 to 2017 before sitting on the International Court of Justice, where he was elected president in 2024. As prime minister he has repeatedly protested Israeli military activity in southern Lebanon as violations of the ceasefire announced in mid-2026, while lacking direct authority over Hezbollah, whose disarmament remains a central unresolved issue in Lebanese politics.",
+    "verified_on": "2026-08-01"
   }
 }

@@ -8,6 +8,110 @@
     "title": "Intent"
   },
   {
+    "file": "2026-08-01-lebanon-ceasefire-violation-taher.md",
+    "date": "2026-08-01",
+    "title": "Lebanese PM condemns Israeli artillery strike on Ali al-Taher hills as ceasefire violation",
+    "contested": false,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-08-01",
+    "significance": 2,
+    "significance_reason": "Localized shelling and PM condemnation; no casualties reported, no new escalation",
+    "geography": [
+      "southern-lebanon"
+    ],
+    "actors": [
+      "nawaf-salam"
+    ],
+    "categories": [
+      "military-strikes",
+      "ceasefire-violations"
+    ],
+    "thread_id": "israel-lebanon-strikes-2026"
+  },
+  {
+    "file": "2026-07-31-nablus-raid-eleven-injured.md",
+    "date": "2026-07-31",
+    "title": "Eleven Palestinians, including four children, injured as Israeli settlers and soldiers storm Nablus-area towns",
+    "contested": false,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-08-01",
+    "significance": 3,
+    "significance_reason": "West Bank crackdown spreads to new towns; +1 thread coupling applied",
+    "geography": [
+      "west-bank",
+      "nablus",
+      "tal",
+      "ramallah",
+      "bethlehem",
+      "salfit",
+      "tulkarem",
+      "beita"
+    ],
+    "actors": [
+      "idf"
+    ],
+    "categories": [
+      "west-bank",
+      "settler-violence",
+      "military-operation"
+    ],
+    "thread_id": "west-bank-crackdown-2026"
+  },
+  {
+    "file": "2026-07-31-hamas-disarmament-agreement.md",
+    "date": "2026-07-31",
+    "title": "Hamas agrees to phased Gaza disarmament roadmap as Israeli hardliners reject deal",
+    "contested": true,
+    "estimated_read_minutes": 4,
+    "run_date": "2026-08-01",
+    "significance": 5,
+    "significance_reason": "War-ending Gaza disarmament/withdrawal roadmap; cabinet-tier stakes, durable if implemented",
+    "geography": [
+      "gaza",
+      "israel"
+    ],
+    "actors": [
+      "trump",
+      "ben-gvir",
+      "netanyahu",
+      "gadi-eisenkot",
+      "ghazi-hamad",
+      "nickolay-mladenov",
+      "kaja-kallas"
+    ],
+    "categories": [
+      "ceasefire",
+      "disarmament",
+      "diplomacy",
+      "gaza"
+    ],
+    "thread_id": "gaza-disarmament-roadmap-2026"
+  },
+  {
+    "file": "2026-07-30-gaza-strikes-kill-children.md",
+    "date": "2026-07-30",
+    "title": "Israeli strikes kill 8-year-old and 18-month-old in Gaza as post-ceasefire toll passes 1,214",
+    "contested": false,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-08-01",
+    "significance": 2,
+    "significance_reason": "Continuing ceasefire-violation toll; incremental update, no new escalation",
+    "geography": [
+      "gaza",
+      "khan-younis",
+      "deir-el-balah"
+    ],
+    "actors": [
+      "idf"
+    ],
+    "categories": [
+      "civilian-casualties",
+      "ceasefire-violations",
+      "gaza"
+    ],
+    "thread_id": "gaza-territorial-control-2026"
+  },
+  {
     "file": "2026-07-30-amnesty-india-arms-israel.md",
     "date": "2026-07-30",
     "title": "Amnesty: India sent nearly 2,600 arms shipments to Israel during Gaza war",
