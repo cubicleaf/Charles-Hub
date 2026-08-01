@@ -4,6 +4,11 @@
 
 Companion status file. Records major structural decisions and progress.
 
+## 2026-07-31 (v3) — True max-fill bug fixed; inner squircle enlarged 20%
+**What:** Same fix as Master Reader's STATUS documents in detail: the outer shell's declared "95% fill" was actually rendering at 79.3% due to the source path's own internal padding. Corrected and verified via pixel measurement. Inner sand squircle (and C-DAWG text bar) enlarged another 20% on top per direct feedback.
+**Why:** Portfolio-wide favicon sizing bug, caught via a side-by-side comparison against Greenway Cleanup.
+**How to apply:** See Master Reader's STATUS.md for the full technical writeup — Charles Hub shares the identical geometry since it's a literal fork.
+
 ## 2026-07-31 — Favicon set built and wired
 
 **What:** Full favicon set (`favicon.ico`, 16/32/180/192/512 PNGs, `site.webmanifest`) generated and added to project root; `<link>` tags wired into `index.html`. Design: same nested-squircle shape as Master Reader's favicon (outer white rounded-square shell, inner sand `#d4c9b3` squircle) since Charles Hub is a literal MR fork, but the top bar is replaced with "C-DAWG" text instead of MR's plain third bar. Bar/text color is `#3d2f1f` ("deep espresso," a documented candidate from this file's own `--btn-earth` color-swap comment) — not MR's original ink `#2c2416`, chosen so the mark reads as warm dark bronze rather than near-black. Sized at 95% canvas fill (max safe size), matching MR/Generations.
