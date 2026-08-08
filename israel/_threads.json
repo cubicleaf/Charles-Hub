@@ -3,7 +3,7 @@
     "title": "Israeli Military Campaign in Lebanon (2026)",
     "summary": "Israel's sustained air and ground campaign against Hezbollah in southern Lebanon, ongoing since 2 March 2026, producing mounting civilian casualties, repeated incidents involving UNIFIL peacekeepers, and a security zone approximately 10 km inside Lebanese territory. Israel broke the ceasefire announced on 19 June 2026 the following day, killing at least 50 people and triggering Iran's reclosure of the Strait of Hormuz.",
     "started": "2026-05-02",
-    "last_entry": "2026-08-01",
+    "last_entry": "2026-08-08",
     "actors": [
       "idf",
       "hezbollah",
@@ -48,6 +48,11 @@
         "date": "2026-08-01",
         "file": "2026-08-01-lebanon-ceasefire-violation-taher.md",
         "headline": "Lebanese PM condemns Israeli artillery strike on Ali al-Taher hills as ceasefire violation"
+      },
+      {
+        "date": "2026-08-08",
+        "file": "2026-08-08-lebanon-shelling-al-mansouri.md",
+        "headline": "Israeli artillery shells vicinity of Lebanese town of al-Mansouri"
       }
     ]
   },

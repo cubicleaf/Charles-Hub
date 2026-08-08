@@ -1,11 +1,22 @@
 {
-  "generated": "2026-08-01T09:15:00-04:00",
-  "lead_file": "2026-07-31-hamas-disarmament-agreement.md",
-  "lead_reason": "Highest significance (5) -- war-ending Gaza disarmament/withdrawal roadmap",
-  "secondary_files": [
-    "2026-07-31-nablus-raid-eleven-injured.md"
+  "generated": "2026-08-08T07:25:25-04:00",
+  "lead_file": "2026-08-08-lebanon-shelling-al-mansouri.md",
+  "lead_reason": "Only story published today (significance 1); heavy quarantine day",
+  "secondary_files": [],
+  "promoted": [
+    {
+      "file": "2026-07-31-hamas-disarmament-agreement.md",
+      "promotion_reason": "Today is light (0 sig>=3 stories). The gaza-disarmament-roadmap-2026 thread was updated 8 days ago and remains active.",
+      "days_old": 8,
+      "thread_id": "gaza-disarmament-roadmap-2026"
+    },
+    {
+      "file": "2026-07-29-us-strikes-iran-jordan-attack.md",
+      "promotion_reason": "Today is light (0 sig>=3 stories). The us-iran-mou-2026 thread was updated 10 days ago and remains active.",
+      "days_old": 10,
+      "thread_id": "us-iran-mou-2026"
+    }
   ],
-  "promoted": [],
-  "slow_cycle_active": false,
-  "todays_sig3plus_count": 2
+  "slow_cycle_active": true,
+  "todays_sig3plus_count": 0
 }

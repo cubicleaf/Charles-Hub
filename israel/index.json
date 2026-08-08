@@ -8,6 +8,28 @@
     "title": "Intent"
   },
   {
+    "file": "2026-08-08-lebanon-shelling-al-mansouri.md",
+    "date": "2026-08-08",
+    "title": "Israeli artillery shells vicinity of Lebanese town of al-Mansouri",
+    "contested": false,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-08-08",
+    "significance": 1,
+    "significance_reason": "Routine shelling incident, no casualties reported, no new facts",
+    "geography": [
+      "southern-lebanon",
+      "al-mansouri"
+    ],
+    "actors": [
+      "idf"
+    ],
+    "categories": [
+      "military-strikes",
+      "ceasefire-violations"
+    ],
+    "thread_id": "israel-lebanon-strikes-2026"
+  },
+  {
     "file": "2026-08-01-lebanon-ceasefire-violation-taher.md",
     "date": "2026-08-01",
     "title": "Lebanese PM condemns Israeli artillery strike on Ali al-Taher hills as ceasefire violation",
