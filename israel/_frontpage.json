@@ -1,22 +1,9 @@
 {
-  "generated": "2026-08-08T07:25:25-04:00",
-  "lead_file": "2026-08-08-lebanon-shelling-al-mansouri.md",
-  "lead_reason": "Only story published today (significance 1); heavy quarantine day",
+  "generated": "2026-08-15T07:30:29-04:00",
+  "lead_file": "2026-08-13-tlaib-rally-cancelled-anti-jew.md",
+  "lead_reason": "Only surviving story from today's run (significance 2); two higher-significance candidates quarantined by fresh-eyes review",
   "secondary_files": [],
-  "promoted": [
-    {
-      "file": "2026-07-31-hamas-disarmament-agreement.md",
-      "promotion_reason": "Today is light (0 sig>=3 stories). The gaza-disarmament-roadmap-2026 thread was updated 8 days ago and remains active.",
-      "days_old": 8,
-      "thread_id": "gaza-disarmament-roadmap-2026"
-    },
-    {
-      "file": "2026-07-29-us-strikes-iran-jordan-attack.md",
-      "promotion_reason": "Today is light (0 sig>=3 stories). The us-iran-mou-2026 thread was updated 10 days ago and remains active.",
-      "days_old": 10,
-      "thread_id": "us-iran-mou-2026"
-    }
-  ],
+  "promoted": [],
   "slow_cycle_active": true,
   "todays_sig3plus_count": 0
 }

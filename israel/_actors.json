@@ -8,8 +8,8 @@
   "hezbollah": {
     "full_name": "Hezbollah",
     "type": "institution",
-    "context_text": "",
-    "verified_on": null
+    "context_text": "Hezbollah is a Lebanese Shia Islamist political party and armed movement founded in 1982 during Israel's occupation of southern Lebanon, with longstanding backing from Iran. It holds seats in the Lebanese parliament and maintains an armed force historically outside state control, which the United States, Israel and other governments designate a terrorist organization. Founding leader Hassan Nasrallah was killed in an Israeli strike on Beirut in September 2024; Naim Qassem has led the group since. Under a mid-2026 US-brokered framework between Lebanon and Israel, Hezbollah is not a direct party but faces demands to disarm as Israeli forces gradually withdraw from the south.",
+    "verified_on": "2026-08-15"
   },
   "unifil": {
     "full_name": "United Nations Interim Force in Lebanon",
@@ -66,7 +66,7 @@
     "verified_on": "2026-08-01"
   },
   "msf": {
-    "full_name": "Médecins Sans Frontières",
+    "full_name": "M\u00e9decins Sans Fronti\u00e8res",
     "type": "institution",
     "context_text": "",
     "verified_on": null
@@ -114,9 +114,9 @@
     "verified_on": "2026-07-29"
   },
   "volker-turk": {
-    "full_name": "Volker Türk",
+    "full_name": "Volker T\u00fcrk",
     "type": "person",
-    "context_text": "Volker Türk is an Austrian human rights lawyer who has served as UN High Commissioner for Human Rights since October 2022, the UN's top human rights official, based in Geneva. He has repeatedly warned that Israeli military conduct in Gaza and Lebanon — including demolitions of civilian infrastructure and forced population displacement — may amount to war crimes under international humanitarian law.",
+    "context_text": "Volker T\u00fcrk is an Austrian human rights lawyer who has served as UN High Commissioner for Human Rights since October 2022, the UN's top human rights official, based in Geneva. He has repeatedly warned that Israeli military conduct in Gaza and Lebanon \u2014 including demolitions of civilian infrastructure and forced population displacement \u2014 may amount to war crimes under international humanitarian law.",
     "verified_on": "2026-07-29"
   },
   "yinon-levi": {
@@ -144,9 +144,9 @@
     "verified_on": "2026-07-29"
   },
   "agnes-callamard": {
-    "full_name": "Agnès Callamard",
+    "full_name": "Agn\u00e8s Callamard",
     "type": "person",
-    "context_text": "Agnès Callamard is a French human rights lawyer who has served as Secretary General of Amnesty International since 2021, after previously serving as UN Special Rapporteur on extrajudicial executions. Under her leadership Amnesty has published reports alleging that Israel's conduct in Gaza meets the legal threshold of genocide and has pressed states and companies supplying Israel's military to halt arms transfers.",
+    "context_text": "Agn\u00e8s Callamard is a French human rights lawyer who has served as Secretary General of Amnesty International since 2021, after previously serving as UN Special Rapporteur on extrajudicial executions. Under her leadership Amnesty has published reports alleging that Israel's conduct in Gaza meets the legal threshold of genocide and has pressed states and companies supplying Israel's military to halt arms transfers.",
     "verified_on": "2026-07-29"
   },
   "global-affairs-canada": {
@@ -158,7 +158,7 @@
   "ohchr": {
     "full_name": "Office of the UN High Commissioner for Human Rights",
     "type": "institution",
-    "context_text": "The Office of the UN High Commissioner for Human Rights (OHCHR), headed by Volker Türk, is the principal United Nations entity mandated to promote and protect human rights globally. It regularly documents and reports on Israeli settlement expansion and settler violence in the occupied West Bank, drawing on UN field monitoring data.",
+    "context_text": "The Office of the UN High Commissioner for Human Rights (OHCHR), headed by Volker T\u00fcrk, is the principal United Nations entity mandated to promote and protect human rights globally. It regularly documents and reports on Israeli settlement expansion and settler violence in the occupied West Bank, drawing on UN field monitoring data.",
     "verified_on": "2026-07-29"
   },
   "gadi-eisenkot": {
@@ -190,5 +190,17 @@
     "type": "person",
     "context_text": "Nawaf Salam is the Prime Minister of Lebanon, in office since February 2025. A member of a prominent Beirut Sunni political family, he holds law and political science doctorates from Harvard and Sciences Po and served as Lebanon's ambassador to the United Nations from 2007 to 2017 before sitting on the International Court of Justice, where he was elected president in 2024. As prime minister he has repeatedly protested Israeli military activity in southern Lebanon as violations of the ceasefire announced in mid-2026, while lacking direct authority over Hezbollah, whose disarmament remains a central unresolved issue in Lebanese politics.",
     "verified_on": "2026-08-01"
+  },
+  "rashida-tlaib": {
+    "full_name": "Rashida Tlaib",
+    "type": "person",
+    "context_text": "Rashida Tlaib is a Democratic member of the US House of Representatives representing Michigan's 12th congressional district, first elected in 2018 as the first Palestinian American woman in Congress. A member of the progressive bloc of lawmakers known as 'the Squad,' she has been one of Congress's most vocal critics of Israeli government policy in Gaza and the West Bank, while stating that criticism of Israeli occupation and military conduct is not equivalent to antisemitism.",
+    "verified_on": "2026-08-15"
+  },
+  "michael-gottlieb": {
+    "full_name": "Michael Gottlieb",
+    "type": "person",
+    "context_text": "Michael Gottlieb is a Democratic member of the Florida House of Representatives, representing the state's 102nd district in the Fort Lauderdale area, and a criminal defense lawyer by profession. He chairs the Florida Legislative Jewish Caucus and has previously issued statements responding to antisemitic incidents in South Florida's Jewish community.",
+    "verified_on": "2026-08-15"
   }
 }

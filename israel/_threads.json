@@ -120,7 +120,7 @@
   },
   "icc-israel-warrants-2026": {
     "title": "ICC Proceedings Against Israeli Officials",
-    "summary": "International Criminal Court proceedings against Israeli officials that escalated in 2025–2026. Following arrest warrants for Prime Minister Netanyahu and former Defense Minister Gallant in November 2024, the ICC prosecutor requested a warrant for Finance Minister Smotrich in May 2026, citing forced displacement orders, support for settler expansion into occupied territory, and his public statement that starving Palestinians may be 'justified and moral.' Smotrich responded by announcing he would sign an evacuation order for the Bedouin community of Khan al-Ahmar.",
+    "summary": "International Criminal Court proceedings against Israeli officials that escalated in 2025\u20132026. Following arrest warrants for Prime Minister Netanyahu and former Defense Minister Gallant in November 2024, the ICC prosecutor requested a warrant for Finance Minister Smotrich in May 2026, citing forced displacement orders, support for settler expansion into occupied territory, and his public statement that starving Palestinians may be 'justified and moral.' Smotrich responded by announcing he would sign an evacuation order for the Bedouin community of Khan al-Ahmar.",
     "started": "2026-05-19",
     "last_entry": "2026-07-28",
     "actors": [
@@ -389,6 +389,32 @@
         "date": "2026-07-31",
         "file": "2026-07-31-hamas-disarmament-agreement.md",
         "headline": "Hamas agrees to phased Gaza disarmament roadmap as Israeli hardliners reject deal"
+      }
+    ]
+  },
+  "us-palestine-solidarity-suppression-2026": {
+    "title": "US Crackdowns on Pro-Palestine Speech and Assembly (2026)",
+    "summary": "Instances of US institutions -- venues, universities, state and local officials -- moving to cancel, restrict, or delegitimize pro-Palestinian or Israel-critical speech and assembly, often under accusations of antisemitism, illustrating a domestic front in the broader suppression of Palestine-related discourse.",
+    "started": "2026-08-13",
+    "last_entry": "2026-08-13",
+    "actors": [
+      "rashida-tlaib",
+      "michael-gottlieb"
+    ],
+    "geography": [
+      "florida",
+      "united-states"
+    ],
+    "categories": [
+      "us-politics",
+      "palestine-solidarity",
+      "free-speech"
+    ],
+    "entries": [
+      {
+        "date": "2026-08-13",
+        "file": "2026-08-13-tlaib-rally-cancelled-anti-jew.md",
+        "headline": "Florida venue cancels Rashida Tlaib rally after lawmaker calls it 'anti-Jew'"
       }
     ]
   }

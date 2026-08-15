@@ -8,6 +8,30 @@
     "title": "Intent"
   },
   {
+    "file": "2026-08-13-tlaib-rally-cancelled-anti-jew.md",
+    "date": "2026-08-13",
+    "title": "Florida venue cancels Rashida Tlaib rally after lawmaker calls it 'anti-Jew'",
+    "contested": true,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-08-15",
+    "significance": 2,
+    "significance_reason": "Venue-level speech suppression incident; limited institutional weight, no government action",
+    "geography": [
+      "florida",
+      "united-states"
+    ],
+    "actors": [
+      "rashida-tlaib",
+      "michael-gottlieb"
+    ],
+    "categories": [
+      "us-politics",
+      "palestine-solidarity",
+      "free-speech"
+    ],
+    "thread_id": "us-palestine-solidarity-suppression-2026"
+  },
+  {
     "file": "2026-08-08-lebanon-shelling-al-mansouri.md",
     "date": "2026-08-08",
     "title": "Israeli artillery shells vicinity of Lebanese town of al-Mansouri",
