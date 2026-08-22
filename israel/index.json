@@ -8,6 +8,241 @@
     "title": "Intent"
   },
   {
+    "file": "2026-08-22-world-bank-lebanon-economy-contraction.md",
+    "date": "2026-08-22",
+    "title": "World Bank: war with Israel to shrink Lebanon's economy by 6.4 percent in 2026",
+    "contested": false,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-08-22",
+    "significance": 3,
+    "significance_reason": "Quantified economic toll of Israel's Lebanon campaign adds a new data-driven dimension to an active thread",
+    "geography": [
+      "lebanon",
+      "southern-lebanon"
+    ],
+    "actors": [
+      "idf"
+    ],
+    "categories": [
+      "humanitarian",
+      "lebanon",
+      "ceasefire-violations"
+    ],
+    "thread_id": "israel-lebanon-strikes-2026"
+  },
+  {
+    "file": "2026-08-22-west-bank-teen-killed-settler-attack.md",
+    "date": "2026-08-21",
+    "title": "Israeli settlers kill Palestinian teen in Hebron-area clash; man shot dead in separate Jenin raid",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-08-22",
+    "significance": 3,
+    "significance_reason": "Two more West Bank deaths continue an already sig\u22654 thread's ongoing violence pattern",
+    "geography": [
+      "west-bank",
+      "hebron",
+      "saair",
+      "jenin"
+    ],
+    "actors": [
+      "idf"
+    ],
+    "categories": [
+      "west-bank",
+      "settler-violence",
+      "civilian-casualties"
+    ],
+    "thread_id": "west-bank-crackdown-2026"
+  },
+  {
+    "file": "2026-08-22-us-envoy-israel-golan-turkey-tension.md",
+    "date": "2026-08-22",
+    "title": "US envoy breaks with Washington, says Israel's Golan occupation violates UN resolutions",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-08-22",
+    "significance": 4,
+    "significance_reason": "Sitting US ambassador publicly breaks with Washington policy on Golan occupation",
+    "geography": [
+      "golan-heights",
+      "quneitra",
+      "syria",
+      "abu-al-duhur"
+    ],
+    "actors": [
+      "tom-barrack",
+      "netanyahu"
+    ],
+    "categories": [
+      "syria",
+      "diplomacy",
+      "military-strikes",
+      "occupation"
+    ],
+    "thread_id": "israel-syria-golan-tension-2026",
+    "related_threads": [
+      "israel-lebanon-strikes-2026"
+    ]
+  },
+  {
+    "file": "2026-08-22-turkey-interpol-warrant-netanyahu.md",
+    "date": "2026-08-21",
+    "title": "Turkey seeks Interpol arrest warrant for Netanyahu over May Gaza flotilla interception",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-08-22",
+    "significance": 3,
+    "significance_reason": "New state-level legal mechanism targets Netanyahu, but Interpol notice unlikely to be enforced",
+    "geography": [
+      "turkey",
+      "israel",
+      "cyprus",
+      "gaza"
+    ],
+    "actors": [
+      "netanyahu",
+      "erdogan",
+      "akin-gurlek"
+    ],
+    "categories": [
+      "legal-proceedings",
+      "diplomacy",
+      "gaza"
+    ],
+    "thread_id": "turkey-netanyahu-warrant-2026",
+    "related_threads": [
+      "icc-israel-warrants-2026"
+    ]
+  },
+  {
+    "file": "2026-08-22-lebanon-shelling-mansouri-majdal-zoun.md",
+    "date": "2026-08-22",
+    "title": "Israeli forces shell al-Mansouri, Majdal Zoun and Ali al-Tahir heights in southern Lebanon",
+    "contested": false,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-08-22",
+    "significance": 1,
+    "significance_reason": "Routine shelling and demolitions consistent with ongoing campaign; no casualties reported",
+    "geography": [
+      "southern-lebanon",
+      "al-mansouri",
+      "majdal-zoun",
+      "bayt-al-sayyad"
+    ],
+    "actors": [
+      "idf"
+    ],
+    "categories": [
+      "military-strikes",
+      "ceasefire-violations"
+    ],
+    "thread_id": "israel-lebanon-strikes-2026"
+  },
+  {
+    "file": "2026-08-22-iran-pezeshkian-end-war-position-strength.md",
+    "date": "2026-08-21",
+    "title": "Iran's Pezeshkian calls for war with US to end from 'position of strength' as sanctions loom",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-08-22",
+    "significance": 3,
+    "significance_reason": "Head-of-state rhetoric on ending war, but no concrete de-escalation action accompanies it",
+    "geography": [
+      "iran",
+      "strait-of-hormuz",
+      "washington"
+    ],
+    "actors": [
+      "pezeshkian",
+      "trump"
+    ],
+    "categories": [
+      "us-iran-war",
+      "diplomacy",
+      "blockade"
+    ],
+    "thread_id": "us-iran-mou-2026"
+  },
+  {
+    "file": "2026-08-21-yesh-din-settler-violence-cities.md",
+    "date": "2026-08-21",
+    "title": "Yesh Din: Israeli settler violence expanding from rural West Bank into Palestinian cities",
+    "contested": false,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-08-22",
+    "significance": 3,
+    "significance_reason": "Structural finding documents violence spreading to new geography within an active sig\u22654 thread",
+    "geography": [
+      "west-bank"
+    ],
+    "actors": [
+      "yesh-din"
+    ],
+    "categories": [
+      "west-bank",
+      "settler-violence",
+      "occupation"
+    ],
+    "thread_id": "west-bank-crackdown-2026"
+  },
+  {
+    "file": "2026-08-21-e1-settlement-tender-condemned.md",
+    "date": "2026-08-21",
+    "title": "Israeli E1 settlement tenders draw joint condemnation from seven Western governments",
+    "contested": true,
+    "estimated_read_minutes": 4,
+    "run_date": "2026-08-22",
+    "significance": 5,
+    "significance_reason": "Major settlement tender draws unprecedented 7-nation condemnation; UK summons envoy",
+    "geography": [
+      "west-bank",
+      "east-jerusalem",
+      "maale-adumim",
+      "khan-al-ahmar"
+    ],
+    "actors": [
+      "smotrich",
+      "ben-gvir",
+      "ed-miliband",
+      "ir-amim",
+      "ubai-al-aboudi",
+      "ines-abdel-razek"
+    ],
+    "categories": [
+      "west-bank",
+      "settlement-policy",
+      "diplomacy"
+    ],
+    "thread_id": "west-bank-e1-settlement-2026"
+  },
+  {
+    "file": "2026-08-20-netanyahu-rejects-international-force-gaza.md",
+    "date": "2026-08-20",
+    "title": "Netanyahu's office rejects international force and reconstruction in Gaza before full Hamas disarmament",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-08-22",
+    "significance": 4,
+    "significance_reason": "PM office directly rejects ISF entry and reconstruction terms, straining Board of Peace roadmap",
+    "geography": [
+      "gaza",
+      "israel"
+    ],
+    "actors": [
+      "netanyahu",
+      "trump",
+      "idf"
+    ],
+    "categories": [
+      "ceasefire",
+      "disarmament",
+      "diplomacy",
+      "gaza"
+    ],
+    "thread_id": "gaza-disarmament-roadmap-2026"
+  },
+  {
     "file": "2026-08-13-tlaib-rally-cancelled-anti-jew.md",
     "date": "2026-08-13",
     "title": "Florida venue cancels Rashida Tlaib rally after lawmaker calls it 'anti-Jew'",

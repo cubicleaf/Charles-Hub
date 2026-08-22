@@ -1,9 +1,12 @@
 {
-  "generated": "2026-08-15T07:30:29-04:00",
-  "lead_file": "2026-08-13-tlaib-rally-cancelled-anti-jew.md",
-  "lead_reason": "Only surviving story from today's run (significance 2); two higher-significance candidates quarantined by fresh-eyes review",
-  "secondary_files": [],
+  "generated": "2026-08-22T08:20:00-04:00",
+  "lead_file": "2026-08-21-e1-settlement-tender-condemned.md",
+  "lead_reason": "Highest-significance survivor (5): E1 settlement tenders draw joint condemnation from seven Western governments",
+  "secondary_files": [
+    "2026-08-22-us-envoy-israel-golan-turkey-tension.md",
+    "2026-08-20-netanyahu-rejects-international-force-gaza.md"
+  ],
   "promoted": [],
-  "slow_cycle_active": true,
-  "todays_sig3plus_count": 0
+  "slow_cycle_active": false,
+  "todays_sig3plus_count": 8
 }

@@ -1,9 +1,9 @@
 {
   "israel-lebanon-strikes-2026": {
     "title": "Israeli Military Campaign in Lebanon (2026)",
-    "summary": "Israel's sustained air and ground campaign against Hezbollah in southern Lebanon, ongoing since 2 March 2026, producing mounting civilian casualties, repeated incidents involving UNIFIL peacekeepers, and a security zone approximately 10 km inside Lebanese territory. Israel broke the ceasefire announced on 19 June 2026 the following day, killing at least 50 people and triggering Iran's reclosure of the Strait of Hormuz.",
+    "summary": "Israel's sustained air and ground campaign against Hezbollah in southern Lebanon, ongoing since 2 March 2026, producing mounting civilian casualties, repeated incidents involving UNIFIL peacekeepers, and a security zone approximately 10 km inside Lebanese territory. Israel broke the ceasefire announced on 19 June 2026 the following day, killing at least 50 people and triggering Iran's reclosure of the Strait of Hormuz. By August 2026 the World Bank projected the campaign would shrink Lebanon's economy by 6.4 percent for the year.",
     "started": "2026-05-02",
-    "last_entry": "2026-08-08",
+    "last_entry": "2026-08-22",
     "actors": [
       "idf",
       "hezbollah",
@@ -53,6 +53,16 @@
         "date": "2026-08-08",
         "file": "2026-08-08-lebanon-shelling-al-mansouri.md",
         "headline": "Israeli artillery shells vicinity of Lebanese town of al-Mansouri"
+      },
+      {
+        "date": "2026-08-22",
+        "file": "2026-08-22-world-bank-lebanon-economy-contraction.md",
+        "headline": "World Bank: war with Israel to shrink Lebanon's economy by 6.4 percent in 2026"
+      },
+      {
+        "date": "2026-08-22",
+        "file": "2026-08-22-lebanon-shelling-mansouri-majdal-zoun.md",
+        "headline": "Israeli forces shell al-Mansouri, Majdal Zoun and Ali al-Tahir heights in southern Lebanon"
       }
     ]
   },
@@ -60,7 +70,7 @@
     "title": "US-Iran Memorandum of Understanding and Implementation Crisis",
     "summary": "The Memorandum of Understanding signed by Presidents Trump and Pezeshkian in mid-June 2026 ended the active US military phase of the US-Iran conflict that began in late February 2026. Its terms included lifting the US naval blockade, reopening the Strait of Hormuz, and a 60-day ceasefire window. Israel's refusal to end its Lebanon offensive placed the MoU in immediate jeopardy; Iran reclosed the Strait of Hormuz on 20 June citing Israeli breaches. Israeli public opinion turned sharply against Trump, with 71 percent no longer trusting the administration.",
     "started": "2026-06-18",
-    "last_entry": "2026-07-29",
+    "last_entry": "2026-08-21",
     "actors": [
       "centcom",
       "trump",
@@ -115,6 +125,11 @@
         "date": "2026-07-29",
         "file": "2026-07-29-us-strikes-iran-jordan-attack.md",
         "headline": "US resumes strikes on Iran after IRGC missile attack on Jordan base"
+      },
+      {
+        "date": "2026-08-21",
+        "file": "2026-08-22-iran-pezeshkian-end-war-position-strength.md",
+        "headline": "Iran's Pezeshkian calls for war with US to end from 'position of strength' as sanctions loom"
       }
     ]
   },
@@ -200,7 +215,7 @@
     "title": "West Bank Military Crackdown and Settler Violence Surge (2026)",
     "summary": "A wide-scale Israeli military operation across West Bank villages, ordered by Netanyahu and Defense Minister Katz on 24 July 2026 following an attack near Havat Gilad that killed two Israeli soldiers, and a separate deadly confrontation in the village of Tal that killed four Palestinians. The operation produced mass arrests, home raids across multiple governorates, and continued settler arson attacks, drawing condemnation from the UN Special Rapporteur on the Palestinian territories and Human Rights Watch.",
     "started": "2026-07-24",
-    "last_entry": "2026-07-31",
+    "last_entry": "2026-08-21",
     "actors": [
       "netanyahu",
       "israel-katz",
@@ -213,7 +228,8 @@
       "al-haq",
       "awdah-hathaleen",
       "global-affairs-canada",
-      "ohchr"
+      "ohchr",
+      "yesh-din"
     ],
     "geography": [
       "west-bank",
@@ -223,7 +239,8 @@
       "jenin",
       "umm-al-khair",
       "masafer-yatta",
-      "canada"
+      "canada",
+      "hebron"
     ],
     "categories": [
       "west-bank",
@@ -251,6 +268,16 @@
         "date": "2026-07-31",
         "file": "2026-07-31-nablus-raid-eleven-injured.md",
         "headline": "Eleven Palestinians, including four children, injured as Israeli settlers and soldiers storm Nablus-area towns"
+      },
+      {
+        "date": "2026-08-21",
+        "file": "2026-08-21-yesh-din-settler-violence-cities.md",
+        "headline": "Yesh Din: Israeli settler violence expanding from rural West Bank into Palestinian cities"
+      },
+      {
+        "date": "2026-08-21",
+        "file": "2026-08-22-west-bank-teen-killed-settler-attack.md",
+        "headline": "Israeli settlers kill Palestinian teen in Hebron-area clash; man shot dead in separate Jenin raid"
       }
     ]
   },
@@ -365,7 +392,7 @@
     "title": "Gaza Disarmament and Ceasefire Roadmap Negotiations (2026)",
     "summary": "Negotiations brokered by the US-led Board of Peace with Egypt, Qatar and Turkiye over a phased roadmap requiring Hamas to disarm in stages as Israel withdraws its forces from Gaza -- the long-delayed next phase of the October 2025 ceasefire, announced 31 July 2026 amid rejection from Israeli hardliners and unresolved implementation questions.",
     "started": "2026-07-31",
-    "last_entry": "2026-07-31",
+    "last_entry": "2026-08-20",
     "actors": [
       "trump",
       "ben-gvir",
@@ -373,7 +400,8 @@
       "gadi-eisenkot",
       "ghazi-hamad",
       "nickolay-mladenov",
-      "kaja-kallas"
+      "kaja-kallas",
+      "idf"
     ],
     "geography": [
       "gaza",
@@ -389,6 +417,11 @@
         "date": "2026-07-31",
         "file": "2026-07-31-hamas-disarmament-agreement.md",
         "headline": "Hamas agrees to phased Gaza disarmament roadmap as Israeli hardliners reject deal"
+      },
+      {
+        "date": "2026-08-20",
+        "file": "2026-08-20-netanyahu-rejects-international-force-gaza.md",
+        "headline": "Netanyahu's office rejects international force and reconstruction in Gaza before full Hamas disarmament"
       }
     ]
   },
@@ -415,6 +448,96 @@
         "date": "2026-08-13",
         "file": "2026-08-13-tlaib-rally-cancelled-anti-jew.md",
         "headline": "Florida venue cancels Rashida Tlaib rally after lawmaker calls it 'anti-Jew'"
+      }
+    ]
+  },
+  "west-bank-e1-settlement-2026": {
+    "title": "E1 Settlement Project and International Response (2026)",
+    "summary": "Israel's advancement of the long-frozen E1 settlement project east of Jerusalem, which would create a continuous Israeli settlement corridor severing the northern and southern West Bank. A government tender for 1,234 homes opened in August 2026 drew a rare joint condemnation from the UK, France, Germany, Italy, the Netherlands, Canada and Norway, with Britain summoning Israel's chargé d'affaires, while a legal challenge from Ir Amim, Peace Now and Bimkom remains pending before the Jerusalem District Court.",
+    "started": "2026-08-21",
+    "last_entry": "2026-08-21",
+    "actors": [
+      "smotrich",
+      "ben-gvir",
+      "ed-miliband",
+      "ir-amim",
+      "ubai-al-aboudi",
+      "ines-abdel-razek"
+    ],
+    "geography": [
+      "west-bank",
+      "east-jerusalem",
+      "maale-adumim",
+      "khan-al-ahmar"
+    ],
+    "categories": [
+      "west-bank",
+      "settlement-policy",
+      "diplomacy"
+    ],
+    "entries": [
+      {
+        "date": "2026-08-21",
+        "file": "2026-08-21-e1-settlement-tender-condemned.md",
+        "headline": "Israeli E1 settlement tenders draw joint condemnation from seven Western governments"
+      }
+    ]
+  },
+  "israel-syria-golan-tension-2026": {
+    "title": "Israeli Military Activity in Syria and Golan Occupation Tensions (2026)",
+    "summary": "Escalating Israeli strikes and ground incursions in southern Syria, including a strike on the Abu al-Duhur airbase, that have strained relations with Turkey and drawn a public break from within the Trump administration itself: US Ambassador to Turkey Tom Barrack has said Israel's occupation of the Golan Heights continues in violation of UN resolutions, despite Trump's 2019 recognition of Israeli sovereignty over the territory.",
+    "started": "2026-08-22",
+    "last_entry": "2026-08-22",
+    "actors": [
+      "tom-barrack",
+      "netanyahu"
+    ],
+    "geography": [
+      "golan-heights",
+      "quneitra",
+      "syria",
+      "abu-al-duhur"
+    ],
+    "categories": [
+      "syria",
+      "diplomacy",
+      "military-strikes",
+      "occupation"
+    ],
+    "entries": [
+      {
+        "date": "2026-08-22",
+        "file": "2026-08-22-us-envoy-israel-golan-turkey-tension.md",
+        "headline": "US envoy breaks with Washington, says Israel's Golan occupation violates UN resolutions"
+      }
+    ]
+  },
+  "turkey-netanyahu-warrant-2026": {
+    "title": "Turkey's Interpol Warrant Effort Against Netanyahu (2026)",
+    "summary": "Turkey's pursuit of an Interpol red notice for the arrest of Israeli Prime Minister Benjamin Netanyahu, tied to an Istanbul court case trying 35 defendants in absentia over the Israeli navy's May 2026 interception of a flotilla attempting to break the Gaza blockade, on charges including genocide and crimes against humanity. The legal track is separate from the outstanding ICC arrest warrant against Netanyahu.",
+    "started": "2026-08-21",
+    "last_entry": "2026-08-21",
+    "actors": [
+      "netanyahu",
+      "erdogan",
+      "akin-gurlek"
+    ],
+    "geography": [
+      "turkey",
+      "israel",
+      "cyprus",
+      "gaza"
+    ],
+    "categories": [
+      "legal-proceedings",
+      "diplomacy",
+      "gaza"
+    ],
+    "entries": [
+      {
+        "date": "2026-08-21",
+        "file": "2026-08-22-turkey-interpol-warrant-netanyahu.md",
+        "headline": "Turkey seeks Interpol arrest warrant for Netanyahu over May Gaza flotilla interception"
       }
     ]
   }

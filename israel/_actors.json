@@ -44,14 +44,14 @@
   "pezeshkian": {
     "full_name": "Masoud Pezeshkian",
     "type": "person",
-    "context_text": "",
-    "verified_on": null
+    "context_text": "Masoud Pezeshkian is a cardiac surgeon and reformist politician who has served as President of Iran since July 2024, after previously serving as health minister under President Khatami (2001-2005) and as a member of parliament from 2008. He favours negotiated agreements with the West, though his authority is ultimately subordinate to Iran's Supreme Leader. Iran has been at war with the United States and Israel since February 2026; Pezeshkian negotiated and has publicly defended a June 2026 memorandum of understanding with Washington against hardline domestic critics who accused him of making concessions, while also arguing Tehran now holds the stronger negotiating position.",
+    "verified_on": "2026-08-22"
   },
   "smotrich": {
     "full_name": "Bezalel Smotrich",
     "type": "person",
-    "context_text": "",
-    "verified_on": null
+    "context_text": "Bezalel Smotrich is Israel's Finance Minister and leader of the far-right Religious Zionism party, in the Knesset since 2015. Born in 1980, he is a West Bank settler who has built his political career on the position that the West Bank and Gaza rightfully belong to the Jewish people and has opposed Palestinian statehood. As an additional minister within the Defence Ministry he oversees the Settlement Administration, which controls land, planning and settlement development in the occupied West Bank. He faces an ICC prosecutor's request for an arrest warrant over forced-displacement orders and settler-expansion policy, and has repeatedly linked settlement construction, including the E1 project, to preventing establishment of a Palestinian state.",
+    "verified_on": "2026-08-22"
   },
   "icc": {
     "full_name": "International Criminal Court",
@@ -202,5 +202,53 @@
     "type": "person",
     "context_text": "Michael Gottlieb is a Democratic member of the Florida House of Representatives, representing the state's 102nd district in the Fort Lauderdale area, and a criminal defense lawyer by profession. He chairs the Florida Legislative Jewish Caucus and has previously issued statements responding to antisemitic incidents in South Florida's Jewish community.",
     "verified_on": "2026-08-15"
+  },
+  "ed-miliband": {
+    "full_name": "Ed Miliband",
+    "type": "person",
+    "context_text": "Ed Miliband is a British Labour Party politician who has served as the UK's Foreign Secretary since 2024, after previously serving as Energy Secretary and as Labour Party leader from 2010 to 2015. The son of Marxist theorist Ralph Miliband, he has held a Doncaster parliamentary seat since 2005. In August 2026 he announced the UK had summoned Israel's chargé d'affaires and demanded reversal of construction tenders for the E1 West Bank settlement project, joining a joint condemnation of the plan issued with France, Germany, Italy, the Netherlands, Canada and Norway.",
+    "verified_on": "2026-08-22"
+  },
+  "ir-amim": {
+    "full_name": "Ir Amim",
+    "type": "institution",
+    "context_text": "Ir Amim is an Israeli NGO, founded in 2000, that monitors and challenges Israeli policy in Jerusalem and the West Bank, focused on the impact of settlement expansion on the prospects for a negotiated resolution of the Israeli-Palestinian conflict. It has pursued legal challenges to the E1 settlement project alongside Peace Now and Bimkom, and said in August 2026 that Israel's government had published new E1 construction tenders despite a pending Jerusalem District Court case and without notifying petitioners as it had previously committed to do.",
+    "verified_on": "2026-08-22"
+  },
+  "ubai-al-aboudi": {
+    "full_name": "Ubai al-Aboudi",
+    "type": "person",
+    "context_text": "Ubai al-Aboudi is a Palestinian human rights advocate who has publicly assessed the E1 settlement project and international responses to Israeli settlement expansion. He has said the E1 project would put a 'final nail in the coffin' of the two-state solution, and has criticized Western governments' condemnations of settlement expansion as 'lip service with little action,' arguing that international impunity has allowed Israel to continue advancing settlement construction on the ground despite verbal objections.",
+    "verified_on": "2026-08-22"
+  },
+  "ines-abdel-razek": {
+    "full_name": "Ines Abdel Razek",
+    "type": "person",
+    "context_text": "Ines Abdel Razek is co-director of the Palestine Institute for Public Diplomacy. Commenting on international condemnation of Israel's E1 settlement tenders in August 2026, she argued that Western governments' references to a threatened 'two-state solution' function as diplomatic rhetoric covering inaction and complicity in Palestinian dispossession, pointing to the destruction of Gaza's civilian infrastructure and displacement of two million people alongside the West Bank's continuing annexation as evidence the prospect had already been foreclosed.",
+    "verified_on": "2026-08-22"
+  },
+  "tom-barrack": {
+    "full_name": "Tom Barrack",
+    "type": "person",
+    "context_text": "Tom Barrack is a Lebanese-American billionaire investor, founder of the private equity firm Colony Capital (now DigitalBridge), and a longtime ally of President Trump who chaired his 2017 inauguration committee. Trump named him US Ambassador to Turkey in 2025 and Special Envoy for Syria the same year, later adding the Iraq envoy role in January 2026. In that capacity he has criticized Israeli military actions in Syria, including a strike on the Abu al-Duhur airbase, warning they could provoke direct confrontation with Turkey, and has publicly diverged from official US recognition of Israeli sovereignty over the Golan Heights.",
+    "verified_on": "2026-08-22"
+  },
+  "erdogan": {
+    "full_name": "Recep Tayyip Erdogan",
+    "type": "person",
+    "context_text": "Recep Tayyip Erdogan is President of Turkey, in office since 2014 after previously serving as prime minister from 2003. His government has been among the most vocal critics of Israel's conduct in Gaza and the West Bank, and in August 2026 Turkey's Justice Ministry sought an Interpol arrest warrant for Israeli Prime Minister Netanyahu over the May 2026 interception of a Gaza-bound flotilla. Netanyahu responded by publicly calling Erdogan an antisemitic dictator who has 'massacred Kurds,' occupies part of Cyprus and jails political opponents and journalists.",
+    "verified_on": "2026-08-22"
+  },
+  "akin-gurlek": {
+    "full_name": "Akin Gurlek",
+    "type": "person",
+    "context_text": "Akin Gurlek is Turkey's Justice Minister. In August 2026 he announced that Turkey was seeking an Interpol red notice for the arrest of Israeli Prime Minister Benjamin Netanyahu, tied to an Istanbul court case trying 35 defendants in absentia over Israel's May 2026 naval interception of a flotilla attempting to break the blockade of Gaza, on charges including genocide, other crimes against humanity, torture, unlawful detention and hijacking.",
+    "verified_on": "2026-08-22"
+  },
+  "yesh-din": {
+    "full_name": "Yesh Din",
+    "type": "institution",
+    "context_text": "Yesh Din is an Israeli human rights organization, founded in 2005, that monitors and documents human rights violations against Palestinians in the occupied West Bank, including settler violence, military conduct and land expropriation, and pursues legal accountability through the Israeli court system. In an August 2026 report titled 'The Next Frontier,' the group found that settler violence had begun shifting from rural areas toward larger, more populated Palestinian cities and towns, a pattern it linked to the government's approval of new settlements and the expansion of unauthorized outposts that authorities have largely left in place.",
+    "verified_on": "2026-08-22"
   }
 }
