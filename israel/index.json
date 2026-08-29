@@ -8,28 +8,28 @@
     "title": "Intent"
   },
   {
-    "file": "2026-08-13-tlaib-rally-cancelled-anti-jew.md",
-    "date": "2026-08-13",
-    "title": "Florida venue cancels Rashida Tlaib rally after lawmaker calls it 'anti-Jew'",
+    "file": "2026-08-28-tlaib-ansari-iran-war-criticism.md",
+    "date": "2026-08-28",
+    "title": "US Congresswomen Tlaib, Ansari denounce 'immoral' Iran war at six-month mark",
     "contested": true,
     "estimated_read_minutes": 2,
-    "run_date": "2026-08-15",
+    "run_date": "2026-08-29",
     "significance": 2,
-    "significance_reason": "Venue-level speech suppression incident; limited institutional weight, no government action",
+    "significance_reason": "Congressional rhetoric at war's six-month mark; no accompanying action, capped by rhetoric rule",
     "geography": [
-      "florida",
-      "united-states"
+      "washington",
+      "iran"
     ],
     "actors": [
       "rashida-tlaib",
-      "michael-gottlieb"
+      "yassamin-ansari"
     ],
     "categories": [
       "us-politics",
-      "palestine-solidarity",
-      "free-speech"
+      "us-iran-war",
+      "congress"
     ],
-    "thread_id": "us-palestine-solidarity-suppression-2026"
+    "thread_id": "us-iran-mou-2026"
   },
   {
     "file": "2026-08-08-lebanon-shelling-al-mansouri.md",

@@ -60,7 +60,7 @@
     "title": "US-Iran Memorandum of Understanding and Implementation Crisis",
     "summary": "The Memorandum of Understanding signed by Presidents Trump and Pezeshkian in mid-June 2026 ended the active US military phase of the US-Iran conflict that began in late February 2026. Its terms included lifting the US naval blockade, reopening the Strait of Hormuz, and a 60-day ceasefire window. Israel's refusal to end its Lebanon offensive placed the MoU in immediate jeopardy; Iran reclosed the Strait of Hormuz on 20 June citing Israeli breaches. Israeli public opinion turned sharply against Trump, with 71 percent no longer trusting the administration.",
     "started": "2026-06-18",
-    "last_entry": "2026-07-29",
+    "last_entry": "2026-08-28",
     "actors": [
       "centcom",
       "trump",
@@ -69,7 +69,9 @@
       "vance",
       "netanyahu",
       "ben-gvir",
-      "smotrich"
+      "smotrich",
+      "rashida-tlaib",
+      "yassamin-ansari"
     ],
     "geography": [
       "strait-of-hormuz",
@@ -115,6 +117,11 @@
         "date": "2026-07-29",
         "file": "2026-07-29-us-strikes-iran-jordan-attack.md",
         "headline": "US resumes strikes on Iran after IRGC missile attack on Jordan base"
+      },
+      {
+        "date": "2026-08-28",
+        "file": "2026-08-28-tlaib-ansari-iran-war-criticism.md",
+        "headline": "US Congresswomen Tlaib, Ansari denounce 'immoral' Iran war at six-month mark"
       }
     ]
   },
