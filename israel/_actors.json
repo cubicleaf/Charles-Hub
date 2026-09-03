@@ -66,7 +66,7 @@
     "verified_on": "2026-08-01"
   },
   "msf": {
-    "full_name": "M\u00e9decins Sans Fronti\u00e8res",
+    "full_name": "Médecins Sans Frontières",
     "type": "institution",
     "context_text": "",
     "verified_on": null
@@ -114,9 +114,9 @@
     "verified_on": "2026-07-29"
   },
   "volker-turk": {
-    "full_name": "Volker T\u00fcrk",
+    "full_name": "Volker Türk",
     "type": "person",
-    "context_text": "Volker T\u00fcrk is an Austrian human rights lawyer who has served as UN High Commissioner for Human Rights since October 2022, the UN's top human rights official, based in Geneva. He has repeatedly warned that Israeli military conduct in Gaza and Lebanon \u2014 including demolitions of civilian infrastructure and forced population displacement \u2014 may amount to war crimes under international humanitarian law.",
+    "context_text": "Volker Türk is an Austrian human rights lawyer who has served as UN High Commissioner for Human Rights since October 2022, the UN's top human rights official, based in Geneva. He has repeatedly warned that Israeli military conduct in Gaza and Lebanon — including demolitions of civilian infrastructure and forced population displacement — may amount to war crimes under international humanitarian law.",
     "verified_on": "2026-07-29"
   },
   "yinon-levi": {
@@ -144,9 +144,9 @@
     "verified_on": "2026-07-29"
   },
   "agnes-callamard": {
-    "full_name": "Agn\u00e8s Callamard",
+    "full_name": "Agnès Callamard",
     "type": "person",
-    "context_text": "Agn\u00e8s Callamard is a French human rights lawyer who has served as Secretary General of Amnesty International since 2021, after previously serving as UN Special Rapporteur on extrajudicial executions. Under her leadership Amnesty has published reports alleging that Israel's conduct in Gaza meets the legal threshold of genocide and has pressed states and companies supplying Israel's military to halt arms transfers.",
+    "context_text": "Agnès Callamard is a French human rights lawyer who has served as Secretary General of Amnesty International since 2021, after previously serving as UN Special Rapporteur on extrajudicial executions. Under her leadership Amnesty has published reports alleging that Israel's conduct in Gaza meets the legal threshold of genocide and has pressed states and companies supplying Israel's military to halt arms transfers.",
     "verified_on": "2026-07-29"
   },
   "global-affairs-canada": {
@@ -158,7 +158,7 @@
   "ohchr": {
     "full_name": "Office of the UN High Commissioner for Human Rights",
     "type": "institution",
-    "context_text": "The Office of the UN High Commissioner for Human Rights (OHCHR), headed by Volker T\u00fcrk, is the principal United Nations entity mandated to promote and protect human rights globally. It regularly documents and reports on Israeli settlement expansion and settler violence in the occupied West Bank, drawing on UN field monitoring data.",
+    "context_text": "The Office of the UN High Commissioner for Human Rights (OHCHR), headed by Volker Türk, is the principal United Nations entity mandated to promote and protect human rights globally. It regularly documents and reports on Israeli settlement expansion and settler violence in the occupied West Bank, drawing on UN field monitoring data.",
     "verified_on": "2026-07-29"
   },
   "gadi-eisenkot": {
@@ -202,5 +202,12 @@
     "type": "person",
     "context_text": "Michael Gottlieb is a Democratic member of the Florida House of Representatives, representing the state's 102nd district in the Fort Lauderdale area, and a criminal defense lawyer by profession. He chairs the Florida Legislative Jewish Caucus and has previously issued statements responding to antisemitic incidents in South Florida's Jewish community.",
     "verified_on": "2026-08-15"
+  },
+  "yair-netanyahu": {
+    "slug": "yair-netanyahu",
+    "full_name": "Yair Netanyahu",
+    "type": "person",
+    "context_text": "Yair Netanyahu is the elder son of Israeli Prime Minister Benjamin Netanyahu and a prominent, combative figure in Israeli right-wing online discourse, known for provocative social media commentary attacking Israel's critics and, at times, the country's own judiciary and media. He holds no formal position in the Israeli government but is widely described by analysts as wielding significant informal influence given his closeness to his father amid the elder Netanyahu's increasingly autocratic style of leadership. His August 2026 comments backing Argentina's claim to the Falkland Islands, framed as retaliation against the UK's recognition of Palestinian statehood, unexpectedly alienated segments of Britain's pro-Israel right.",
+    "verified_on": "2026-09-03"
   }
 }

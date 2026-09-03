@@ -8,28 +8,96 @@
     "title": "Intent"
   },
   {
-    "file": "2026-08-13-tlaib-rally-cancelled-anti-jew.md",
-    "date": "2026-08-13",
-    "title": "Florida venue cancels Rashida Tlaib rally after lawmaker calls it 'anti-Jew'",
+    "file": "2026-09-03-yair-netanyahu-falklands-comment.md",
+    "date": "2026-09-03",
+    "title": "Yair Netanyahu, Israeli PM's son, angers UK right over Falklands comment",
     "contested": true,
-    "estimated_read_minutes": 2,
-    "run_date": "2026-08-15",
-    "significance": 2,
-    "significance_reason": "Venue-level speech suppression incident; limited institutional weight, no government action",
+    "estimated_read_minutes": 3,
+    "run_date": "2026-09-03",
+    "significance": 1,
+    "significance_reason": "Non-official figure's social-media spat; symbolic, no policy consequence",
     "geography": [
-      "florida",
-      "united-states"
+      "uk",
+      "argentina",
+      "falkland-islands"
     ],
     "actors": [
-      "rashida-tlaib",
-      "michael-gottlieb"
+      "yair-netanyahu",
+      "netanyahu"
     ],
     "categories": [
-      "us-politics",
-      "palestine-solidarity",
-      "free-speech"
+      "diplomacy",
+      "uk-israel-relations"
     ],
-    "thread_id": "us-palestine-solidarity-suppression-2026"
+    "thread_id": "uk-israel-relations-2026"
+  },
+  {
+    "file": "2026-09-03-netanyahu-nods-anti-palestinian-song.md",
+    "date": "2026-09-03",
+    "title": "Video shows Netanyahu nodding along as yeshiva students chant anti-Palestinian song",
+    "contested": true,
+    "estimated_read_minutes": 1,
+    "run_date": "2026-09-03",
+    "significance": 1,
+    "significance_reason": "Single video clip; symbolic rhetoric, no accompanying action",
+    "geography": [
+      "israel"
+    ],
+    "actors": [
+      "netanyahu"
+    ],
+    "categories": [
+      "rhetoric",
+      "incitement"
+    ],
+    "thread_id": "gaza-territorial-control-2026"
+  },
+  {
+    "file": "2026-09-03-blair-institute-denies-palestine-textbooks.md",
+    "date": "2026-09-03",
+    "title": "Blair Institute denies former UK PM asked Palestinian Authority to remove 'Palestine' from school textbooks",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-09-03",
+    "significance": 2,
+    "significance_reason": "Denied report on curriculum pressure; contested claim, no confirmed action taken",
+    "geography": [
+      "gaza",
+      "west-bank",
+      "uk"
+    ],
+    "actors": [
+      "nickolay-mladenov"
+    ],
+    "categories": [
+      "gaza-reconstruction",
+      "board-of-peace",
+      "palestine-solidarity",
+      "education"
+    ],
+    "thread_id": "gaza-disarmament-roadmap-2026"
+  },
+  {
+    "file": "2026-09-02-netanyahu-visits-gaza-not-withdrawing.md",
+    "date": "2026-09-02",
+    "title": "Netanyahu visits Gaza, vows the IDF is 'not withdrawing'",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-09-03",
+    "significance": 4,
+    "significance_reason": "PM rejects US withdrawal plan on the ground; concrete raid, captured official, casualties",
+    "geography": [
+      "gaza"
+    ],
+    "actors": [
+      "netanyahu"
+    ],
+    "categories": [
+      "gaza",
+      "military-operations",
+      "ceasefire-violations"
+    ],
+    "thread_id": "gaza-territorial-control-2026"
   },
   {
     "file": "2026-08-08-lebanon-shelling-al-mansouri.md",
