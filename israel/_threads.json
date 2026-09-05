@@ -156,7 +156,7 @@
     "title": "Israeli Territorial Expansion and Destruction in Gaza",
     "summary": "Israel's systematic expansion of territorial control in Gaza beyond the October 2025 ceasefire Yellow Line, combined with near-total destruction of civilian infrastructure. Netanyahu directed the IDF to expand control from 60 to 70 percent of Gaza. Satellite imagery from February 2026 shows 94 percent of cemeteries destroyed, 97 percent of schools damaged or destroyed, and less than 5 percent of agricultural land usable. By June 2026, the post-ceasefire killing toll reached 1,007 Palestinians. US-appointed mediator Mladenov warned the Security Council the situation risks becoming 'permanent.'",
     "started": "2026-05-31",
-    "last_entry": "2026-09-03",
+    "last_entry": "2026-09-05",
     "actors": [
       "netanyahu",
       "idf"
@@ -164,7 +164,8 @@
     "geography": [
       "gaza",
       "khan-younis",
-      "rafah"
+      "rafah",
+      "zeytoun"
     ],
     "categories": [
       "territorial-control",
@@ -203,6 +204,11 @@
         "date": "2026-09-03",
         "file": "2026-09-03-netanyahu-nods-anti-palestinian-song.md",
         "headline": "Video shows Netanyahu nodding along as yeshiva students chant anti-Palestinian song"
+      },
+      {
+        "date": "2026-09-05",
+        "file": "2026-09-05-zeytoun-family-bodies-recovered.md",
+        "headline": "55 bodies of Malka family recovered from rubble in Gaza's Zeytoun"
       }
     ]
   },

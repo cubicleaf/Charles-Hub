@@ -8,6 +8,26 @@
     "title": "Intent"
   },
   {
+    "file": "2026-09-05-zeytoun-family-bodies-recovered.md",
+    "date": "2026-09-05",
+    "title": "55 bodies of Malka family recovered from rubble in Gaza's Zeytoun",
+    "contested": false,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-09-05",
+    "significance": 2,
+    "significance_reason": "High individual toll but thin, delayed-recovery news peg",
+    "geography": [
+      "gaza",
+      "zeytoun"
+    ],
+    "categories": [
+      "gaza",
+      "casualties",
+      "humanitarian"
+    ],
+    "thread_id": "gaza-territorial-control-2026"
+  },
+  {
     "file": "2026-09-03-yair-netanyahu-falklands-comment.md",
     "date": "2026-09-03",
     "title": "Yair Netanyahu, Israeli PM's son, angers UK right over Falklands comment",
