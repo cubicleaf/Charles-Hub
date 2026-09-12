@@ -8,6 +8,74 @@
     "title": "Intent"
   },
   {
+    "file": "2026-09-12-uk-charity-commission-settlement-protest.md",
+    "date": "2026-09-12",
+    "title": "UK Charity Regulator Warns Board of Deputies Foundation Over Israeli Settlement Property Event",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-09-12",
+    "significance": 2,
+    "significance_reason": "UK regulator warns settlement-linked charity; guidance issued, no enforcement action yet",
+    "geography": [
+      "uk",
+      "west-bank",
+      "east-jerusalem"
+    ],
+    "actors": [
+      "icjp",
+      "board-of-deputies-british-jews"
+    ],
+    "categories": [
+      "uk-israel-relations",
+      "settler-policy",
+      "palestine-solidarity"
+    ],
+    "thread_id": "uk-israel-relations-2026"
+  },
+  {
+    "file": "2026-09-12-trump-iran-war-end-soon.md",
+    "date": "2026-09-12",
+    "title": "Trump Predicts Iran War Will End 'Very Soon,' Sees Oil Prices Falling",
+    "contested": false,
+    "estimated_read_minutes": 1,
+    "run_date": "2026-09-12",
+    "significance": 1,
+    "significance_reason": "Presidential prediction only; no accompanying action toward ending the war",
+    "geography": [
+      "ireland",
+      "strait-of-hormuz"
+    ],
+    "actors": [
+      "trump"
+    ],
+    "categories": [
+      "us-iran-war",
+      "diplomacy",
+      "rhetoric"
+    ],
+    "thread_id": "us-iran-mou-2026"
+  },
+  {
+    "file": "2026-09-12-iran-satellite-images-jordan-base-attack.md",
+    "date": "2026-09-12",
+    "title": "Iran Used Chinese Satellite Images to Target US Base in Jordan, WSJ Reports",
+    "contested": false,
+    "estimated_read_minutes": 1,
+    "run_date": "2026-09-12",
+    "significance": 1,
+    "significance_reason": "New intelligence detail on a already-covered July attack; no new action",
+    "geography": [
+      "jordan",
+      "iran"
+    ],
+    "categories": [
+      "us-iran-war",
+      "intelligence",
+      "military-strikes"
+    ],
+    "thread_id": "us-iran-mou-2026"
+  },
+  {
     "file": "2026-09-05-zeytoun-family-bodies-recovered.md",
     "date": "2026-09-05",
     "title": "55 bodies of Malka family recovered from rubble in Gaza's Zeytoun",

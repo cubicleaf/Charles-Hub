@@ -203,6 +203,18 @@
     "context_text": "Michael Gottlieb is a Democratic member of the Florida House of Representatives, representing the state's 102nd district in the Fort Lauderdale area, and a criminal defense lawyer by profession. He chairs the Florida Legislative Jewish Caucus and has previously issued statements responding to antisemitic incidents in South Florida's Jewish community.",
     "verified_on": "2026-08-15"
   },
+  "icjp": {
+    "full_name": "International Centre of Justice for Palestinians",
+    "type": "institution",
+    "context_text": "The International Centre of Justice for Palestinians (ICJP) is a UK-based legal advocacy organisation that pursues accountability for alleged violations of international law connected to Israel's occupation of Palestinian territory, including through complaints to UK regulators and legal proceedings. It filed the complaint that led the Charity Commission to issue regulatory advice to the Board of Deputies Charitable Foundation over a London event promoting Israeli settlement properties.",
+    "verified_on": "2026-09-12"
+  },
+  "board-of-deputies-british-jews": {
+    "full_name": "Board of Deputies of British Jews",
+    "type": "institution",
+    "context_text": "The Board of Deputies of British Jews is the principal representative body of Jewish communities in the United Kingdom, comprising elected deputies from synagogues and Jewish organisations across the country. Its charitable arm, the Board of Deputies Charitable Foundation, funds and supports the Board's activities and is separately registered with the Charity Commission for England and Wales, the regulator that oversees registered charities' compliance with their legal obligations.",
+    "verified_on": "2026-09-12"
+  },
   "yair-netanyahu": {
     "slug": "yair-netanyahu",
     "full_name": "Yair Netanyahu",

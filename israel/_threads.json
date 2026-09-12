@@ -60,7 +60,7 @@
     "title": "US-Iran Memorandum of Understanding and Implementation Crisis",
     "summary": "The Memorandum of Understanding signed by Presidents Trump and Pezeshkian in mid-June 2026 ended the active US military phase of the US-Iran conflict that began in late February 2026. Its terms included lifting the US naval blockade, reopening the Strait of Hormuz, and a 60-day ceasefire window. Israel's refusal to end its Lebanon offensive placed the MoU in immediate jeopardy; Iran reclosed the Strait of Hormuz on 20 June citing Israeli breaches. Israeli public opinion turned sharply against Trump, with 71 percent no longer trusting the administration.",
     "started": "2026-06-18",
-    "last_entry": "2026-07-29",
+    "last_entry": "2026-09-12",
     "actors": [
       "centcom",
       "trump",
@@ -76,7 +76,10 @@
       "persian-gulf",
       "washington",
       "israel",
-      "southern-lebanon"
+      "southern-lebanon",
+      "jordan",
+      "iran",
+      "ireland"
     ],
     "categories": [
       "ceasefire",
@@ -115,6 +118,16 @@
         "date": "2026-07-29",
         "file": "2026-07-29-us-strikes-iran-jordan-attack.md",
         "headline": "US resumes strikes on Iran after IRGC missile attack on Jordan base"
+      },
+      {
+        "date": "2026-09-12",
+        "file": "2026-09-12-iran-satellite-images-jordan-base-attack.md",
+        "headline": "Iran used Chinese satellite images to target US base in Jordan, WSJ reports"
+      },
+      {
+        "date": "2026-09-12",
+        "file": "2026-09-12-trump-iran-war-end-soon.md",
+        "headline": "Trump predicts Iran war will end 'very soon', sees oil prices falling"
       }
     ]
   },
@@ -443,24 +456,34 @@
     "title": "UK-Israel Diplomatic Strain (2026)",
     "summary": "Escalating friction between the UK and Israel spanning the Labour government's paused free-trade talks, suspended arms export licences, sanctions on Ben-Gvir and Smotrich, and public sniping between Israeli figures and the British right, including a 2026 dispute over Yair Netanyahu's comments backing Argentina's claim to the Falkland Islands.",
     "started": "2026-09-03",
-    "last_entry": "2026-09-03",
+    "last_entry": "2026-09-12",
     "actors": [
       "yair-netanyahu",
-      "netanyahu"
+      "netanyahu",
+      "icjp",
+      "board-of-deputies-british-jews"
     ],
     "geography": [
       "uk",
-      "israel"
+      "israel",
+      "west-bank",
+      "east-jerusalem"
     ],
     "categories": [
       "diplomacy",
-      "uk-israel-relations"
+      "uk-israel-relations",
+      "settler-policy"
     ],
     "entries": [
       {
         "date": "2026-09-03",
         "file": "2026-09-03-yair-netanyahu-falklands-comment.md",
         "headline": "Yair Netanyahu, Israeli PM's son, angers UK right over Falklands comment"
+      },
+      {
+        "date": "2026-09-12",
+        "file": "2026-09-12-uk-charity-commission-settlement-protest.md",
+        "headline": "UK charity regulator warns Board of Deputies foundation over Israeli settlement property event"
       }
     ]
   }
