@@ -1,0 +1,53 @@
+{
+  "captured_at": "2026-09-14T06:39:17-04:00",
+  "search_queries": [
+    "AI news September 13 2026",
+    "AI model release September 2026",
+    "tech news September 14 2026",
+    "chip semiconductor news September 2026",
+    "Dario Amodei essay slow down AI development Altman",
+    "robotics news September 2026",
+    "quantum computing news September 2026",
+    "space launch news September 2026",
+    "tech acquisition merger September 2026 billion",
+    "Vietnam 220 million travelers data leak Elasticsearch",
+    "OpenAI ChatGPT blocks ads competitors Adobe",
+    "Trump AI slowdown rejects tech CEOs existential risk",
+    "Samsung HBM4E Nvidia 70% capacity 2031",
+    "\"APIS leak\" Vietnam Viettel Changi published September 2026",
+    "fusion energy news September 2026",
+    "fusion technology $14 billion commercial power Bloomberg investment 2026",
+    "memory chip DRAM price surge news this week September 12 2026",
+    "Nvidia chip news September 12 13 2026"
+  ],
+  "search_result_urls": [
+    "https://www.nbcnews.com/news/us-news/anthropic-ceo-dario-amodei-ai-development-rcna597383",
+    "https://www.axios.com/2026/09/12/anthropic-ai-amodei-pacing",
+    "https://www.cnn.com/2026/09/12/tech/anthropic-ceo-essay-ai",
+    "https://www.cnbc.com/2026/09/12/anthropics-amodei-proposes-plan-to-slow-the-pace-of-advancing-ai-capabilities.html",
+    "https://cdm.press/news/business/2026/09/13/amodei-altman-and-musk-all-want-to-slow-down-ai-david-sacks-says-they-are-building-a-cartel/",
+    "https://www.aljazeera.com/news/2026/9/13/trump-dismisses-calls-for-ai-slowdown-from-leading-tech-ceos",
+    "https://www.upi.com/Top_News/US/2026/09/13/Trump-dismisses-calls-AI-development-slowdown-fears-mount/7791789333525",
+    "https://www.rt.com/news/645664-trump-ai-race-china/",
+    "https://www.bleepingcomputer.com/news/security/220-million-traveler-records-exposed-in-vietnam-linked-apis-leak/",
+    "https://betanews.com/article/vietnam-data-leak-passenger-records/",
+    "https://blog.rankiteo.com/viecha1788913796-viettel-changi-airport-group-breach-september-2026/",
+    "https://yro.slashdot.org/story/26/09/12/1758204/220-million-traveler-records-exposed-in-vietnam-linked-apis-leak",
+    "https://www.travelandtourworld.com/news/article/3sg7my6x5tn7/",
+    "https://www.trendforce.com/news/2026/09/01/news-hbm3e-spot-prices-said-to-be-4-5x-lta-levels-with-samsung-reportedly-locking-70-of-memory-capacity-through-2031",
+    "https://finance.yahoo.com/technology/ai/articles/memory-shortage-isn-t-close-155233128.html",
+    "https://247wallst.com/investing/2026/08/31/the-memory-shortage-isnt-close-to-ending-samsung-just-locked-up-70-of-hbm-capacity-through-2031/",
+    "https://www.tomshardware.com/pc-components/ram/memory-price-surge-begins-to-cool-as-consumers-hit-affordability-limit-ai-demand-still-keeps-dram-and-nand-prices-climbing-through-q3-2026",
+    "https://www.theinformation.com/articles/openai-cuts-adobe-others-advertising-competing-ai-products-chatgpt",
+    "https://seekingalpha.com/news/4641453-openai-limits-adobe-and-other-competitors-from-advertising-in-chatgpt-report",
+    "https://searchengineland.com/openai-reportedly-blocks-rival-ai-tools-from-advertising-in-chatgpt-488019",
+    "https://en.cryptonomist.ch/2026/09/10/openai-ad-policy-changes/",
+    "https://www.bloomberg.com/news/articles/2026-09-09/fusion-technology-attracts-14-billion-in-race-for-commercial-power",
+    "https://www.fusionindustryassociation.org/fusion-industry-attracts-record-annual-funding-of-4-48bn-raising-total-to-14-24bn/",
+    "https://solarquarter.com/2026/07/15/private-fusion-industry-reaches-14-24-billion-investment-milestone-as-commercial-projects-gain-momentum-report/"
+  ],
+  "fetched_urls": [
+    "https://www.nbcnews.com/news/us-news/anthropic-ceo-dario-amodei-ai-development-rcna597383"
+  ],
+  "notes": "Lead-story fetch attempts on axios.com (403 Forbidden) and cnn.com (451 Unavailable For Legal Reasons) failed; nbcnews.com fetch succeeded and was used as the fetched source of record for story #1. theinformation.com article on OpenAI's ad restrictions was paywalled and not fetched directly; seekingalpha.com carrying the same report was used as the frontmatter link instead. Candidates considered but dropped: SpaceX's 700th Falcon launch (milestone but low consequence), Salesforce Agentforce named-agents launch (product announcement, not a major capability/regulatory story), semiconductor monthly sales index (no single fresh news hook), Princeton PACMAN fusion-plasma-control AI (folded out in favor of the broader fusion-funding story to avoid a second AI-themed item crowding the non-AI slots)."
+}
