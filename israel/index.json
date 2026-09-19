@@ -8,6 +8,37 @@
     "title": "Intent"
   },
   {
+    "file": "2026-09-18-netanyahu-iran-campaign-not-over.md",
+    "date": "2026-09-18",
+    "title": "Netanyahu vows Israel will 'complete' its campaign against Iran as Trump weighs renewed large-scale strikes",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-09-19",
+    "significance": 5,
+    "significance_reason": "PM vows to bring down Iran's regime as Trump weighs 'annihilate' option; UN veto and Hormuz collapse escalate active war",
+    "geography": [
+      "israel",
+      "iran",
+      "strait-of-hormuz",
+      "washington",
+      "beijing"
+    ],
+    "actors": [
+      "netanyahu",
+      "israel-katz",
+      "trump",
+      "wang-yi",
+      "abbas-araghchi"
+    ],
+    "categories": [
+      "us-iran-war",
+      "military-strikes",
+      "diplomacy",
+      "shipping"
+    ],
+    "thread_id": "us-iran-mou-2026"
+  },
+  {
     "file": "2026-09-12-uk-charity-commission-settlement-protest.md",
     "date": "2026-09-12",
     "title": "UK Charity Regulator Warns Board of Deputies Foundation Over Israeli Settlement Property Event",
@@ -56,6 +87,32 @@
     "thread_id": "us-iran-mou-2026"
   },
   {
+    "file": "2026-09-12-lebanon-aoun-nabatieh-visit-no-talks.md",
+    "date": "2026-09-12",
+    "title": "Lebanese President Aoun Visits Bombed Nabatieh Site, Says No New Israel Talks Yet",
+    "contested": false,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-09-12",
+    "significance": 4,
+    "significance_reason": "President postpones Israel talks after visiting struck Hezbollah site; +1 thread coupling",
+    "geography": [
+      "southern-lebanon",
+      "nabatieh"
+    ],
+    "actors": [
+      "joseph-aoun",
+      "idf",
+      "hezbollah"
+    ],
+    "categories": [
+      "lebanon",
+      "diplomacy",
+      "ceasefire",
+      "military-strikes"
+    ],
+    "thread_id": "israel-lebanon-strikes-2026"
+  },
+  {
     "file": "2026-09-12-iran-satellite-images-jordan-base-attack.md",
     "date": "2026-09-12",
     "title": "Iran Used Chinese Satellite Images to Target US Base in Jordan, WSJ Reports",
@@ -74,6 +131,51 @@
       "military-strikes"
     ],
     "thread_id": "us-iran-mou-2026"
+  },
+  {
+    "file": "2026-09-11-settlers-open-fire-west-bank-farm.md",
+    "date": "2026-09-11",
+    "title": "Settlers Open Fire on Palestinians at Al-Mughayyir Farm as West Bank Violence Continues",
+    "contested": false,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-09-12",
+    "significance": 3,
+    "significance_reason": "Settler-violence pattern spreads to new West Bank locations; +1 thread coupling applied",
+    "geography": [
+      "west-bank",
+      "al-mughayyir",
+      "al-bireh",
+      "ramallah"
+    ],
+    "actors": [
+      "idf"
+    ],
+    "categories": [
+      "west-bank",
+      "settler-violence",
+      "military-operation"
+    ],
+    "thread_id": "west-bank-crackdown-2026"
+  },
+  {
+    "file": "2026-09-09-france-tv-pulls-haenel-genocide-remark.md",
+    "date": "2026-09-09",
+    "title": "France T\u00e9l\u00e9visions Pulls Replay After Actress Ad\u00e8le Haenel Calls Israel's Gaza Campaign Genocide",
+    "contested": true,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-09-12",
+    "significance": 2,
+    "significance_reason": "Broadcaster censors pro-Palestinian TV remarks; contained single-outlet incident",
+    "geography": [
+      "france"
+    ],
+    "categories": [
+      "censorship",
+      "palestine-solidarity",
+      "media",
+      "free-speech"
+    ],
+    "thread_id": "france-media-censorship-palestine-2026"
   },
   {
     "file": "2026-09-05-zeytoun-family-bodies-recovered.md",
@@ -186,6 +288,30 @@
       "ceasefire-violations"
     ],
     "thread_id": "gaza-territorial-control-2026"
+  },
+  {
+    "file": "2026-08-13-tlaib-rally-cancelled-anti-jew.md",
+    "date": "2026-08-13",
+    "title": "Florida venue cancels Rashida Tlaib rally after lawmaker calls it 'anti-Jew'",
+    "contested": true,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-08-15",
+    "significance": 2,
+    "significance_reason": "Venue-level speech suppression incident; limited institutional weight, no government action",
+    "geography": [
+      "florida",
+      "united-states"
+    ],
+    "actors": [
+      "rashida-tlaib",
+      "michael-gottlieb"
+    ],
+    "categories": [
+      "us-politics",
+      "palestine-solidarity",
+      "free-speech"
+    ],
+    "thread_id": "us-palestine-solidarity-suppression-2026"
   },
   {
     "file": "2026-08-08-lebanon-shelling-al-mansouri.md",

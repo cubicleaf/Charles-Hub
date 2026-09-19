@@ -3,14 +3,15 @@
     "title": "Israeli Military Campaign in Lebanon (2026)",
     "summary": "Israel's sustained air and ground campaign against Hezbollah in southern Lebanon, ongoing since 2 March 2026, producing mounting civilian casualties, repeated incidents involving UNIFIL peacekeepers, and a security zone approximately 10 km inside Lebanese territory. Israel broke the ceasefire announced on 19 June 2026 the following day, killing at least 50 people and triggering Iran's reclosure of the Strait of Hormuz.",
     "started": "2026-05-02",
-    "last_entry": "2026-08-08",
+    "last_entry": "2026-09-12",
     "actors": [
       "idf",
       "hezbollah",
       "unifil",
       "netanyahu",
       "msf",
-      "nawaf-salam"
+      "nawaf-salam",
+      "joseph-aoun"
     ],
     "geography": [
       "southern-lebanon",
@@ -53,6 +54,11 @@
         "date": "2026-08-08",
         "file": "2026-08-08-lebanon-shelling-al-mansouri.md",
         "headline": "Israeli artillery shells vicinity of Lebanese town of al-Mansouri"
+      },
+      {
+        "date": "2026-09-12",
+        "file": "2026-09-12-lebanon-aoun-nabatieh-visit-no-talks.md",
+        "headline": "Lebanese President Aoun visits bombed Nabatieh site, says no new Israel talks yet"
       }
     ]
   },
@@ -60,7 +66,7 @@
     "title": "US-Iran Memorandum of Understanding and Implementation Crisis",
     "summary": "The Memorandum of Understanding signed by Presidents Trump and Pezeshkian in mid-June 2026 ended the active US military phase of the US-Iran conflict that began in late February 2026. Its terms included lifting the US naval blockade, reopening the Strait of Hormuz, and a 60-day ceasefire window. Israel's refusal to end its Lebanon offensive placed the MoU in immediate jeopardy; Iran reclosed the Strait of Hormuz on 20 June citing Israeli breaches. Israeli public opinion turned sharply against Trump, with 71 percent no longer trusting the administration.",
     "started": "2026-06-18",
-    "last_entry": "2026-09-12",
+    "last_entry": "2026-09-18",
     "actors": [
       "centcom",
       "trump",
@@ -69,7 +75,10 @@
       "vance",
       "netanyahu",
       "ben-gvir",
-      "smotrich"
+      "smotrich",
+      "israel-katz",
+      "wang-yi",
+      "abbas-araghchi"
     ],
     "geography": [
       "strait-of-hormuz",
@@ -79,7 +88,8 @@
       "southern-lebanon",
       "jordan",
       "iran",
-      "ireland"
+      "ireland",
+      "beijing"
     ],
     "categories": [
       "ceasefire",
@@ -128,6 +138,11 @@
         "date": "2026-09-12",
         "file": "2026-09-12-trump-iran-war-end-soon.md",
         "headline": "Trump predicts Iran war will end 'very soon', sees oil prices falling"
+      },
+      {
+        "date": "2026-09-18",
+        "file": "2026-09-18-netanyahu-iran-campaign-not-over.md",
+        "headline": "Netanyahu vows Israel will 'complete' its campaign against Iran as Trump weighs renewed large-scale strikes"
       }
     ]
   },
@@ -229,7 +244,7 @@
     "title": "West Bank Military Crackdown and Settler Violence Surge (2026)",
     "summary": "A wide-scale Israeli military operation across West Bank villages, ordered by Netanyahu and Defense Minister Katz on 24 July 2026 following an attack near Havat Gilad that killed two Israeli soldiers, and a separate deadly confrontation in the village of Tal that killed four Palestinians. The operation produced mass arrests, home raids across multiple governorates, and continued settler arson attacks, drawing condemnation from the UN Special Rapporteur on the Palestinian territories and Human Rights Watch.",
     "started": "2026-07-24",
-    "last_entry": "2026-07-31",
+    "last_entry": "2026-09-11",
     "actors": [
       "netanyahu",
       "israel-katz",
@@ -252,7 +267,10 @@
       "jenin",
       "umm-al-khair",
       "masafer-yatta",
-      "canada"
+      "canada",
+      "al-mughayyir",
+      "al-bireh",
+      "ramallah"
     ],
     "categories": [
       "west-bank",
@@ -280,6 +298,11 @@
         "date": "2026-07-31",
         "file": "2026-07-31-nablus-raid-eleven-injured.md",
         "headline": "Eleven Palestinians, including four children, injured as Israeli settlers and soldiers storm Nablus-area towns"
+      },
+      {
+        "date": "2026-09-11",
+        "file": "2026-09-11-settlers-open-fire-west-bank-farm.md",
+        "headline": "Settlers open fire on Palestinians at Al-Mughayyir farm as West Bank violence continues"
       }
     ]
   },
@@ -484,6 +507,32 @@
         "date": "2026-09-12",
         "file": "2026-09-12-uk-charity-commission-settlement-protest.md",
         "headline": "UK charity regulator warns Board of Deputies foundation over Israeli settlement property event"
+      }
+    ]
+  },
+  "france-media-censorship-palestine-2026": {
+    "title": "French Media Censorship Around Israel-Palestine (2026)",
+    "summary": "Instances of French media institutions restricting or removing broadcast content critical of Israel's conduct in Gaza, beginning with France Télévisions' removal of a France 5 programme replay after actress Adèle Haenel used an on-air segment to call Israel's campaign a genocide and France complicit.",
+    "started": "2026-09-09",
+    "last_entry": "2026-09-09",
+    "actors": [
+      "adele-haenel",
+      "france-televisions"
+    ],
+    "geography": [
+      "france"
+    ],
+    "categories": [
+      "censorship",
+      "palestine-solidarity",
+      "media",
+      "free-speech"
+    ],
+    "entries": [
+      {
+        "date": "2026-09-09",
+        "file": "2026-09-09-france-tv-pulls-haenel-genocide-remark.md",
+        "headline": "France Télévisions pulls replay after actress Adèle Haenel calls Israel's Gaza campaign genocide"
       }
     ]
   }
