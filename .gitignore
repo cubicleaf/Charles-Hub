@@ -10,3 +10,6 @@ notes.json
 Thumbs.db
 *.swp
 .vscode/
+
+# Local screenshot archive — kept on disk, never deployed or pushed
+old images/
