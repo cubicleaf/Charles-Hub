@@ -60,7 +60,7 @@
     "title": "US-Iran Memorandum of Understanding and Implementation Crisis",
     "summary": "The Memorandum of Understanding signed by Presidents Trump and Pezeshkian in mid-June 2026 ended the active US military phase of the US-Iran conflict that began in late February 2026. Its terms included lifting the US naval blockade, reopening the Strait of Hormuz, and a 60-day ceasefire window. Israel's refusal to end its Lebanon offensive placed the MoU in immediate jeopardy; Iran reclosed the Strait of Hormuz on 20 June citing Israeli breaches. Israeli public opinion turned sharply against Trump, with 71 percent no longer trusting the administration.",
     "started": "2026-06-18",
-    "last_entry": "2026-09-18",
+    "last_entry": "2026-09-26",
     "actors": [
       "centcom",
       "trump",
@@ -125,6 +125,11 @@
         "date": "2026-09-18",
         "file": "2026-09-18-netanyahu-iran-campaign-not-over.md",
         "headline": "Netanyahu vows Israel will 'complete' its campaign against Iran as Trump weighs renewed large-scale strikes"
+      },
+      {
+        "date": "2026-09-26",
+        "file": "2026-09-26-trump-rejects-iran-ceasefire-proposal.md",
+        "headline": "Trump reportedly rejects Iran's seven-day proposal to reopen the Strait of Hormuz"
       }
     ]
   },
@@ -471,6 +476,39 @@
         "date": "2026-09-03",
         "file": "2026-09-03-yair-netanyahu-falklands-comment.md",
         "headline": "Yair Netanyahu, Israeli PM's son, angers UK right over Falklands comment"
+      }
+    ]
+  },
+  "e1-settlement-international-response-2026": {
+    "title": "International Response to Israel's E1 Settlement Project",
+    "summary": "Growing international pushback against Israel's E1 settlement project, which would sever East Jerusalem from the rest of the West Bank, including congressional sanctions efforts, European condemnation, and UN criticism.",
+    "started": "2026-09-23",
+    "last_entry": "2026-09-23",
+    "actors": [
+      "smotrich",
+      "chris-coons",
+      "elizabeth-warren",
+      "ron-wyden",
+      "ruben-gallego",
+      "ed-miliband"
+    ],
+    "geography": [
+      "united-states",
+      "west-bank",
+      "east-jerusalem"
+    ],
+    "categories": [
+      "us-politics",
+      "sanctions",
+      "west-bank",
+      "settlements",
+      "congress"
+    ],
+    "entries": [
+      {
+        "date": "2026-09-23",
+        "file": "2026-09-23-senate-democrats-e1-settlement-sanctions.md",
+        "headline": "Senate Democrats introduce bill to sanction facilitators of Israel's E1 West Bank settlement plan"
       }
     ]
   }

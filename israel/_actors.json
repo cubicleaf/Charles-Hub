@@ -50,8 +50,8 @@
   "smotrich": {
     "full_name": "Bezalel Smotrich",
     "type": "person",
-    "context_text": "",
-    "verified_on": null
+    "context_text": "Bezalel Smotrich is Israel's Finance Minister and leader of the far-right Religious Zionism party within Prime Minister Benjamin Netanyahu's governing coalition. A settler from the West Bank outpost of Kedumim, he has championed annexation of the occupied territory and the E1 settlement project linking Ma'ale Adumim to East Jerusalem, and is the subject of an ICC arrest-warrant request over alleged forced-displacement policy and his own statement that starving Palestinians may be 'justified and moral.'",
+    "verified_on": "2026-09-26"
   },
   "icc": {
     "full_name": "International Criminal Court",
@@ -221,5 +221,35 @@
     "type": "person",
     "context_text": "Abbas Araghchi is Iran's Minister of Foreign Affairs, a veteran diplomat who previously served as Iran's chief nuclear negotiator and deputy foreign minister for legal and international affairs. Since the 2026 war with the US and Israel began, he has led Iranian diplomatic outreach to China and other partners, seeking support against US and Israeli pressure and pushing for a reopening of the Strait of Hormuz to shipping.",
     "verified_on": "2026-09-19"
+  },
+  "chris-coons": {
+    "full_name": "Chris Coons",
+    "type": "person",
+    "context_text": "Chris Coons is a Democratic US Senator from Delaware, in office since 2010 and a senior member of the Senate Foreign Relations and Appropriations committees. Long seen as a mainstream supporter of Israel, he has increasingly criticized settler violence and settlement expansion in the West Bank, and in September 2026 led legislation to sanction facilitators of Israel's E1 settlement project.",
+    "verified_on": "2026-09-26"
+  },
+  "elizabeth-warren": {
+    "full_name": "Elizabeth Warren",
+    "type": "person",
+    "context_text": "Elizabeth Warren is a Democratic US Senator from Massachusetts, in office since 2015 and a leading progressive voice on financial regulation and foreign policy. She has grown increasingly critical of US military and diplomatic support for Israel's conduct in Gaza and the West Bank, co-sponsoring 2026 legislation to sanction facilitators of Israel's E1 settlement project.",
+    "verified_on": "2026-09-26"
+  },
+  "ron-wyden": {
+    "full_name": "Ron Wyden",
+    "type": "person",
+    "context_text": "Ron Wyden is a Democratic US Senator from Oregon, in office since 1996 and the senior Democrat on the Senate Finance Committee. He has broken increasingly with traditional bipartisan support for unconditional US military aid to Israel, co-sponsoring 2026 legislation targeting facilitators of Israel's E1 West Bank settlement project.",
+    "verified_on": "2026-09-26"
+  },
+  "ruben-gallego": {
+    "full_name": "Ruben Gallego",
+    "type": "person",
+    "context_text": "Ruben Gallego is a Democratic US Senator from Arizona, elected in 2024 after previously serving in the US House of Representatives, and a Marine Corps combat veteran of the Iraq War. He has criticized Israeli settlement expansion in the West Bank, co-sponsoring 2026 legislation to sanction facilitators of Israel's E1 settlement project.",
+    "verified_on": "2026-09-26"
+  },
+  "ed-miliband": {
+    "full_name": "Ed Miliband",
+    "type": "person",
+    "context_text": "Ed Miliband is a British Labour politician who led the Labour Party from 2010 to 2015 and later served as Energy Secretary under Keir Starmer. He has continued in a senior foreign-policy role under Prime Minister Andy Burnham's government, and has been an outspoken critic of Israel's East 1 (E1) West Bank settlement project, calling it an 'unacceptable and destructive act' that would sever East Jerusalem from the rest of the West Bank.",
+    "verified_on": "2026-09-26"
   }
 }

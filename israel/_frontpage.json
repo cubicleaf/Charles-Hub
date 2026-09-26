@@ -1,9 +1,11 @@
 {
-  "generated": "2026-09-19T07:37:47-04:00",
-  "lead_file": "2026-09-18-netanyahu-iran-campaign-not-over.md",
-  "lead_reason": "Only survivor of the run; 9 of 10 drafted stories quarantined by fresh-eyes review for unsourced framing, misattributed quotes, and invented specifics",
-  "secondary_files": [],
+  "generated": "2026-09-26T08:20:00-04:00",
+  "lead_file": "2026-09-26-trump-rejects-iran-ceasefire-proposal.md",
+  "lead_reason": "Highest significance today; Trump rejects Iran ceasefire roadmap, weighs post-midterm strikes",
+  "secondary_files": [
+    "2026-09-23-senate-democrats-e1-settlement-sanctions.md"
+  ],
   "promoted": [],
-  "slow_cycle_active": true,
-  "todays_sig3plus_count": 1
+  "slow_cycle_active": false,
+  "todays_sig3plus_count": 2
 }

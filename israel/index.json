@@ -8,6 +8,65 @@
     "title": "Intent"
   },
   {
+    "file": "2026-09-26-trump-rejects-iran-ceasefire-proposal.md",
+    "date": "2026-09-26",
+    "title": "Trump reportedly rejects Iran's seven-day proposal to reopen the Strait of Hormuz",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-09-26",
+    "significance": 5,
+    "significance_reason": "Trump rejects ceasefire roadmap, plans post-midterm bombing; advances active Iran-war thread",
+    "geography": [
+      "united-states",
+      "iran",
+      "strait-of-hormuz",
+      "qatar",
+      "washington"
+    ],
+    "actors": [
+      "trump",
+      "abbas-araghchi"
+    ],
+    "categories": [
+      "us-iran-war",
+      "diplomacy",
+      "shipping",
+      "military-strikes"
+    ],
+    "thread_id": "us-iran-mou-2026"
+  },
+  {
+    "file": "2026-09-23-senate-democrats-e1-settlement-sanctions.md",
+    "date": "2026-09-23",
+    "title": "Senate Democrats introduce bill to sanction facilitators of Israel's E1 West Bank settlement plan",
+    "contested": false,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-09-26",
+    "significance": 3,
+    "significance_reason": "Nineteen Democrats introduce sanctions bill targeting flagship Israeli settlement project",
+    "geography": [
+      "united-states",
+      "west-bank",
+      "east-jerusalem"
+    ],
+    "actors": [
+      "smotrich",
+      "chris-coons",
+      "elizabeth-warren",
+      "ron-wyden",
+      "ruben-gallego",
+      "ed-miliband"
+    ],
+    "categories": [
+      "us-politics",
+      "sanctions",
+      "west-bank",
+      "settlements",
+      "congress"
+    ],
+    "thread_id": "e1-settlement-international-response-2026"
+  },
+  {
     "file": "2026-09-18-netanyahu-iran-campaign-not-over.md",
     "date": "2026-09-18",
     "title": "Netanyahu vows Israel will 'complete' its campaign against Iran as Trump weighs renewed large-scale strikes",
