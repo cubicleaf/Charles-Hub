@@ -1,0 +1,41 @@
+{
+  "captured_at": "2026-09-29T06:55:00-04:00",
+  "search_queries": [
+    "AI model release announced this week September 2026",
+    "tech news September 28 2026",
+    "quantum computing OR fusion OR robotics OR chip news September 2026",
+    "AMD acquire World Labs $8.2 billion",
+    "OpenAI abandons plans to release upcoming model safety concerns",
+    "Apple $5.7 billion patent verdict haptics",
+    "Infleqtion 30 logical qubits Sqale",
+    "Anthropic Sonnet 5.5 release Amodei slowdown"
+  ],
+  "search_result_urls": [
+    "https://www.aljazeera.com/economy/2026/9/29/openai-scraps-release-of-latest-ai-model-over-safety-concerns",
+    "https://www.irishtimes.com/technology/big-tech/2026/09/29/openai-scraps-release-of-new-ai-model-over-safety-concerns/",
+    "https://techcrunch.com/2026/09/28/amd-will-acquire-fei-fei-lis-world-labs-for-8-2-billion/",
+    "https://www.sec.gov/Archives/edgar/data/0000002488/000000248826000182/amd-20260926.htm",
+    "https://www.cnbc.com/2026/09/28/anthropic-sonnet-5-5-launch.html",
+    "https://gizmodo.com/anthropic-releases-its-second-new-ai-model-in-less-than-a-week-2000818514",
+    "https://thequantuminsider.com/2026/09/24/infleqtion-achieves-30-entangled-logical-qubits-on-its-sqale-quantum-computer/",
+    "https://www.business-standard.com/technology/artificial-intelligence/beyond-ai-china-bets-on-quantum-chips-and-fusion-in-five-year-tech-plan-126092900659_1.html",
+    "https://www.macrumors.com/2026/09/28/apple-billions-haptic-patent-lawsuit/",
+    "https://www.cnbc.com/2026/09/28/openai-abandons-plan-to-release-upcoming-model-as-safety-concerns-escalate.html",
+    "https://www.cnbc.com/2026/09/26/apple-taction-technology-patent-infringement-verdict.html"
+  ],
+  "fetched_urls": [
+    "https://www.aljazeera.com/economy/2026/9/29/openai-scraps-release-of-latest-ai-model-over-safety-concerns",
+    "https://www.irishtimes.com/technology/big-tech/2026/09/29/openai-scraps-release-of-new-ai-model-over-safety-concerns/",
+    "https://techcrunch.com/2026/09/28/amd-will-acquire-fei-fei-lis-world-labs-for-8-2-billion/",
+    "https://www.sec.gov/Archives/edgar/data/0000002488/000000248826000182/amd-20260926.htm",
+    "https://gizmodo.com/anthropic-releases-its-second-new-ai-model-in-less-than-a-week-2000818514",
+    "https://thequantuminsider.com/2026/09/24/infleqtion-achieves-30-entangled-logical-qubits-on-its-sqale-quantum-computer/",
+    "https://www.macrumors.com/2026/09/28/apple-billions-haptic-patent-lawsuit/"
+  ],
+  "notes": [
+    "CNBC pages returned 403 on fetch; CNBC Sonnet 5.5 pricing ($2/$10, half of Opus 5.5) taken from search snippet, 30% faster and Haiku timing from Gizmodo fetch.",
+    "TechCrunch fetch summary said cash; AMD 8-K says paid in common stock. Brief follows the 8-K.",
+    "China plan story rests on search snippet only; page fetch 403.",
+    "Dropped: Meta hiring MongoDB CEO, Grok 4.7, Microsoft AI adoption stat (snippet-only, low consequence)."
+  ]
+}
