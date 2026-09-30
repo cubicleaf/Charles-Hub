@@ -1,0 +1,34 @@
+{
+  "captured_at": "2026-09-30T06:52:00-04:00",
+  "search_queries": [
+    "AI model release announced this week",
+    "tech news September 29 2026",
+    "quantum computing OR fusion OR space OR robotics news September 2026",
+    "chip semiconductor news acquisition regulation September 2026",
+    "OpenAI GPT-6.1 Sol Astra release safety",
+    "AMD acquire World Labs $8.2 billion",
+    "Anthropic IPO prospectus Nasdaq October",
+    "Quantinuum H2 54 qubits non-Abelian anyons universal quantum computation",
+    "Trump AI agreement tech leaders White House lunch morally binding",
+    "Princeton AI fusion plasma control milliseconds"
+  ],
+  "search_result_urls": [
+    "https://9to5google.com/2026/09/28/openai-cancels-gpt-6-1-astra-release-over-misbehavior-safety-concerns/",
+    "https://finance.yahoo.com/technology/ai/articles/anthropic-ipo-prospectus-warns-existential-111719817.html",
+    "https://newsroom.amd.com/news/amd-acquire-world-labs/",
+    "https://phys.org/news/2026-09-quantum-boldly-space.html",
+    "https://qz.com/anthropic-ipo-prospectus-existential-ai-risk-092926",
+    "https://techcrunch.com/2026/09/28/amd-will-acquire-fei-fei-lis-world-labs-for-8-2-billion/",
+    "https://techcrunch.com/2026/09/29/openai-launches-gpt-6-1-sol-says-it-nearly-matches-gpt-6-astra-and-costs-less/",
+    "https://www.cbsnews.com/news/trump-ai-constitution-tech-execs-openai-anthropic-voluntary-controls/",
+    "https://www.cnbc.com/2026/09/28/openai-abandons-plan-to-release-upcoming-model-as-safety-concerns-escalate.html",
+    "https://www.cnbc.com/2026/09/29/tech-white-house-ai-lunch-trump.html",
+    "https://www.sciencedaily.com/releases/2026/09/260903064215.htm"
+  ],
+  "fetched_urls": [
+    "https://techcrunch.com/2026/09/29/openai-launches-gpt-6-1-sol-says-it-nearly-matches-gpt-6-astra-and-costs-less/",
+    "https://techcrunch.com/2026/09/28/amd-will-acquire-fei-fei-lis-world-labs-for-8-2-billion/",
+    "https://phys.org/news/2026-09-quantum-boldly-space.html"
+  ],
+  "notes": "CNBC (Astra, White House) and qz.com fetches returned 403; their facts rest on search snippets. Sources disagreed on AMD deal structure (all-stock vs cash), so structure omitted. Dropped: Quantinuum anyons (Nature, Jul 15; already covered 09-28), Apple iPhone Duo, Meta Muse for Small Business, America.gov (thin sourcing)."
+}
