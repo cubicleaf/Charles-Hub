@@ -4,6 +4,11 @@
 
 Companion status file. Records major structural decisions and progress.
 
+## 2026-09-29 — Navigation cleanup, original backup preserved
+**What:** Moved the ignored `index.original.html` backup to `_docs/snapshots/index.original.html`, updated its ignore rule, added `INTENT.md`, and refreshed `README.md` to describe all three configured subjects and the live content folders.
+**Why:** The backup obscured the live page at root, while the reader's subject folders already had meaningful runtime roles.
+**How to apply:** Keep `index.html`, `subjects.json`, favicon files, and the `briefs/`, `israel/`, and `commodity1/` folders at their current paths. The old page remains local under `_docs/snapshots/`; `old images/` remains untouched. No files were deleted or deployed.
+
 ## 2026-07-31 (v3) — True max-fill bug fixed; inner squircle enlarged 20%
 **What:** Same fix as Master Reader's STATUS documents in detail: the outer shell's declared "95% fill" was actually rendering at 79.3% due to the source path's own internal padding. Corrected and verified via pixel measurement. Inner sand squircle (and C-DAWG text bar) enlarged another 20% on top per direct feedback.
 **Why:** Portfolio-wide favicon sizing bug, caught via a side-by-side comparison against Greenway Cleanup.
@@ -71,7 +76,7 @@ Fixed both together, since fixing #2 properly required fixing #1's underlying ar
 - `.lvl-section`, `.lvl-summary`, `.lvl-body`, `.lvl-chevron` are the shared collapsible primitive — they look like "Lvls" code but Tech and Israel both depend on them, so they stayed. The `body.style-lvls` *overrides* around them were removed.
 - The collapse button keeps its legacy class name `.marius-collapse-btn` because it's the shared `#collapse-btn` element used by both live tabs. Renaming it is cosmetic and was deferred to avoid risk (no in-repo browser to regression-test).
 - Verification: extracted both inline `<script>` blocks and ran `node --check` (passes); grepped the final file for orphaned `getElementById` of removed elements and calls to removed functions (zero). The one remaining "landing-card" hit is a harmless code comment.
-- Original kept as `index.original.html` in the folder (delete once happy; it is git-ignored).
+- Original kept as `index.original.html` in the folder at the time (superseded by the 2026-09-29 preservation decision above; it now lives under `_docs/snapshots/` and should not be deleted as part of cleanup).
 - Deployment is zero-config static (Vercel "Other" preset).
 
 **Open / next**

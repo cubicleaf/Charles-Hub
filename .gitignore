@@ -1,6 +1,6 @@
 # Local-only overlays and backups
 subjects.local.json
-index.original.html
+_docs/snapshots/index.original.html
 
 # Local notes / sweep artifacts (Master Reader leftovers, not used here)
 notes.json

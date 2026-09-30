@@ -1,9 +1,14 @@
 # Charles Hub
 
-A clean, two-tab reader forked from Master Reader. It has exactly two tabs:
+A focused reader forked from Master Reader. Its configured subjects are:
 
 - **Tech** (`Recent Tech News`) — `literary` style. Long-form daily brief; each numbered story becomes a collapsible section.
 - **Israel** (`Israel Tracker`) — `dispatch` style. Date-digest view; multiple stories per day, sorted by significance, with a per-story Context panel and a Sources panel.
+- **1st Commodity** (`First Commodity`) — `dispatch` style placeholder for a source-backed commodity tracker.
+
+`INTENT.md` explains the project's purpose and `STATUS.md` records its history. The root `index.html`, `subjects.json`, favicon files, and manifest are site assets. `briefs/`, `israel/`, and `commodity1/` are live content folders read by the app; do not reorganize them without changing the indexes and fetch paths. `_docs/snapshots/` preserves the original pre-fork page. `old images/` is the existing screenshot archive and is left untouched.
+
+The Israel subject's copied guidance refers to operational routines maintained in the separate Master Reader repository; its cross-project links point there.
 
 Everything else from Master Reader (P&C, Marius, Lexis, FI, Lvls, WebDev, the Systems registry) has been removed. The shared shell stays: pill-bar nav, archive drawer, global search (Cmd/Ctrl+K), text-size settings, read checkmarks, sources/context modals.
 
@@ -21,13 +26,15 @@ So to add a tab you edit `subjects.json`; to add content you drop a `.md` file i
 
 ```
 index.html          ← the app (single file)
-subjects.json       ← defines the two tabs
+subjects.json       ← defines the configured subjects
 briefs/             ← Tech tab content
   index.json        ← list of brief entries (newest first)
   YYYY-MM-DD.md     ← one brief per day
 israel/             ← Israel tab content
   index.json        ← list of story entries (newest first)
   *.md              ← one file per story
+commodity1/         ← placeholder commodity tracker
+  index.json        ← list of story entries
 ```
 
 ## Content format
