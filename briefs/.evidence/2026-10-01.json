@@ -1,0 +1,36 @@
+{
+  "captured_at": "2026-10-01T06:58:00-04:00",
+  "search_queries": [
+    "AI model release announced this week October 2026",
+    "tech news September 30 2026",
+    "quantum computing OR fusion OR robotics OR chip news October 1 2026",
+    "FTC investigation Anthropic OpenAI",
+    "Google Gemini 4 Argon launch",
+    "White House AI companies agreement self-police auditor",
+    "OpenAI GPT-6.1 Astra not release Reuters safety",
+    "China five-year plan quantum chips fusion technology",
+    "Meta VR glasses eye tracking release",
+    "Newsom signs AI robo bosses law California"
+  ],
+  "search_result_urls": [
+    "https://www.securityweek.com/ftc-is-investigating-openai-and-anthropic-over-possible-risks-to-consumers/",
+    "https://www.cnbc.com/2026/09/30/ftc-ai-probe-openai-anthropic.html",
+    "https://www.securityweek.com/trump-says-top-tech-firms-have-signed-accord-to-self-police-ai-development/",
+    "https://www.npr.org/2026/09/30/nx-s1-5985699/trump-self-police-ai-development",
+    "https://www.cbsnews.com/news/openai-halts-gpt-astra-safety-concerns/",
+    "https://www.cnbc.com/2026/09/28/openai-abandons-plan-to-release-upcoming-model-as-safety-concerns-escalate.html",
+    "https://9to5google.com/2026/09/30/gemini-4-argon-announcement/",
+    "https://thequantuminsider.com/2026/10/01/alice-bob-demonstrates-new-approach-to-stabilising-cat-with-dc-voltage-bias",
+    "https://www.cnbc.com/2026/09/30/california-gavin-newsom-ai-ban.html",
+    "https://www.business-standard.com/technology/artificial-intelligence/beyond-ai-china-bets-on-quantum-chips-and-fusion-in-five-year-tech-plan-126092900659_1.html",
+    "https://www.techrepublic.com/article/news-meta-vr-glasses-virtual-desktop-ai-2026/"
+  ],
+  "fetched_urls": [
+    "https://www.securityweek.com/ftc-is-investigating-openai-and-anthropic-over-possible-risks-to-consumers/",
+    "https://www.securityweek.com/trump-says-top-tech-firms-have-signed-accord-to-self-police-ai-development/",
+    "https://www.cbsnews.com/news/openai-halts-gpt-astra-safety-concerns/",
+    "https://9to5google.com/2026/09/30/gemini-4-argon-announcement/",
+    "https://thequantuminsider.com/2026/10/01/alice-bob-demonstrates-new-approach-to-stabilising-cat-with-dc-voltage-bias"
+  ],
+  "notes": "CNBC (FTC, Astra), NPR, Business Standard and TechRepublic fetches returned 403/503; those links are cited as search-returned only, and facts rest on fetched SecurityWeek/CBS pages. SB 947 facts (incl. July 1, 2027 effective date, hedged as one report) rest on search snippet. Lead (FTC) fetched via SecurityWeek. Dropped: Meta VR glasses (announced Sep 23, outside window), China five-year plan (adopted March 2026, old), Windows 26H2/Firefox 157 (minor), civil investigative demand and Hugging Face details (snippet-only)."
+}
