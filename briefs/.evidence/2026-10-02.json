@@ -1,0 +1,46 @@
+{
+  "captured_at": "2026-10-02T06:58:00-04:00",
+  "search_queries": [
+    "AI model release announcement this week",
+    "tech news October 1 2026",
+    "quantum computing OR fusion OR robotics OR chip news October 2026",
+    "AI regulation OR acquisition announced September 30 2026",
+    "OpenAI rogue agents 100 organizations disclosure",
+    "AMD acquire World Labs $8.2 billion Fei-Fei Li",
+    "Google Project Suncatcher space AI data centers",
+    "IonQ 408 logical qubits real-time error correction",
+    "DeepSeek Huawei Ascend open-source programming tools CUDA",
+    "OpenAI rogue agents more than 100 organizations Reuters",
+    "OpenAI GPT-6.1 Sol DevDay Dots agent Pro tier",
+    "Qualcomm acquires PickNik MoveIt Dragonwing robotics",
+    "DeepSeek Huawei release open-source Ascend programming tools reduce reliance Nvidia CUDA October 1",
+    "GSA AI acquisition policy memo contracts",
+    "fusion energy OR SpaceX OR Starship OR Nvidia OR TSMC news September 30 2026",
+    "Starship flight 14 reaches orbit Starlink satellites Raptor vacuum engine shut down"
+  ],
+  "search_result_urls": [
+    "https://www.933thedrive.com/2026/10/01/openai-alerts-more-than-100-groups-about-rogue-ai-agent-activity/",
+    "https://www.investing.com/news/stock-market-news/openai-alerts-more-than-100-groups-about-rogue-ai-agent-activity-4928610",
+    "https://www.trendingtopics.eu/openai-rogue-agents-100-organizations/",
+    "https://aerospaceamerica.aiaa.org/spacex-shortens-starships-first-orbital-flight-but-achieves-other-objectives/",
+    "https://space.com/space-exploration/launches-spacecraft/spacex-starship-megarocket-flight-14-orbital-launch-success",
+    "https://fortune.com/2026/09/28/amd-acquires-world-labs-startup-fei-fei-li-8-2-billion/",
+    "https://thenextweb.com/news/deepseek-huawei-ascend-tilelang-open-source-cuda",
+    "https://technode.global/2026/10/01/deepseek-huawei-ascend-ai-programming-tools/",
+    "https://www.kucoin.com/news/flash/nvidia-boosts-share-buyback-to-235-billion-spacex-to-conduct-first-starship-orbital-test",
+    "https://www.securityweek.com/ftc-is-investigating-openai-and-anthropic-over-possible-risks-to-consumers/",
+    "https://www.itnews.com.au/news/openai-rogue-agent-activity-wider-ranging-than-disclosed-628814",
+    "https://quantumcomputingreport.com/ionq-demonstrates-real-time-qec-decoding-at-megaquop-scale-on-single-commodity-cpu/",
+    "https://www.therobotreport.com/qualcomm-acquires-picknik-robotics-keep-moveit-open-source/",
+    "https://www.cnbc.com/2026/09/29/openai-devday-2026-live-updates.html"
+  ],
+  "fetched_urls": [
+    "https://www.933thedrive.com/2026/10/01/openai-alerts-more-than-100-groups-about-rogue-ai-agent-activity/",
+    "https://aerospaceamerica.aiaa.org/spacex-shortens-starships-first-orbital-flight-but-achieves-other-objectives/",
+    "https://fortune.com/2026/09/28/amd-acquires-world-labs-startup-fei-fei-li-8-2-billion/",
+    "https://thenextweb.com/news/deepseek-huawei-ascend-tilelang-open-source-cuda",
+    "https://www.securityweek.com/ftc-is-investigating-openai-and-anthropic-over-possible-risks-to-consumers/",
+    "https://www.kucoin.com/news/flash/nvidia-boosts-share-buyback-to-235-billion-spacex-to-conduct-first-starship-orbital-test"
+  ],
+  "notes": "Lead fetched via Reuters syndication (933thedrive). Investing.com, Space.com, TechNode cited as search-returned only. Dropped: IonQ decoder (Sep 22) and Qualcomm/PickNik (Sep 23) outside window; Project Suncatcher (search snippet unreliable on date); GPT-6.1 Sol/DevDay (CNBC fetch 403, and trendingtopics page conflicted on GPT-6.1 status); trendingtopics claims ($500k/day, IPO postponed, researcher firings) unused as unverified; GSA memo, Samsung tablets, Musk-Pentagon, Windows 26H2 minor or not fetched. Starship facts rest on Aerospace America fetch (CNN fetch 451). DeepSeek 160,000-accelerator figure attributed to The Next Web."
+}
