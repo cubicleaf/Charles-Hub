@@ -251,5 +251,53 @@
     "type": "person",
     "context_text": "Ed Miliband is a British Labour politician who led the Labour Party from 2010 to 2015 and later served as Energy Secretary under Keir Starmer. He has continued in a senior foreign-policy role under Prime Minister Andy Burnham's government, and has been an outspoken critic of Israel's East 1 (E1) West Bank settlement project, calling it an 'unacceptable and destructive act' that would sever East Jerusalem from the rest of the West Bank.",
     "verified_on": "2026-09-26"
+  },
+  "ofer-cassif": {
+    "full_name": "Ofer Cassif",
+    "type": "person",
+    "context_text": "Ofer Cassif is an Israeli Knesset member from Hadash, the Jewish party within the Hadash-Ta'al-Balad Joint List alliance, and a vocal critic of Israeli government policy in Gaza and the West Bank. He was previously targeted for disqualification from the 2019 and 2022 elections over his political rhetoric, decisions the Supreme Court overturned each time. In September 2026 Israel's Central Elections Committee again voted to bar him, a ruling he called 'another nail in the coffin' of Israeli democracy.",
+    "verified_on": "2026-09-27"
+  },
+  "sami-abu-shehadeh": {
+    "full_name": "Sami Abu Shehadeh",
+    "type": "person",
+    "context_text": "Sami Abu Shehadeh chairs Balad, a Palestinian nationalist party in Israel that calls for a state of all its citizens with equal rights rather than a specifically Jewish state. A historian and former Knesset member, he was barred from the October 2026 election over an October 2023 article describing Hamas's October 7 attack as 'an important historic event militarily, politically and strategically,' language he says was mischaracterized as endorsing armed struggle.",
+    "verified_on": "2026-09-27"
+  },
+  "gali-baharav-miara": {
+    "full_name": "Gali Baharav-Miara",
+    "type": "person",
+    "context_text": "Gali Baharav-Miara is Israel's Attorney General, the first woman to hold the post, in office since February 2022 after a career as a prosecutor including as Tel Aviv's district attorney for civil affairs. She has repeatedly clashed with Prime Minister Benjamin Netanyahu's government, including over its judicial overhaul, and in September 2026 opposed the Central Elections Committee's disqualification of most Arab parties and candidates while finding a narrower legal basis for barring Balad's Sami Abu Shehadeh.",
+    "verified_on": "2026-09-27"
+  },
+  "mansour-abbas": {
+    "full_name": "Mansour Abbas",
+    "type": "person",
+    "context_text": "Mansour Abbas leads Ra'am (the United Arab List), an Islamist Israeli-Arab party that broke from other Palestinian-citizen parties by joining Israel's governing coalition from 2021 to 2022, the first Arab party to do so. He has favored pragmatic negotiation over funding and services for Arab communities over a more confrontational stance toward the Israeli state. In September 2026 the Central Elections Committee voted to bar Ra'am from the parliamentary election.",
+    "verified_on": "2026-09-27"
+  },
+  "yair-golan": {
+    "full_name": "Yair Golan",
+    "type": "person",
+    "context_text": "Yair Golan is a former Israeli general and chairman of the opposition Democrats party, formed from a merger of Labor and Meretz. A former IDF deputy chief of staff who has spoken about the moral risks of occupation, he opposed barring Ra'am and the Joint List as a whole from the 2026 election but said Sami Abu Shehadeh's remarks on Hamas's October 7 attack crossed a democratic 'red line,' calling any legitimacy given to armed struggle or harm to civilians unacceptable.",
+    "verified_on": "2026-09-27"
+  },
+  "yechiel-leiter": {
+    "full_name": "Yechiel Leiter",
+    "type": "person",
+    "context_text": "Yechiel Leiter has served as Israel's ambassador to the United States since January 2025, after a career that included serving as chief of staff to Benjamin Netanyahu during his tenure as finance minister and as an adviser to former prime minister Ariel Sharon. Born in Scranton, Pennsylvania, and an ordained rabbi, he immigrated to Israel in 1978 and has long been associated with the settler movement. His eldest son, Moshe Yedidya, was killed fighting in Gaza in November 2023; in September 2026 another son, a soldier, was critically injured in a West Bank car-ramming attack.",
+    "verified_on": "2026-09-27"
+  },
+  "who": {
+    "full_name": "World Health Organization",
+    "type": "institution",
+    "context_text": "The World Health Organization (WHO) is the United Nations specialized agency for international public health, founded in 1948 and headquartered in Geneva. It sets health standards, coordinates emergency response, and supports health systems in crisis zones. In Gaza and the West Bank it operates through its Office in the occupied Palestinian territory, supporting hospitals, coordinating medical evacuations of patients to treatment abroad, tracking attacks on health care, and negotiating the entry of medicines and equipment with Israeli authorities. It works alongside the UN Office for the Coordination of Humanitarian Affairs (OCHA) and other UN bodies. Its statements on Gaza are widely cited by humanitarian agencies and governments, and have at times been disputed by Israeli officials.",
+    "verified_on": "2026-10-03"
+  },
+  "palestine-action": {
+    "full_name": "Palestine Action",
+    "type": "institution",
+    "context_text": "Palestine Action was a direct-action protest group founded in 2020 in the United Kingdom, whose campaigns targeted British sites of Elbit Systems, the Israeli arms manufacturer, and other companies it accused of supplying Israel's military. Its tactics included occupying and damaging factory premises and spraying red paint on buildings and equipment. The UK government proscribed it as a terrorist organisation under the Terrorism Act 2000 in July 2025, making membership and support criminal offences; the designation drew legal challenges and mass civil-disobedience protests, and rights organisations criticised it as a restriction on protest. Prosecutions of individuals linked to its actions have continued in the English courts.",
+    "verified_on": "2026-10-03"
   }
 }

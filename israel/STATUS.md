@@ -1,6 +1,6 @@
 # Israel Tracker — STATUS
 
-**What this file is.** Living scratchpad for the Israel Tracker subject: *decisions* made about how it works, *current state* of the corpus and the code, *blockers*, and *ideas* not yet acted on. Distinct from [INTENT.md](INTENT.md) (doctrine for any LLM operating on the subject) and from [Israel Tracker Routine Instructions](https://github.com/cubicleaf/Master-Reader/blob/main/routines/Israel%20Tracker%20Routine%20Instructions.md) (the live routine/spec reference). This is the "where is my head on this tracker" file.
+**What this file is.** Living scratchpad for the Israel Tracker subject: *decisions* made about how it works, *current state* of the corpus and the code, *blockers*, and *ideas* not yet acted on. Distinct from [INTENT.md](INTENT.md) (doctrine for any LLM operating on the subject) and from [`../routines/Israel Tracker Routine Instructions.md`](../routines/Israel%20Tracker%20Routine%20Instructions.md) (the live routine/spec reference). This is the "where is my head on this tracker" file.
 
 **How to use it.**
 - When a decision lands, add it to **Decisions** with the date and a one-line "why."

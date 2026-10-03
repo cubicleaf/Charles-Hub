@@ -8,6 +8,161 @@
     "title": "Intent"
   },
   {
+    "file": "2026-10-03-ben-gvir-annexation-displacement-pledge.md",
+    "date": "2026-10-03",
+    "title": "Ben Gvir says the entire West Bank 'belongs to Israel' and pledges to dismantle the Palestinian Authority if made defence minister",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-10-03",
+    "significance": 2,
+    "significance_reason": "Rhetoric by cabinet minister; no concrete action yet",
+    "geography": [
+      "west-bank",
+      "east-jerusalem",
+      "hebron",
+      "gaza"
+    ],
+    "actors": [
+      "ben-gvir",
+      "netanyahu"
+    ],
+    "categories": [
+      "west-bank",
+      "annexation",
+      "election"
+    ],
+    "thread_id": "west-bank-crackdown-2026",
+    "related_threads": [
+      "israel-2026-election"
+    ]
+  },
+  {
+    "file": "2026-10-02-who-warns-gaza-medical-aid-delays.md",
+    "date": "2026-10-02",
+    "title": "WHO warns delayed medical supplies into Gaza risk 'devastating consequences' as winter begins",
+    "contested": false,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-10-03",
+    "significance": 2,
+    "significance_reason": "Agency warning; no operational change reported",
+    "geography": [
+      "gaza",
+      "kerem-shalom",
+      "rafah"
+    ],
+    "actors": [
+      "who"
+    ],
+    "categories": [
+      "gaza",
+      "humanitarian",
+      "health"
+    ],
+    "thread_id": "gaza-humanitarian-access-2026"
+  },
+  {
+    "file": "2026-10-01-west-bank-olive-groves-uprooted.md",
+    "date": "2026-10-01",
+    "title": "Israeli military orders uproot West Bank olive groves weeks before the harvest",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-10-03",
+    "significance": 3,
+    "significance_reason": "Documented escalation; thread coupling +1 applied",
+    "geography": [
+      "west-bank",
+      "ramallah",
+      "deir-nizam",
+      "beit-rima"
+    ],
+    "actors": [
+      "idf"
+    ],
+    "categories": [
+      "west-bank",
+      "land-confiscation",
+      "settler-violence"
+    ],
+    "thread_id": "west-bank-crackdown-2026",
+    "related_threads": [
+      "israel-2026-election"
+    ]
+  },
+  {
+    "file": "2026-10-01-us-third-carrier-group-middle-east.md",
+    "date": "2026-10-01",
+    "title": "US official: Pentagon plans three carrier strike groups and more Marines for the Middle East",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-10-03",
+    "significance": 3,
+    "significance_reason": "Reported force buildup, single anonymous-official sourcing",
+    "geography": [
+      "united-states",
+      "iran",
+      "middle-east"
+    ],
+    "actors": [
+      "trump"
+    ],
+    "categories": [
+      "us-iran-war",
+      "military-buildup"
+    ],
+    "thread_id": "us-iran-mou-2026"
+  },
+  {
+    "file": "2026-10-01-trump-iran-offer-not-good-enough.md",
+    "date": "2026-10-01",
+    "title": "Trump tells Time Iran's offer is 'not good enough' and renewed bombing after the midterms is 'possible'",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-10-03",
+    "significance": 3,
+    "significance_reason": "Cabinet-tier rhetoric on-record; no concrete action yet",
+    "geography": [
+      "united-states",
+      "iran",
+      "strait-of-hormuz",
+      "qatar"
+    ],
+    "actors": [
+      "trump",
+      "abbas-araghchi"
+    ],
+    "categories": [
+      "us-iran-war",
+      "diplomacy"
+    ],
+    "thread_id": "us-iran-mou-2026"
+  },
+  {
+    "file": "2026-10-01-palestine-action-instro-trial-reporting-ban.md",
+    "date": "2026-10-01",
+    "title": "Grayzone: Instro 10 Palestine Action trial to open at the Old Bailey under a reporting restriction",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-10-03",
+    "significance": 2,
+    "significance_reason": "Single-source account of pending trial",
+    "geography": [
+      "united-kingdom",
+      "london"
+    ],
+    "actors": [
+      "palestine-action"
+    ],
+    "categories": [
+      "palestine-solidarity",
+      "lawfare",
+      "censorship"
+    ],
+    "thread_id": "uk-palestine-action-prosecutions-2026",
+    "related_threads": [
+      "us-palestine-solidarity-suppression-2026"
+    ]
+  },
+  {
     "file": "2026-09-26-trump-rejects-iran-ceasefire-proposal.md",
     "date": "2026-09-26",
     "title": "Trump reportedly rejects Iran's seven-day proposal to reopen the Strait of Hormuz",
@@ -34,6 +189,31 @@
       "military-strikes"
     ],
     "thread_id": "us-iran-mou-2026"
+  },
+  {
+    "file": "2026-09-24-israel-reduces-lebanon-ground-troops.md",
+    "date": "2026-09-24",
+    "title": "Israel keeps pounding southern Lebanon but reportedly thins ground troop deployment",
+    "contested": false,
+    "estimated_read_minutes": 2,
+    "run_date": "2026-09-26",
+    "significance": 3,
+    "significance_reason": "Rare drawdown signal advances active Lebanon strikes thread despite continued bombardment",
+    "geography": [
+      "southern-lebanon",
+      "nabatieh"
+    ],
+    "actors": [
+      "idf",
+      "nawaf-salam"
+    ],
+    "categories": [
+      "military-strikes",
+      "lebanon",
+      "ceasefire-violations",
+      "humanitarian"
+    ],
+    "thread_id": "israel-lebanon-strikes-2026"
   },
   {
     "file": "2026-09-23-senate-democrats-e1-settlement-sanctions.md",
@@ -65,6 +245,91 @@
       "congress"
     ],
     "thread_id": "e1-settlement-international-response-2026"
+  },
+  {
+    "file": "2026-09-23-israel-bans-arab-parties-election.md",
+    "date": "2026-09-23",
+    "title": "Israel's Central Elections Committee bars both main Arab-majority parties from October vote",
+    "contested": true,
+    "estimated_read_minutes": 4,
+    "run_date": "2026-09-26",
+    "significance": 5,
+    "significance_reason": "First-ever exclusion of all Arab political representation from a Knesset election",
+    "geography": [
+      "israel",
+      "knesset"
+    ],
+    "actors": [
+      "netanyahu",
+      "ben-gvir",
+      "smotrich",
+      "ofer-cassif",
+      "sami-abu-shehadeh",
+      "gali-baharav-miara",
+      "mansour-abbas",
+      "yair-golan"
+    ],
+    "categories": [
+      "elections",
+      "palestinian-citizens-of-israel",
+      "democracy",
+      "legal-proceedings"
+    ],
+    "thread_id": "israel-2026-election"
+  },
+  {
+    "file": "2026-09-23-ambassador-leiter-son-injured-car-ramming.md",
+    "date": "2026-09-23",
+    "title": "Israel's ambassador to the US says son critically injured in West Bank car-ramming attack",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-09-26",
+    "significance": 4,
+    "significance_reason": "High-profile West Bank attack on ambassador's family draws direct PM response amid crackdown thread",
+    "geography": [
+      "west-bank",
+      "beit-horon",
+      "ramallah"
+    ],
+    "actors": [
+      "netanyahu",
+      "yechiel-leiter"
+    ],
+    "categories": [
+      "west-bank",
+      "violence",
+      "diplomacy"
+    ],
+    "thread_id": "west-bank-crackdown-2026"
+  },
+  {
+    "file": "2026-09-20-israeli-forces-kill-palestinian-jenin.md",
+    "date": "2026-09-20",
+    "title": "Israeli forces kill Palestinian near Jenin; Ben-Gvir invokes new death penalty law after separate settler killing",
+    "contested": true,
+    "estimated_read_minutes": 3,
+    "run_date": "2026-09-26",
+    "significance": 4,
+    "significance_reason": "First invocation of new death penalty law; escalation advances active West Bank crackdown thread",
+    "geography": [
+      "west-bank",
+      "jenin",
+      "ganim",
+      "halamish",
+      "ramallah"
+    ],
+    "actors": [
+      "idf",
+      "ben-gvir",
+      "netanyahu"
+    ],
+    "categories": [
+      "west-bank",
+      "settler-violence",
+      "military-operation",
+      "legal-proceedings"
+    ],
+    "thread_id": "west-bank-crackdown-2026"
   },
   {
     "file": "2026-09-18-netanyahu-iran-campaign-not-over.md",

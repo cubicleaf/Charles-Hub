@@ -1,6 +1,6 @@
 # Israel Tracker — INTENT
 
-**What this file is.** Doctrine for any LLM producing entries for, scoring, threading, or surfacing content inside the Israel Tracker — the `israel` subject of Master Reader. It governs *why the tracker exists and how it must behave*. The live operational and schema reference is [Israel Tracker Routine Instructions](https://github.com/cubicleaf/Master-Reader/blob/main/routines/Israel%20Tracker%20Routine%20Instructions.md). The monthly archive-health pass is [Archive Audit Routine Instructions](https://github.com/cubicleaf/Master-Reader/blob/main/routines/Archive%20Audit%20Routine%20Instructions.md). For current state, blockers, and open questions, see [STATUS.md](STATUS.md).
+**What this file is.** Doctrine for any LLM producing entries for, scoring, threading, or surfacing content inside the Israel Tracker — the `israel` subject of Master Reader. It governs *why the tracker exists and how it must behave*. The live operational and schema reference is [`../routines/Israel Tracker Routine Instructions.md`](../routines/Israel%20Tracker%20Routine%20Instructions.md). The monthly archive-health pass lives in [`../routines/Archive Audit Routine Instructions.md`](../routines/Archive%20Audit%20Routine%20Instructions.md). For current state, blockers, and open questions, see [STATUS.md](STATUS.md).
 
 This file sits one level below [Master Reader's INTENT](../INTENT.md). Where MR doctrine and this file agree, MR wins; where this file is more specific (it almost always is, for this subject), it governs.
 
