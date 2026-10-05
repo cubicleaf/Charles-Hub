@@ -1,0 +1,45 @@
+{
+  "captured_at": "2026-10-05T06:44:04-04:00",
+  "search_queries": [
+    "AI model release announced this week October 2026",
+    "tech news October 4 2026",
+    "quantum computing OR fusion energy OR robotics news October 2026",
+    "chip semiconductor OR space launch news October 2026",
+    "AI regulation OR acquisition announced October 2026",
+    "OpenAI announces",
+    "Anthropic OR Google DeepMind OR Meta new model launch this week",
+    "Project Suncatcher Transporter-18 launch Google TPU satellite",
+    "OpenAI shelves GPT-6.1 Astra release safety instructions",
+    "Transporter-18 Falcon 9 launched Suncatcher satellite",
+    "Gemini 4 Argon Google launch benchmarks cyber partners",
+    "AI regulation Congress OR EU OR White House news this week October 2026",
+    "tech news roundup October 5 2026",
+    "this week in AI October 4 2026",
+    "Trump six AI companies accord Super Intelligence Force",
+    "Googlebook launch Android laptop October 4 review price"
+  ],
+  "search_result_urls": [
+    "https://www.cnbc.com/2026/10/02/tech-download-google-argon-frontier-openai-anthropic.html",
+    "https://www.securityweek.com/google-launches-gemini-4-argon-with-guardrail-free-access-for-vetted-defenders/",
+    "https://www.axios.com/2026/09/29/openai-dev-day-2026-dots-space-sol",
+    "https://zamin.uz/en/technology/223286-spacex-falcon-9-successfully-launches-130-spacecraft-into-orbit.html",
+    "https://www.space.com/space-exploration/satellites/spacex-google-project-suncatcher-ai-satellite-transporter-18-mission",
+    "https://androidauthority.com/google-googlebook-laptops-launch-features-models-price-specs-availability-3713215",
+    "https://tbreak.com/googlebook-price-models-five-laptops-october-4/",
+    "https://foxbusiness.com/politics/trump-signs-executive-order-rebranding-ai-super-intelligence-tech-titans-ink-separate-accord",
+    "https://rollcall.com/2026/09/29/congress-continues-back-seat-role-as-ai-execs-feted-at-white-house/",
+    "https://aiweekly.co/ai-news-today",
+    "https://thehackernews.com/2026/09/openai-shelves-gpt-61-astra-after-tests.html",
+    "https://coincentral.com/can-googles-gemini-4-argon-catch-openai-and-anthropic",
+    "https://pulse2.com/google-project-suncatcher/"
+  ],
+  "fetched_urls": [
+    "https://foxbusiness.com/politics/trump-signs-executive-order-rebranding-ai-super-intelligence-tech-titans-ink-separate-accord",
+    "https://rollcall.com/2026/09/29/congress-continues-back-seat-role-as-ai-execs-feted-at-white-house/",
+    "https://coincentral.com/can-googles-gemini-4-argon-catch-openai-and-anthropic",
+    "https://thehackernews.com/2026/09/openai-shelves-gpt-61-astra-after-tests.html",
+    "https://pulse2.com/google-project-suncatcher/",
+    "https://aiweekly.co/ai-news-today"
+  ],
+  "notes": "Thin news in the 48h window; stories 1-4 are 4-6 days old and flagged accordingly. CNBC, space.com and androidauthority fetches failed (403/truncated); Googlebook facts, the 130-spacecraft launch count, four TPUs, and DevDay product names rest on search snippets. Argon pricing/ranking from coincentral fetch. Under-the-radar items are from the aiweekly.co roundup (secondary). Dropped: Meta math papers, Anthropic $100M residency, OpenAI safety lead resignation, Reddit API closure, Instinct $1B round (no fetched page or URL captured), Cowboy Space power beaming (no clear URL), SQMS qubit study (no URL), Stripe/OpenRouter (Aug)."
+}
